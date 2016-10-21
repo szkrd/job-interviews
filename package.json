@@ -26,14 +26,13 @@
     "joi": "6.5.0",
     "jsonwebtoken": "5.0.2",
     "lodash": "3.10.0",
-    "mongodb": "^2.2.10",
+    "mongodb": "2.2.10",
     "nodemailer": "1.4.0",
     "nodemailer-pickup-transport": "0.1.1",
     "promised-mongo": "1.2.0",
     "shelljs": "0.5.1",
     "simple-node-logger": "0.92.21",
-    "touch": "0.0.3",
-    "xxxmongodb": "2.0.36"
+    "touch": "0.0.3"
   },
   "devDependencies": {
     "babel": "6.5.2",
