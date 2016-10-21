@@ -1,0 +1,11 @@
+{  
+  "expr": true,
+  "es5": true,
+  "esnext": true,
+  "node": true,
+  "globals": {
+  	"sinon": false,
+  	"expect": false,
+  	"prequire": false
+  }
+}
