@@ -8,10 +8,13 @@ written in the late 2015, so it's probably not terribly relevant anymore.
 
 * koa instead of hapi
 * joi for validation
-* await/async
+* native await/async
+* no more babel
 * spec files next to their source code counterpart
 * pure mongo, which now has promise support
 * apiary/apib docs
+* create another project for a simple client
+* better cross-platform compatibility
 
 ## Specification
 
