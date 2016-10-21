@@ -4,6 +4,14 @@ API Test
 My entry test for the job interview at RS, a wonderful node company at Budapest. The test's been
 written in the late 2015, so it's probably not terribly relevant anymore.
 
+## What would I do differently in 2016?
+
+* koa instead of hapi
+* joi for validation
+* await/async
+* spec files next to their source code counterpart
+* pure mongo, which now has promise support
+
 ## Specification
 
 Write a [JSON HTTP API](http://jsonapi.org/) that has the following endpoints:
