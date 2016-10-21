@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "dev": "gulp",
-    "test": "NODE_ENV=test node tests",
+    "test": "node tests",
     "test:watch": "node tests -w",
     "flush-data": "gulp flush",
     "mongo:start": "gulp mongo-start",
