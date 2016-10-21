@@ -11,6 +11,7 @@ written in the late 2015, so it's probably not terribly relevant anymore.
 * await/async
 * spec files next to their source code counterpart
 * pure mongo, which now has promise support
+* apiary/apib docs
 
 ## Specification
 
