@@ -18,8 +18,8 @@ function runCommand(command) {
     };
 }
 
-gulp.task('mongo-start', runCommand('mongod --port 27019 --dbpath ./data/')); // no fork
-gulp.task('mongo-stop', runCommand('mongo admin --port 27019 --eval "printjson(db.shutdownServer())"'));
+gulp.task('mongo-start', runCommand('mongod --port 27017 --dbpath ./data/')); // no fork
+gulp.task('mongo-stop', runCommand('mongo admin --port 27017 --eval "printjson(db.shutdownServer())"'));
 
 // reset data and smtp queue directories
 gulp.task('flush', function() {

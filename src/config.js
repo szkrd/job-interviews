@@ -1,15 +1,17 @@
+var mongoPort = process.env.MONGO_PORT || 27017;
+
 var config = {
-    port: 3000,
+    port: process.env.PORT || 3000,
     smtpPickupPath: __dirname + '/../smtpPickup',
     mailFrom: 'Szabolcs Kurdi <szabolcs.kurdi@gmail.com>',
-    db: {url: 'mongodb://localhost:27019/local'},
+    db: {url: `mongodb://localhost:${mongoPort}/local`},
     secret: 'Bora Horza Gobuchul'
 };
 
 if (process.env.NODE_ENV === 'TEST') {
     config.smtpPickupPath += 'Temp';
-    config.port = 3001;
-    config.db = {url: 'mongodb://localhost:27019/test'};
+    config.port = process.env.PORT || 3001;
+    config.db = {url: `mongodb://localhost:${mongoPort}/test`};
 }
 
 module.exports = config;
