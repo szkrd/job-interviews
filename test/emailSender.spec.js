@@ -8,7 +8,7 @@ describe('emailSender', function() {
         var somebody = {
             email: 'peter.venkman@ghostbusters.com',
             name: 'Dr. Peter Venkman',
-            token: 'a1b2c3d4e5f6.a1b2c3d4e5f6.a1b2c3d4e5f6'
+            token: 'a1b2c3d4e5f6'
         };
 
         it('should return a promise', function () {
@@ -33,7 +33,7 @@ describe('emailSender', function() {
 
         it('should contain all three parameters as rendered strings', function (done) {
             emailSender.send(somebody).then(function (resp) {
-                var body = cat(resp);
+                var body = cat(resp).replace(/[\r\n\t]/g, '');
                 expect(body).to.contain(somebody.email);
                 expect(body).to.contain(somebody.name);
                 expect(body).to.contain(somebody.token);
