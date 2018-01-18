@@ -33,3 +33,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [ ] transclude dynamic text into label
 - [ ] disable button for trimmed empty text
 - [ ] min length, max length validator
+
+### Cache Service
+
+- [ ] convert it to simple service (bake in the backend type)
+- [ ] or create a proper factory provider
+- [ ] or create a static singleton and test with proxyquire
+      (but it's not exactly angularish feels out of place here)

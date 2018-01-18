@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class RepoService {
-  url = 'https://wizzair.dev:3110/wizz/proxy/asset/timeout';
+  url = 'https://wizzair.dev:3110/foo/proxy/asset/timeout';
 
   constructor(protected httpClient: HttpClient) { }
 
