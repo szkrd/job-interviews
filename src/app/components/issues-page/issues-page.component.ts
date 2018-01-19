@@ -66,7 +66,6 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
   }
 
   onLinkSelect (linkItem: HeaderLinkItem) {
-    console.log(linkItem);
     const { page } = linkItem;
     const q = this.queryString;
     this.router.navigate(['issues'], {
