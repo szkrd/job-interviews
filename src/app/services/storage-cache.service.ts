@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BROWSER_CACHE_STORAGE, CACHE_KEY} from '../app.constants';
+import { BROWSER_CACHE_STORAGE, CACHE_KEY } from '../app.constants';
 
 enum StorageTypes {
   sessionStorage = 'sessionStorage',

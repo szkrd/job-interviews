@@ -1,9 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {NgForm} from '@angular/forms';
-
-interface OutputPayload {
-  query: string;
-}
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
@@ -20,13 +16,13 @@ export class SearchFormComponent implements OnInit {
   // for anything more complex then a pebble
   @Output('query-change') queryEmitter = new EventEmitter<string>();
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
   // child -> parent
-  submit(form: NgForm) {
+  submit (form: NgForm) {
     this.queryEmitter.emit(form.value.query);
   }
 

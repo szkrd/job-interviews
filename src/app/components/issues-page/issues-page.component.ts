@@ -1,14 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {IssueService} from '../../services/issue.service';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { IssueService } from '../../services/issue.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import extractGithubHttpHeaders from '../../utils/extract-github-http-headers';
-import {IssueItem} from '../../models/issue-item';
-import {HeaderLink} from '../../models/header-link';
-import {autobind} from 'core-decorators';
-import {HeaderLinkItem} from '../../models/header-link-item';
-import {GithubError} from '../../models/github-error';
+import { IssueItem } from '../../models/issue-item';
+import { HeaderLink } from '../../models/header-link';
+import { autobind } from 'core-decorators';
+import { HeaderLinkItem } from '../../models/header-link-item';
+import { GithubError } from '../../models/github-error';
 
 @Component({
   selector: 'app-issues-page',
@@ -26,19 +26,19 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
   rateLimitExceeded = false;
   routeChangeSubscription: Subscription;
 
-  constructor(
+  constructor (
     private issueService: IssueService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit () {
     this.routeChangeSubscription = this.route
       .queryParams
       .subscribe(this.onRouteQueryParamChange);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy () {
     this.routeChangeSubscription.unsubscribe();
   }
 
@@ -69,7 +69,10 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
     const { page } = linkItem;
     const q = this.queryString;
     this.router.navigate(['issues'], {
-      queryParams: {q, page}
+      queryParams: {
+        q,
+        page
+      }
     });
   }
 

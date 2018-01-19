@@ -1,3 +1,4 @@
+/* tslint:disable: no-floating-promises */
 import { AppPage } from './app.po';
 
 describe('horton-entry App', () => {

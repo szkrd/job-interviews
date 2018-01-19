@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "precommit": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +45,7 @@
     "@types/jquery": "3.2.18",
     "@types/node": "6.0.96",
     "codelyzer": "^4.0.1",
+    "husky": "0.14.3",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
@@ -55,6 +57,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.9.1",
+    "tslint-config-semistandard": "7.0.0",
     "typescript": "~2.5.3"
   }
 }

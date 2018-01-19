@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {HeaderLink} from '../../models/header-link';
-import {HeaderLinkItem} from '../../models/header-link-item';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { HeaderLink } from '../../models/header-link';
+import { HeaderLinkItem } from '../../models/header-link-item';
 
 @Component({
   selector: 'app-pagination',
@@ -14,12 +14,12 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   private currentPageNumber = 0;
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
-  ngOnChanges(changes) {
+  ngOnChanges (changes) {
     if (changes.headerLink) {
       this.setCurrentPageNumber(changes.headerLink.currentValue);
     }

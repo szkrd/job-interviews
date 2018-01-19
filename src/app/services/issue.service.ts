@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {API_URL, ISSUE_ITEMS_PER_PAGE} from '../app.constants';
-import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {IssueItem} from '../models/issue-item';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { API_URL, ISSUE_ITEMS_PER_PAGE } from '../app.constants';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { IssueItem } from '../models/issue-item';
 
 @Injectable()
 export class IssueService {
@@ -21,9 +20,9 @@ export class IssueService {
     };
   }
 
-  constructor(protected httpClient: HttpClient) { }
+  constructor (protected httpClient: HttpClient) { }
 
-  search(
+  search (
     q = '',
     page = 1
   ): Observable<HttpResponse<Object>> {

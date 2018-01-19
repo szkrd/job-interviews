@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {API_URL, REPO_ITEMS_PER_PAGE} from '../app.constants';
-import {RepoItem} from '../models/repo-item';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { API_URL, REPO_ITEMS_PER_PAGE } from '../app.constants';
+import { RepoItem } from '../models/repo-item';
 
 @Injectable()
 export class RepoService {
@@ -22,9 +21,9 @@ export class RepoService {
     };
   }
 
-  constructor(protected httpClient: HttpClient) { }
+  constructor (protected httpClient: HttpClient) { }
 
-  search(
+  search (
     q = '',
     page = 1
   ): Observable<HttpResponse<Object>> {

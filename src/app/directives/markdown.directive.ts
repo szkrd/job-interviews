@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, OnInit } from '@angular/core';
 const marked = require('marked');
 
 @Directive({
@@ -7,13 +7,13 @@ const marked = require('marked');
 export class MarkdownDirective implements OnChanges, OnInit {
   @Input('appMarkdown') text: string;
 
-  constructor(private el: ElementRef) { }
+  constructor (private el: ElementRef) { }
 
   ngOnInit () {
     this.el.nativeElement.classList.add('markdown-body');
   }
 
-  ngOnChanges(changes) {
+  ngOnChanges (changes) {
     if (changes.text) {
       this.el.nativeElement.innerHTML = marked(changes.text.currentValue);
     }

@@ -1,4 +1,4 @@
-import {HeaderLinkItem} from './header-link-item';
+import { HeaderLinkItem } from './header-link-item';
 
 export interface HeaderLink {
   next?: HeaderLinkItem;

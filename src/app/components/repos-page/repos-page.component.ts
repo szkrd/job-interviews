@@ -1,14 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {RepoService} from '../../services/repo.service';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { RepoService } from '../../services/repo.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import extractGithubHttpHeaders from '../../utils/extract-github-http-headers';
-import {RepoItem} from '../../models/repo-item';
-import {HeaderLink} from '../../models/header-link';
-import {autobind} from 'core-decorators';
-import {HeaderLinkItem} from '../../models/header-link-item';
-import {GithubError} from '../../models/github-error';
+import { RepoItem } from '../../models/repo-item';
+import { HeaderLink } from '../../models/header-link';
+import { autobind } from 'core-decorators';
+import { HeaderLinkItem } from '../../models/header-link-item';
+import { GithubError } from '../../models/github-error';
 
 @Component({
   selector: 'app-repos-page',
@@ -26,19 +26,19 @@ export class ReposPageComponent implements OnInit, OnDestroy {
   rateLimitExceeded = false;
   routeChangeSubscription: Subscription;
 
-  constructor(
+  constructor (
     private repoService: RepoService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit () {
     this.routeChangeSubscription = this.route
       .queryParams
       .subscribe(this.onRouteQueryParamChange);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy () {
     this.routeChangeSubscription.unsubscribe();
   }
 
@@ -52,7 +52,7 @@ export class ReposPageComponent implements OnInit, OnDestroy {
     this.doSearch();
   }
 
-  onSearchFormChange(text: string) {
+  onSearchFormChange (text: string) {
     if (this.queryString === text) {
       return;
     }
@@ -65,7 +65,10 @@ export class ReposPageComponent implements OnInit, OnDestroy {
     const page = this.currentPage = 1;
 
     this.router.navigate(['repos'], {
-      queryParams: {q, page}
+      queryParams: {
+        q,
+        page
+      }
     });
   }
 
@@ -85,7 +88,10 @@ export class ReposPageComponent implements OnInit, OnDestroy {
   onLinkSelect (linkItem: HeaderLinkItem) {
     const { q, page } = linkItem;
     this.router.navigate(['repos'], {
-      queryParams: {q, page}
+      queryParams: {
+        q,
+        page
+      }
     });
   }
 

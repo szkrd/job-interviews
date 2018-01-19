@@ -51,10 +51,16 @@ search and search results, and issues section.
 ### Cache Service
 
 - [x] extract headers from intercepted response
-- [ ] never cache if header has `X-RateLimit-Remaining 0`
+- [ ] never cache broken response if header has `X-RateLimit-Remaining 0`
 - [x] convert it to simple service (bake in the backend type)
 
 ### Testing
 
 - [ ] explore karma, protractor
 - [ ] is it possible to use jest (with jsdom) instead of protractor?
+
+### Housekeeping
+
+- [x] semistandard base config for tslint
+- [ ] can we use lint-staged?
+- [ ] remove empty constructors and nginits (leftovers from ng cli)

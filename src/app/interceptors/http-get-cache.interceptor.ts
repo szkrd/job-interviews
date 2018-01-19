@@ -1,19 +1,19 @@
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
-import {StorageCacheService} from '../services/storage-cache.service';
+import { StorageCacheService } from '../services/storage-cache.service';
 
 @Injectable()
 export class HttpGetCacheInterceptor implements HttpInterceptor {
   private cache: StorageCacheService;
 
-  constructor() {
+  constructor () {
     this.cache = new StorageCacheService();
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.method !== 'GET') {
       return next.handle(req);
     }
