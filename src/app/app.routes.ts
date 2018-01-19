@@ -3,7 +3,7 @@ import { IssuesPageComponent } from './issues-page/issues-page.component';
 import { ReposPageComponent } from './repos-page/repos-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'repos-page', pathMatch: 'full' },
+  { path: '', redirectTo: 'repos', pathMatch: 'full' },
   { path: 'repos', component: ReposPageComponent },
   { path: 'issues/:id', component: IssuesPageComponent }
 ];

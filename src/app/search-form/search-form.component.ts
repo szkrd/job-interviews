@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 interface OutputPayload {
@@ -10,7 +10,7 @@ interface OutputPayload {
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements OnInit, OnChanges {
+export class SearchFormComponent implements OnInit {
   @Input('query') defaultQuery = '';
 
   // simple "change" would collide with the html event
@@ -21,13 +21,6 @@ export class SearchFormComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  // parent -> child
-  ngOnChanges(changes) {
-    if (changes.defaultSelectedColor) {
-      this.defaultQuery = changes.defaultQuery.currentValue;
-    }
   }
 
   // child -> parent

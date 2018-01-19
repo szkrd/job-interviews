@@ -1,23 +1,33 @@
-<p>
-  repos-page works!
-</p>
 <div>
-  <app-search-form [query]="queryString" (query-change)="onQueryChange($event, false)"></app-search-form>
+  <app-search-form
+    [query]="queryString"
+    (query-change)="onSearchFormChange($event)"
+  >
+    Search for repositories:
+  </app-search-form>
 </div>
+
 <div>
-  {{repoItems.length}}
+  <app-pagination
+    *ngIf="repoItems.length && searchHeaderLink"
+    [header-link]="searchHeaderLink"
+    (link-select)="onLinkSelect($event)"
+  ></app-pagination>
+</div>
+
+<p *ngIf="rateLimitExceeded">
+  Warning! GitHub API ratelimit exceeded!
+  Please try again later.
+</p>
+
+<p *ngIf="noResults === true">
+  No repositories found.
+</p>
+
+<div>
   <ul>
     <li *ngFor="let repoItem of repoItems">
       <app-repo-item [item]="repoItem"></app-repo-item>
     </li>
   </ul>
 </div>
-<!--
-TODO
-
-<a *ngFor="let repo of repos"
-  [routerLink]="['/issues-page', repo.id]">
-  {{ repo.name }}
-</a>
-
--->

@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RepoService} from './service/repo.service';
 import {HttpGetCacheInterceptor} from './interceptor/http-get-cache.interceptor';
 import { RepoItemComponent } from './repo-item/repo-item.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RepoItemComponent } from './repo-item/repo-item.component';
     ReposPageComponent,
     IssuesPageComponent,
     SearchFormComponent,
-    RepoItemComponent
+    RepoItemComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

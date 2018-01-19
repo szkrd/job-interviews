@@ -4,12 +4,18 @@ import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import {API_URL} from '../app.constants';
 import extractGithubHttpHeaders from '../util/extract-github-http-headers';
+import {HeaderLinkItem} from '../model/header-link-item';
+
+const ITEMS_PER_PAGE = 10;
 
 @Injectable()
 export class RepoService {
   constructor(protected httpClient: HttpClient) { }
 
-  public search(q = '', page = 1): Observable<HttpResponse<Object>> {
+  search(
+    q = '',
+    page = 1
+  ): Observable<HttpResponse<Object>> {
     const url = `${API_URL}/search/repositories`;
     const itemsPerPage = 10;
 
@@ -17,9 +23,16 @@ export class RepoService {
       .get<any>(url, {
         params: new HttpParams()
           .set('q', q)
-          .set('per_page', String(itemsPerPage))
+          .set('per_page', String(ITEMS_PER_PAGE))
           .set('page', String(page)),
         observe: 'response'
       });
+  }
+
+  searchWithLink (link: HeaderLinkItem): Observable<HttpResponse<Object>> {
+    return this.search(
+      link.q,
+      Number(link.page)
+    );
   }
 }

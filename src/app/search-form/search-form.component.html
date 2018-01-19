@@ -1,11 +1,6 @@
-<p>
-  search-form works!
-</p>
-
 <form #queryForm="ngForm" (ngSubmit)="submit(queryForm)">
   <label for="query">
-    <!-- todo: transclude dynamic text here -->
-    Query
+    <ng-content></ng-content>
   </label>
   <input type="text" name="query" id="query" [ngModel]="defaultQuery" />
   <button type="submit">
