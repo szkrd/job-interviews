@@ -4,16 +4,16 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { ReposPageComponent } from './component/repos-page/repos-page.component';
-import { IssuesPageComponent } from './component/issues-page/issues-page.component';
+import { ReposPageComponent } from './components/repos-page/repos-page.component';
+import { IssuesPageComponent } from './components/issues-page/issues-page.component';
 import { routing } from './app.routes';
-import { SearchFormComponent } from './component/search-form/search-form.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {RepoService} from './service/repo.service';
-import {HttpGetCacheInterceptor} from './interceptor/http-get-cache.interceptor';
-import { RepoItemComponent } from './component/repo-item/repo-item.component';
-import { PaginationComponent } from './component/pagination/pagination.component';
+import {RepoService} from './services/repo.service';
+import {HttpGetCacheInterceptor} from './interceptors/http-get-cache.interceptor';
+import { RepoItemComponent } from './components/repo-item/repo-item.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({

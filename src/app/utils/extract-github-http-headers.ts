@@ -1,5 +1,5 @@
 import {HttpResponse} from '@angular/common/http';
-import {HeaderLink as Link} from '../model/header-link';
+import {HeaderLink as Link} from '../models/header-link';
 const parseLinkHeader = require('parse-link-header');
 
 interface RateLimit {

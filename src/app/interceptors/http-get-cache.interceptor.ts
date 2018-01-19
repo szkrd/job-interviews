@@ -3,7 +3,7 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, Http
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
-import {StorageCacheService} from '../service/storage-cache.service';
+import {StorageCacheService} from '../services/storage-cache.service';
 
 @Injectable()
 export class HttpGetCacheInterceptor implements HttpInterceptor {

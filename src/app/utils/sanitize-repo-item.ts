@@ -1,4 +1,4 @@
-import {RepoItem} from '../model/repo-item';
+import {RepoItem} from '../models/repo-item';
 
 export default function sanitizeRepoItem (rawItem: any): RepoItem {
   return {

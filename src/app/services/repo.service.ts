@@ -3,8 +3,8 @@ import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import {API_URL} from '../app.constants';
-import extractGithubHttpHeaders from '../util/extract-github-http-headers';
-import {HeaderLinkItem} from '../model/header-link-item';
+import extractGithubHttpHeaders from '../utils/extract-github-http-headers';
+import {HeaderLinkItem} from '../models/header-link-item';
 import {deprecated} from 'core-decorators';
 
 const ITEMS_PER_PAGE = 10;
