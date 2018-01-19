@@ -30,9 +30,12 @@
     Issue count:
   </dt>
   <dd>
-    <a [routerLink]="['/issues']" [queryParams]="{q: item.fullName}">
+    <a [routerLink]="['/issues']" [queryParams]="{q: item.fullName}" *ngIf="item.openIssuesCount > 0; else no_issues">
       {{item.openIssuesCount | number}}
       <i class="fa fa-arrow-right"></i>
     </a>
+    <ng-template #no_issues>
+      0
+    </ng-template>
   </dd>
 </dl>

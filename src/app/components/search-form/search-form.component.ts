@@ -13,6 +13,8 @@ interface OutputPayload {
 export class SearchFormComponent implements OnInit {
   @Input('query') defaultQuery = '';
 
+  @Input('example') example = '';
+
   // simple "change" would collide with the html event
   // (probably an OutputPayload type would be useful
   // for anything more complex then a pebble
