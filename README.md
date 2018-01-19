@@ -42,6 +42,12 @@ search and search results, and issues section.
 - [x] add @angular-devkit/core from deps, because of this [bug](https://github.com/angular/devkit/issues/256#issuecomment-358802110)
 - [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work? Is this a dts thing?
 
+### Services and models
+
+- [ ] convert http response sanitizers to classes and move them to the models folder
+- [ ] do I want to keep model-related logic in the smart components or
+      do I want to move them into the services?
+
 ### Search component
 
 - [x] transclude dynamic text into label
