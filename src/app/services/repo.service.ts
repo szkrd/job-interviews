@@ -10,12 +10,15 @@ export class RepoService {
   static sanitizeItem (rawItem: any): RepoItem {
     return {
       id: rawItem.id,
+      url: rawItem.html_url,
+      homepage: rawItem.html_url || '',
       name: rawItem.name,
       fullName: rawItem.full_name,
-      description: rawItem.description,
+      description: rawItem.description || '',
       forks: rawItem.forks,
       stargazersCount: rawItem.stargazers_count,
-      openIssuesCount: rawItem.open_issues_count
+      openIssuesCount: rawItem.open_issues_count,
+      watchers: rawItem.watchers
     };
   }
 

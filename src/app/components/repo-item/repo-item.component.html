@@ -1,5 +1,7 @@
 <h2 class="h4">
-  {{item.fullName}}
+  <a [href]="item.url" target="_blank">
+    {{item.fullName}}
+  </a>
 </h2>
 <p class="description">
   {{item.description}}
@@ -9,13 +11,19 @@
     <i class="fa fa-code-fork"></i>
     Forks:
   </dt>
-  <dd>{{item.forks}}</dd>
+  <dd>{{item.forks | number}}</dd>
 
   <dt>
     <i class="fa fa-star"></i>
     Stars:
   </dt>
-  <dd>{{item.stargazersCount}}</dd>
+  <dd>{{item.stargazersCount | number}}</dd>
+
+  <dt>
+    <i class="fa fa-eye"></i>
+    Watchers:
+  </dt>
+  <dd>{{item.watchers | number}}</dd>
 
   <dt>
     <i class="fa fa-bug"></i>
@@ -23,7 +31,7 @@
   </dt>
   <dd>
     <a [routerLink]="['/issues']" [queryParams]="{q: item.fullName}">
-      {{item.openIssuesCount}}
+      {{item.openIssuesCount | number}}
       <i class="fa fa-arrow-right"></i>
     </a>
   </dd>

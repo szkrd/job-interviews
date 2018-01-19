@@ -5,7 +5,7 @@
   padding-bottom: 1rem;
 }
 
-h2.h4 {
+h2.h4 a {
   color: $orange;
 }
 
@@ -27,13 +27,17 @@ dl dt {
   }
 }
 
-dd a {
-  i.fa {
-    opacity: 0;
-    transition: all .5s ease-out;
-  }
+dd {
+  color: $gray-600;
 
-  &:hover i.fa {
-    opacity: .8;
+  a {
+    i.fa {
+      opacity: 0;
+      transition: all .5s ease-out;
+    }
+
+    &:hover i.fa {
+      opacity: .8;
+    }
   }
 }

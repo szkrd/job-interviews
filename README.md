@@ -1,41 +1,50 @@
 # HortonEntry
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+- Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Development server
+## Task
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Create a Typescript application using A4+ that will allow a user to search
+for repository by name and display a repository's relevant information
+such as:
 
-## Code scaffolding
+- URL
+- description
+- forks count
+- stargazers count
+- open issues count
+- etc.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Also, display the available issues of a repository in a separate section in the UI.
 
-## Build
+Implement the best design possible for the user interface -
+search and search results, and issues section.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+- You can use Twitter Bootstrap and any JavaScript libraries to support AngularJS.
+- Use best practices in writing JavaScript / Typescript, CSS / LESS, and HTML.
+- Write clearly and use proper MVC structure to write the application.
+- Bonus #1: Write tests. (Any type of test is accepted.)
+- Bonus #2: Add another section for visualisation chart
+  (using a JavaScript charting library that you already know)
+  for the number of forks, open issues, stargazer count, watchers count,
+  or any relevant information about the repository.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+---
 
 ## TODO
 
 ### Angular CLI
 
-- [x] add @angular-devkit/core from deps (https://github.com/angular/devkit/issues/256#issuecomment-358802110)
+- [x] add @angular-devkit/core from deps, because of this [bug](https://github.com/angular/devkit/issues/256#issuecomment-358802110)
 - [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work? Is this a dts thing?
 
 ### Search component
 
-- [ ] transclude dynamic text into label
+- [x] transclude dynamic text into label
 - [ ] disable button for trimmed empty text
 - [ ] min length, max length validator
 
@@ -44,6 +53,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - [x] extract headers from intercepted response
 - [ ] never cache if header has `X-RateLimit-Remaining 0`
 - [x] convert it to simple service (bake in the backend type)
-- [x] ~~or create a proper factory provider~~
-- [x] ~~or create a static singleton and test with proxyquire (but it's not exactly angularish feels out of place here)~~
 
+### Testing
+
+- [ ] explore karma, protractor
+- [ ] is it possible to use jest (with jsdom) instead of protractor?
