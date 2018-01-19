@@ -1,6 +1,32 @@
-<p>
-  issues-page works!
-</p>
-<p>
-  repoId: {{ repoId }}
-</p>
+<app-loader *ngIf="isLoading"></app-loader>
+
+<h1 class="h4">
+  Open issues of <em>{{queryString}}</em>
+</h1>
+
+<div class="alert alert-danger" *ngIf="rateLimitExceeded">
+  Warning! GitHub API ratelimit exceeded!
+  Please try again later.
+</div>
+
+<div class="alert alert-danger" *ngIf="error">
+  Error! Could not load open isses for this repository.
+  <br>
+  ({{error.message}})
+</div>
+
+<div class="alert alert-warning" *ngIf="noResults === true">
+  No open issues found \o/
+</div>
+
+<ul class="list-unstyled">
+  <li *ngFor="let issueItem of issueItems">
+    <app-issue-item [item]="issueItem"></app-issue-item>
+  </li>
+</ul>
+
+<app-pagination
+  *ngIf="issueItems.length && searchHeaderLink"
+  [header-link]="searchHeaderLink"
+  (link-select)="onLinkSelect($event)"
+></app-pagination>

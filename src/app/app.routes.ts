@@ -5,7 +5,7 @@ import { ReposPageComponent } from './components/repos-page/repos-page.component
 const routes: Routes = [
   { path: '', redirectTo: 'repos', pathMatch: 'full' },
   { path: 'repos', component: ReposPageComponent },
-  { path: 'issues/:id', component: IssuesPageComponent }
+  { path: 'issues', component: IssuesPageComponent }
 ];
 
 export const routing = RouterModule.forRoot(routes);

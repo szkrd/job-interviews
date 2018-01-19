@@ -13,7 +13,7 @@
 
   <dt>Issue count:</dt>
   <dd>
-    <a [routerLink]="['/issues', item.id]">
+    <a [routerLink]="['/issues']" [queryParams]="{q: item.fullName}">
       {{item.openIssuesCount}}
     </a>
   </dd>

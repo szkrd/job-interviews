@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
-import {API_URL} from '../app.constants';
-import extractGithubHttpHeaders from '../utils/extract-github-http-headers';
-import {HeaderLinkItem} from '../models/header-link-item';
-import {deprecated} from 'core-decorators';
-
-const ITEMS_PER_PAGE = 10;
+import {API_URL, REPO_ITEMS_PER_PAGE} from '../app.constants';
+import {RepoItem} from '../models/repo-item';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class RepoService {
+  static sanitizeItem (rawItem: any): RepoItem {
+    return {
+      id: rawItem.id,
+      name: rawItem.name,
+      fullName: rawItem.full_name,
+      description: rawItem.description,
+      forks: rawItem.forks,
+      stargazersCount: rawItem.stargazers_count,
+      openIssuesCount: rawItem.open_issues_count
+    };
+  }
+
   constructor(protected httpClient: HttpClient) { }
 
   search(
@@ -18,23 +26,14 @@ export class RepoService {
     page = 1
   ): Observable<HttpResponse<Object>> {
     const url = `${API_URL}/search/repositories`;
-    const itemsPerPage = 10;
 
     return this.httpClient
       .get<any>(url, {
         params: new HttpParams()
           .set('q', q)
-          .set('per_page', String(ITEMS_PER_PAGE))
+          .set('per_page', String(REPO_ITEMS_PER_PAGE))
           .set('page', String(page)),
         observe: 'response'
       });
-  }
-
-  @deprecated
-  searchWithLink (link: HeaderLinkItem): Observable<HttpResponse<Object>> {
-    return this.search(
-      link.q,
-      Number(link.page)
-    );
   }
 }

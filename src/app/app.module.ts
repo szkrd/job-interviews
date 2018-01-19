@@ -14,6 +14,9 @@ import {RepoService} from './services/repo.service';
 import {HttpGetCacheInterceptor} from './interceptors/http-get-cache.interceptor';
 import { RepoItemComponent } from './components/repo-item/repo-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { IssueItemComponent } from './components/issue-item/issue-item.component';
+import {IssueService} from './services/issue.service';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     IssuesPageComponent,
     SearchFormComponent,
     RepoItemComponent,
-    PaginationComponent
+    PaginationComponent,
+    IssueItemComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
   ],
   providers: [
     RepoService,
+    IssueService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpGetCacheInterceptor,

@@ -4,11 +4,11 @@ import {Subscription} from 'rxjs/Subscription';
 import {RepoService} from '../../services/repo.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import extractGithubHttpHeaders from '../../utils/extract-github-http-headers';
-import sanitizeRepoItem from '../../utils/sanitize-repo-item';
 import {RepoItem} from '../../models/repo-item';
 import {HeaderLink} from '../../models/header-link';
 import {autobind} from 'core-decorators';
 import {HeaderLinkItem} from '../../models/header-link-item';
+import {GithubError} from '../../models/github-error';
 
 @Component({
   selector: 'app-repos-page',
@@ -19,6 +19,8 @@ export class ReposPageComponent implements OnInit, OnDestroy {
   queryString = '';
   currentPage = 1;
   noResults: boolean;
+  isLoading = false;
+  error: GithubError;
   repoItems: RepoItem[] = [];
   searchHeaderLink: HeaderLink;
   rateLimitExceeded = false;
@@ -74,6 +76,7 @@ export class ReposPageComponent implements OnInit, OnDestroy {
       this.noResults = null;
       return;
     }
+    this.isLoading = true;
     this.repoService
       .search(this.queryString, this.currentPage)
       .subscribe(this.onSearchResultSuccess, this.onSearchResultError);
@@ -88,16 +91,19 @@ export class ReposPageComponent implements OnInit, OnDestroy {
 
   @autobind
   onSearchResultSuccess (response: HttpResponse<any>) {
+    this.isLoading = false;
+    this.error = null;
     const ghHeader = extractGithubHttpHeaders(response);
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
     this.noResults = response.body.total_count === 0;
-    this.repoItems = response.body.items.map(sanitizeRepoItem);
+    this.repoItems = response.body.items.map(RepoService.sanitizeItem);
   }
 
   @autobind
-  onSearchResultError (error: HttpErrorResponse) {
-    console.error(error);
+  onSearchResultError (response: HttpErrorResponse) {
+    this.isLoading = false;
+    this.error = response.error;
+    console.error(response);
   }
-
 }

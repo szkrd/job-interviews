@@ -30,7 +30,7 @@ export class PaginationComponent implements OnInit, OnChanges {
     if (incomingHeaderLink.next) {
       this.currentPageNumber = Number(incomingHeaderLink.next.page) - 1;
     } else if (incomingHeaderLink.prev) {
-      this.currentPageNumber = Number(incomingHeaderLink.next.page) + 1;
+      this.currentPageNumber = Number(incomingHeaderLink.prev.page) + 1;
     }
   }
 

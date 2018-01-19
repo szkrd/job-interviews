@@ -5,8 +5,8 @@
         First
       </a>
     </li>
-    <li class="page-item" *ngIf="headerLink.prev" (click)="onClick($event, headerLink.prev)">
-      <a class="page-link" [href]="headerLink.prev.url">
+    <li class="page-item" *ngIf="headerLink.prev">
+      <a class="page-link" [href]="headerLink.prev.url" (click)="onClick($event, headerLink.prev)">
         {{headerLink.prev.page}}
       </a>
     </li>
@@ -15,13 +15,13 @@
         {{currentPageNumber}}
       </a>
     </li>
-    <li class="page-item" *ngIf="headerLink.next" (click)="onClick($event, headerLink.next)">
-      <a class="page-link" [href]="headerLink.next.url">
+    <li class="page-item" *ngIf="headerLink.next">
+      <a class="page-link" [href]="headerLink.next.url" (click)="onClick($event, headerLink.next)">
         {{headerLink.next.page}}
       </a>
     </li>
-    <li class="page-item" *ngIf="headerLink.last" (click)="onClick($event, headerLink.last)">
-      <a class="page-link" [href]="headerLink.last.url">
+    <li class="page-item" *ngIf="headerLink.last">
+      <a class="page-link" [href]="headerLink.last.url" (click)="onClick($event, headerLink.last)">
         Last
       </a>
     </li>

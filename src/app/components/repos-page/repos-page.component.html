@@ -1,3 +1,5 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
 <app-search-form
   [query]="queryString"
   (query-change)="onSearchFormChange($event)"
@@ -5,15 +7,15 @@
   Search for repositories:
 </app-search-form>
 
-<app-pagination
-  *ngIf="repoItems.length && searchHeaderLink"
-  [header-link]="searchHeaderLink"
-  (link-select)="onLinkSelect($event)"
-></app-pagination>
-
-<div class="alert alert-error" *ngIf="rateLimitExceeded">
+<div class="alert alert-danger" *ngIf="rateLimitExceeded">
   Warning! GitHub API ratelimit exceeded!
   Please try again later.
+</div>
+
+<div class="alert alert-danger" *ngIf="error">
+  Error! Could not load repository list.
+  <br>
+  ({{error.message}})
 </div>
 
 <div class="alert alert-warning" *ngIf="noResults === true">
@@ -25,3 +27,9 @@
     <app-repo-item [item]="repoItem"></app-repo-item>
   </li>
 </ul>
+
+<app-pagination
+  *ngIf="repoItems.length && searchHeaderLink"
+  [header-link]="searchHeaderLink"
+  (link-select)="onLinkSelect($event)"
+></app-pagination>
