@@ -21,7 +21,7 @@ export class StorageCacheService {
     try {
       this.storage = JSON.parse(window[this.backend].getItem(CACHE_KEY));
     } catch (err) {
-      console.error(err);
+      console.error('Could not read storage.', err);
     }
     this.storage = this.storage || {};
   }
@@ -36,6 +36,10 @@ export class StorageCacheService {
 
   set (id: string, value) {
     this.storage[id] = value;
-    window[this.backend].setItem(CACHE_KEY, JSON.stringify(this.storage));
+    try {
+      window[this.backend].setItem(CACHE_KEY, JSON.stringify(this.storage));
+    } catch (err) {
+      console.warn('Could not write storage.', err);
+    }
   }
 }

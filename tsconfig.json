@@ -12,7 +12,9 @@
       "node_modules/@types"
     ],
     "types": [
-      "node"
+      "node",
+      "jquery",
+      "bootstrap"
     ],
     "lib": [
       "es2017",

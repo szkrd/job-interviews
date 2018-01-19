@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {API_URL} from '../app.constants';
 import extractGithubHttpHeaders from '../util/extract-github-http-headers';
 import {HeaderLinkItem} from '../model/header-link-item';
+import {deprecated} from 'core-decorators';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -29,6 +30,7 @@ export class RepoService {
       });
   }
 
+  @deprecated
   searchWithLink (link: HeaderLinkItem): Observable<HttpResponse<Object>> {
     return this.search(
       link.q,

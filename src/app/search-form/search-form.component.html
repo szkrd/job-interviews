@@ -1,9 +1,15 @@
-<form #queryForm="ngForm" (ngSubmit)="submit(queryForm)">
-  <label for="query">
+<form class="form-inline" #queryForm="ngForm" (ngSubmit)="submit(queryForm)">
+  <label class="xsr-only" for="query">
     <ng-content></ng-content>
   </label>
-  <input type="text" name="query" id="query" [ngModel]="defaultQuery" />
-  <button type="submit">
+  <input
+    type="text"
+    class="form-control mb-2 mr-sm-2"
+    name="query"
+    id="query"
+    [ngModel]="defaultQuery"
+  >
+  <button type="submit" class="btn btn-primary mb-2">
     Submit
   </button>
 </form>

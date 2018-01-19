@@ -80,9 +80,10 @@ export class ReposPageComponent implements OnInit, OnDestroy {
   }
 
   onLinkSelect (linkItem: HeaderLinkItem) {
-    this.repoService
-      .searchWithLink(linkItem)
-      .subscribe(this.onSearchResultSuccess, this.onSearchResultError);
+    const { q, page } = linkItem;
+    this.router.navigate(['repos'], {
+      queryParams: {q, page}
+    });
   }
 
   @autobind

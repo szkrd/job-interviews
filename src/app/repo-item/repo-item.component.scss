@@ -1,0 +1,19 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+:host {
+  display: block;
+  padding-bottom: 1rem;
+}
+
+h2.h4 {
+  color: $orange;
+}
+
+dl dt, dl dd {
+  float: left;
+}
+
+dl dt {
+  clear: both;
+  padding-right: .2rem;
+}

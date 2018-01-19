@@ -1,33 +1,27 @@
-<div>
-  <app-search-form
-    [query]="queryString"
-    (query-change)="onSearchFormChange($event)"
-  >
-    Search for repositories:
-  </app-search-form>
-</div>
+<app-search-form
+  [query]="queryString"
+  (query-change)="onSearchFormChange($event)"
+>
+  Search for repositories:
+</app-search-form>
 
-<div>
-  <app-pagination
-    *ngIf="repoItems.length && searchHeaderLink"
-    [header-link]="searchHeaderLink"
-    (link-select)="onLinkSelect($event)"
-  ></app-pagination>
-</div>
+<app-pagination
+  *ngIf="repoItems.length && searchHeaderLink"
+  [header-link]="searchHeaderLink"
+  (link-select)="onLinkSelect($event)"
+></app-pagination>
 
-<p *ngIf="rateLimitExceeded">
+<div class="alert alert-error" *ngIf="rateLimitExceeded">
   Warning! GitHub API ratelimit exceeded!
   Please try again later.
-</p>
-
-<p *ngIf="noResults === true">
-  No repositories found.
-</p>
-
-<div>
-  <ul>
-    <li *ngFor="let repoItem of repoItems">
-      <app-repo-item [item]="repoItem"></app-repo-item>
-    </li>
-  </ul>
 </div>
+
+<div class="alert alert-warning" *ngIf="noResults === true">
+  No repositories found.
+</div>
+
+<ul class="list-unstyled">
+  <li *ngFor="let repoItem of repoItems">
+    <app-repo-item [item]="repoItem"></app-repo-item>
+  </li>
+</ul>
