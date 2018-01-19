@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
@@ -20,12 +20,23 @@ export class HttpGetCacheInterceptor implements HttpInterceptor {
 
     const cachedResponse = this.cache.get(req.urlWithParams);
     if (cachedResponse) {
-      return Observable.of(new HttpResponse(cachedResponse)); // oh god, I typecasted first, but we DO need the creator
+      cachedResponse.headers = new HttpHeaders(cachedResponse.headers);
+      const fakeResponse = new HttpResponse(cachedResponse);
+      return Observable.of(fakeResponse);
     }
 
     return next.handle(req).do(event => {
       if (event instanceof HttpResponse) {
-        this.cache.set(req.urlWithParams, event); // do we need event.clone()?
+        event = event as HttpResponse;
+        // header internals are all private
+        // so we have to extract the headers one by one
+        const headerKeys = event.headers.keys();
+        const headers = headerKeys.reduce((acc, name) => {
+          acc[name] = event.headers.get(name);
+          return acc;
+        }, {});
+        const dumbedEvent = Object.assign({}, event, { headers });
+        this.cache.set(req.urlWithParams, dumbedEvent);
       }
     });
   }

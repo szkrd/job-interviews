@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
+import {BROWSER_CACHE_STORAGE, CACHE_KEY} from '../app.constants';
 
 enum StorageTypes {
-  SessionStorage = 'sessionStorage',
-  LocalStorage = 'localStorage'
+  sessionStorage = 'sessionStorage',
+  localStorage = 'localStorage'
 }
 
 // poor man's deep clone
 const deepClone = obj => JSON.parse(JSON.stringify(obj));
 
-const CACHE_KEY = 'horton-entry-http-get-cache';
-
 @Injectable()
 export class StorageCacheService {
   storage = {};
-  backend: StorageTypes;
+  backend: StorageTypes = StorageTypes[BROWSER_CACHE_STORAGE];
 
-  constructor (backend: StorageTypes = StorageTypes.SessionStorage) {
-    this.backend = backend;
+  constructor () {
+    if (!this.backend) {
+      throw new Error('Storage backend not implemented.');
+    }
     try {
       this.storage = JSON.parse(window[this.backend].getItem(CACHE_KEY));
     } catch (err) {

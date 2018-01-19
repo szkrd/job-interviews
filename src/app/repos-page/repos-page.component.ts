@@ -10,6 +10,7 @@ import {RepoService} from '../service/repo.service';
 })
 export class ReposPageComponent implements OnInit, OnDestroy {
   queryString = '';
+  repoItems = [];
   private routeChange: Subscription;
 
   constructor(
@@ -45,9 +46,12 @@ export class ReposPageComponent implements OnInit, OnDestroy {
   }
 
   doSearch () {
-    // TODO deal with empty
-    console.log('service search for repo', this.queryString);
-    this.repoService.search(this.queryString);
+    const { queryString } = this;
+    if (queryString) {
+      this.repoService.search(this.queryString);
+    } else {
+      this.repoItems.length = 0;
+    }
   }
 
 }

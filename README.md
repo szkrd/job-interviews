@@ -28,6 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TODO
 
+### Angular CLI
+
+- [x] add @angular-devkit/core from deps (https://github.com/angular/devkit/issues/256#issuecomment-358802110)
+- [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work?
+
 ### Search component
 
 - [ ] transclude dynamic text into label
@@ -36,7 +41,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Cache Service
 
-- [ ] convert it to simple service (bake in the backend type)
-- [ ] or create a proper factory provider
-- [ ] or create a static singleton and test with proxyquire
-      (but it's not exactly angularish feels out of place here)
+- [x] extract headers from intercepted response
+- [ ] never cache if header has `X-RateLimit-Remaining 0`
+- [x] convert it to simple service (bake in the backend type)
+- [x] ~~or create a proper factory provider~~
+- [x] ~~or create a static singleton and test with proxyquire (but it's not exactly angularish feels out of place here)~~
+
