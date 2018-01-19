@@ -27,7 +27,6 @@ export class HttpGetCacheInterceptor implements HttpInterceptor {
 
     return next.handle(req).do(event => {
       if (event instanceof HttpResponse) {
-        event = event as HttpResponse;
         // header internals are all private
         // so we have to extract the headers one by one
         const headerKeys = event.headers.keys();

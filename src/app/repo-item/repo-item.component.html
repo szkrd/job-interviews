@@ -1,0 +1,20 @@
+<h2>
+  {{item.fullName}}
+</h2>
+<p>
+  {{item.description}}
+</p>
+<dl>
+  <dt>Forks:</dt>
+  <dd>{{item.forks}}</dd>
+
+  <dt>Stars:</dt>
+  <dd>{{item.stargazersCount}}</dd>
+
+  <dt>Issue count:</dt>
+  <dd>
+    <a [routerLink]="['/issues', item.id]">
+      {{item.openIssuesCount}}
+    </a>
+  </dd>
+</dl>

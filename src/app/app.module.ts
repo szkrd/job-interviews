@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RepoService} from './service/repo.service';
 import {HttpGetCacheInterceptor} from './interceptor/http-get-cache.interceptor';
+import { RepoItemComponent } from './repo-item/repo-item.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {HttpGetCacheInterceptor} from './interceptor/http-get-cache.interceptor'
     AppComponent,
     ReposPageComponent,
     IssuesPageComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    RepoItemComponent
   ],
   imports: [
     BrowserModule,

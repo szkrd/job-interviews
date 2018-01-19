@@ -2,6 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {RepoService} from '../service/repo.service';
+import {HttpResponse} from '@angular/common/http';
+import extractGithubHttpHeaders from '../util/extract-github-http-headers';
+import sanitizeRepoItem from '../util/sanitize-repo-item';
+import {RepoItem} from '../model/repo-item';
 
 @Component({
   selector: 'app-repos-page',
@@ -10,7 +14,7 @@ import {RepoService} from '../service/repo.service';
 })
 export class ReposPageComponent implements OnInit, OnDestroy {
   queryString = '';
-  repoItems = [];
+  repoItems: RepoItem[] = [];
   private routeChange: Subscription;
 
   constructor(
@@ -47,11 +51,21 @@ export class ReposPageComponent implements OnInit, OnDestroy {
 
   doSearch () {
     const { queryString } = this;
-    if (queryString) {
-      this.repoService.search(this.queryString);
-    } else {
-      this.repoItems.length = 0;
+    if (!queryString) {
+      this.repoItems = [];
+      return;
     }
+    this.repoService
+      .search(this.queryString)
+      .subscribe(
+        (data: HttpResponse<any>) => {
+          console.log(extractGithubHttpHeaders(data));
+          this.repoItems = data.body.items.map(sanitizeRepoItem);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }

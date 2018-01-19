@@ -4,7 +4,14 @@
 <div>
   <app-search-form [query]="queryString" (query-change)="onQueryChange($event, false)"></app-search-form>
 </div>
-
+<div>
+  {{repoItems.length}}
+  <ul>
+    <li *ngFor="let repoItem of repoItems">
+      <app-repo-item [item]="repoItem"></app-repo-item>
+    </li>
+  </ul>
+</div>
 <!--
 TODO
 

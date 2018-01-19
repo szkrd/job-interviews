@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Angular CLI
 
 - [x] add @angular-devkit/core from deps (https://github.com/angular/devkit/issues/256#issuecomment-358802110)
-- [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work?
+- [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work? Is this a dts thing?
 
 ### Search component
 
