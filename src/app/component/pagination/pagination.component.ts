@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {HeaderLink} from '../model/header-link';
-import {HeaderLinkItem} from '../model/header-link-item';
+import {HeaderLink} from '../../model/header-link';
+import {HeaderLinkItem} from '../../model/header-link-item';
 
 @Component({
   selector: 'app-pagination',

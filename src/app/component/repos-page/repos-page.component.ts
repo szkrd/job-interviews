@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {RepoService} from '../service/repo.service';
+import {RepoService} from '../../service/repo.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import extractGithubHttpHeaders from '../util/extract-github-http-headers';
-import sanitizeRepoItem from '../util/sanitize-repo-item';
-import {RepoItem} from '../model/repo-item';
-import {HeaderLink} from '../model/header-link';
+import extractGithubHttpHeaders from '../../util/extract-github-http-headers';
+import sanitizeRepoItem from '../../util/sanitize-repo-item';
+import {RepoItem} from '../../model/repo-item';
+import {HeaderLink} from '../../model/header-link';
 import {autobind} from 'core-decorators';
-import {HeaderLinkItem} from '../model/header-link-item';
+import {HeaderLinkItem} from '../../model/header-link-item';
 
 @Component({
   selector: 'app-repos-page',

@@ -14,7 +14,8 @@
     "types": [
       "node",
       "jquery",
-      "bootstrap"
+      "bootstrap",
+      "jasmine"
     ],
     "lib": [
       "es2017",
