@@ -9,6 +9,10 @@ h2.h4 {
   color: $orange;
 }
 
+.description {
+  color: $gray-600;
+}
+
 dl dt, dl dd {
   float: left;
 }
@@ -16,4 +20,20 @@ dl dt, dl dd {
 dl dt {
   clear: both;
   padding-right: .2rem;
+
+  i.fa {
+    width: 1rem;
+    text-align: center;
+  }
+}
+
+dd a {
+  i.fa {
+    opacity: 0;
+    transition: all .5s ease-out;
+  }
+
+  &:hover i.fa {
+    opacity: .8;
+  }
 }

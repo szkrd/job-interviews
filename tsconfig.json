@@ -15,7 +15,8 @@
       "node",
       "jquery",
       "bootstrap",
-      "jasmine"
+      "jasmine",
+      "marked"
     ],
     "lib": [
       "es2017",

@@ -8,4 +8,4 @@ export const API_URL = 'https://api.github.com';
 
 export const REPO_ITEMS_PER_PAGE = 10;
 
-export const ISSUE_ITEMS_PER_PAGE = 10;
+export const ISSUE_ITEMS_PER_PAGE = 15;

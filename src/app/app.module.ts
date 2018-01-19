@@ -17,6 +17,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { IssueItemComponent } from './components/issue-item/issue-item.component';
 import {IssueService} from './services/issue.service';
 import { LoaderComponent } from './components/loader/loader.component';
+import { MarkdownDirective } from './directives/markdown.directive';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     RepoItemComponent,
     PaginationComponent,
     IssueItemComponent,
-    LoaderComponent
+    LoaderComponent,
+    MarkdownDirective
   ],
   imports: [
     BrowserModule,

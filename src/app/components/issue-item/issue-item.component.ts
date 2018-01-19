@@ -7,6 +7,8 @@ import {IssueItem} from '../../models/issue-item';
   styleUrls: ['./issue-item.component.scss']
 })
 export class IssueItemComponent implements OnInit {
+  showBody = false;
+
   @Input('item') item: IssueItem;
 
   constructor() { }
@@ -14,4 +16,15 @@ export class IssueItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleBody (event: MouseEvent) {
+    const el = event.target as HTMLElement;
+    const markerClass = 'js-issue-item-body';
+    const insideMarkdownZone = el.closest(`.${markerClass}`) !== null;
+    const isMarkdownZone = el.classList.contains(markerClass);
+
+    if (insideMarkdownZone || isMarkdownZone) {
+      return;
+    }
+    this.showBody = !this.showBody;
+  }
 }

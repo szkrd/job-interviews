@@ -1,0 +1,63 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+
+.container {
+  cursor: pointer;
+  border-radius: .3rem;
+  box-shadow: 0 0 .5rem $gray-400 inset;
+  margin: 0 0 .2rem 0;
+  padding: .4rem .6rem;
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: 0 0 .7rem $gray-500 inset;
+    .labels li {
+      filter: grayscale(0);
+    }
+  }
+
+  &.static {
+    cursor: default;
+  }
+
+  &.opened {
+    background-color: $gray-100;
+  }
+}
+
+.short-meta {
+  font-size: .7rem;
+  text-align: right;
+  color: $gray-400;
+
+  span {
+    color: $gray-600;
+  }
+}
+
+.labels {
+  margin-bottom: 0;
+
+  li {
+    border-radius: 3px;
+    font-size: .8rem;
+    display: inline-block;
+    margin: 0 .2rem .2rem 0;
+    padding: 2px;
+    filter: grayscale(50%);
+
+    span {
+      border-radius: 2px;
+      padding: 0 3px;
+      display: inline-block;
+      background-color: rgba(255,255,255,0.5);
+    }
+  }
+}
+
+.body {
+  background-color: $white;
+  cursor: default;
+  border-radius: 5px;
+  box-shadow: 0 0 .5rem $gray-400 inset;
+  padding: .5rem;
+}

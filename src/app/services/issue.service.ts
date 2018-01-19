@@ -10,11 +10,12 @@ export class IssueService {
   static sanitizeItem (rawItem: any): IssueItem {
     return {
       id: rawItem.id,
+      title: rawItem.title,
       createdAt: new Date(rawItem.created_at),
       userName: rawItem.user.login,
-      labels: rawItem.labels.map(label => Object.assign({}, {
+      labels: (rawItem.labels || []).map(label => Object.assign({}, {
         name: label.name,
-        color: label.color
+        color: `#${label.color || 'fff'}`
       })),
       body: rawItem.body
     };
@@ -26,17 +27,16 @@ export class IssueService {
     q = '',
     page = 1
   ): Observable<HttpResponse<Object>> {
-    const url = `${API_URL}/search/issues`;
+    const url = `${API_URL}/repos/${q}/issues`;
 
     return this.httpClient
       .get<any>(url, {
         params: new HttpParams()
-          .set('q', q)
           .set('page', String(page))
           .set('per_page', String(ISSUE_ITEMS_PER_PAGE))
-          .set('status', 'open')
+          .set('state', 'open')
           .set('sort', 'created')
-          .set('order', 'asc'),
+          .set('order', 'desc'),
         observe: 'response'
       });
   }

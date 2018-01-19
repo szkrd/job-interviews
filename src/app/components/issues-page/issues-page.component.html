@@ -1,7 +1,8 @@
 <app-loader *ngIf="isLoading"></app-loader>
 
 <h1 class="h4">
-  Open issues of <em>{{queryString}}</em>
+  Open issues of
+  <a [routerLink]="['/repos']" [queryParams]="{q: queryString}">{{queryString}}</a>
 </h1>
 
 <div class="alert alert-danger" *ngIf="rateLimitExceeded">
@@ -15,7 +16,7 @@
   ({{error.message}})
 </div>
 
-<div class="alert alert-warning" *ngIf="noResults === true">
+<div class="alert alert-success" *ngIf="noResults === true">
   No open issues found \o/
 </div>
 

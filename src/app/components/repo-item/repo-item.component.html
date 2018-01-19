@@ -1,20 +1,30 @@
 <h2 class="h4">
   {{item.fullName}}
 </h2>
-<p>
+<p class="description">
   {{item.description}}
 </p>
 <dl class="clearfix">
-  <dt>Forks:</dt>
+  <dt>
+    <i class="fa fa-code-fork"></i>
+    Forks:
+  </dt>
   <dd>{{item.forks}}</dd>
 
-  <dt>Stars:</dt>
+  <dt>
+    <i class="fa fa-star"></i>
+    Stars:
+  </dt>
   <dd>{{item.stargazersCount}}</dd>
 
-  <dt>Issue count:</dt>
+  <dt>
+    <i class="fa fa-bug"></i>
+    Issue count:
+  </dt>
   <dd>
     <a [routerLink]="['/issues']" [queryParams]="{q: item.fullName}">
       {{item.openIssuesCount}}
+      <i class="fa fa-arrow-right"></i>
     </a>
   </dd>
 </dl>

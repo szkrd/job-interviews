@@ -67,7 +67,8 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
 
   onLinkSelect (linkItem: HeaderLinkItem) {
     console.log(linkItem);
-    const { q, page } = linkItem;
+    const { page } = linkItem;
+    const q = this.queryString;
     this.router.navigate(['issues'], {
       queryParams: {q, page}
     });
@@ -80,8 +81,8 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
     const ghHeader = extractGithubHttpHeaders(response);
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
-    this.noResults = response.body.total_count === 0;
-    this.issueItems = response.body.items.map(IssueService.sanitizeItem);
+    this.noResults = response.body.length === 0;
+    this.issueItems = response.body.map(IssueService.sanitizeItem);
   }
 
   @autobind

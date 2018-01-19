@@ -5,6 +5,7 @@ interface IssueLabel {
 
 export interface IssueItem {
   id: number;
+  title: string;
   createdAt: Date;
   userName: string; // user.login
   labels: IssueLabel[];
