@@ -103,7 +103,7 @@ export class ReposPageComponent implements OnInit, OnDestroy {
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
     this.noResults = response.body.total_count === 0;
-    this.repoItems = response.body.items.map(RepoService.sanitizeItem);
+    this.repoItems = response.body.items.map(item => new RepoItem(item));
   }
 
   @autobind

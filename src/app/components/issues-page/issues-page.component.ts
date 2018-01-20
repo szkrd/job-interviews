@@ -84,7 +84,7 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
     this.noResults = response.body.length === 0;
-    this.issueItems = response.body.map(IssueService.sanitizeItem);
+    this.issueItems = response.body.map(item => new IssueItem(item));
   }
 
   @autobind

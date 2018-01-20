@@ -44,7 +44,7 @@ search and search results, and issues section.
 
 ### Services and models
 
-- [ ] convert http response sanitizers to classes and move them to the models folder
+- [x] convert http response sanitizers to classes and move them to the models folder
 - [ ] do I want to keep model-related logic in the smart components or
       do I want to move them into the services?
 
