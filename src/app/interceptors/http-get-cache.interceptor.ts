@@ -34,8 +34,11 @@ export class HttpGetCacheInterceptor implements HttpInterceptor {
           acc[name] = event.headers.get(name);
           return acc;
         }, {});
-        const dumbedEvent = Object.assign({}, event, { headers });
-        this.cache.set(req.urlWithParams, dumbedEvent);
+        const rateLimit = Number(event.headers.get('x-ratelimit-remaining'));
+        if (rateLimit > 0) {
+          const dumbedEvent = Object.assign({}, event, { headers });
+          this.cache.set(req.urlWithParams, dumbedEvent);
+        }
       }
     });
   }

@@ -35,7 +35,7 @@ search and search results, and issues section.
 
 ## TODO
 
-Simple jot pad or things I considered worth mentioning.
+Simple jot pad or things I consider worth mentioning.
 
 ### Angular CLI
 
@@ -60,7 +60,7 @@ Simple jot pad or things I considered worth mentioning.
 ### Cache Service
 
 - [x] extract headers from intercepted response
-- [ ] never cache broken response if header has `X-RateLimit-Remaining 0`
+- [x] never cache broken response if header has `X-RateLimit-Remaining 0`
 - [x] convert it to simple service (bake in the backend type)
 
 ### Testing
@@ -73,7 +73,8 @@ Simple jot pad or things I considered worth mentioning.
 - [x] semistandard base config for tslint
 - [x] can we use `lint-staged`?  
       **Answer**: not now. `ng lint` should accept parameters ([issue](https://github.com/angular/angular-cli/issues/7612))
-      installing eslint and running eslint and tslint [together](https://github.com/angular/angular-cli/blob/1300ee74f0f82b096d981446fa2bd5b2fc23af39/package.json#L25) is an overkill for now.
+      installing eslint and running eslint and tslint [together](https://github.com/angular/angular-cli/blob/1300ee74f0f82b096d981446fa2bd5b2fc23af39/package.json#L25)
+      is an overkill for now.
 - [x] can we use `semistandard` with a babel parser (tslint stripper)?  
       **Answer**: not really. Types are imported, but type hinting gets stripped out during
       the ts-js conversion and this will generate unused import and indentation warnings.
