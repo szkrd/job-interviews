@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent {
   @Input('query') defaultQuery = '';
 
   @Input('example') example = '';
@@ -15,11 +15,6 @@ export class SearchFormComponent implements OnInit {
   // (probably an OutputPayload type would be useful
   // for anything more complex then a pebble
   @Output('query-change') queryEmitter = new EventEmitter<string>();
-
-  constructor () { }
-
-  ngOnInit () {
-  }
 
   // child -> parent
   submit (form: NgForm) {

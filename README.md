@@ -45,7 +45,7 @@ Simple jot pad or things I considered worth mentioning.
 
 ### Services and models
 
-- [x] convert http response sanitizers to classes and move them to the models folder
+- [x] convert http response sanitizers to clOnInitasses and move them to the models folder
 - [x] do I want to keep model-related logic in the smart components or
       do I want to move them into the services?  
       **Answer**: yes, for now, since this is a tiny project.

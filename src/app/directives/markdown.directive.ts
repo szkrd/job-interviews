@@ -18,5 +18,4 @@ export class MarkdownDirective implements OnChanges, OnInit {
       this.el.nativeElement.innerHTML = marked(changes.text.currentValue);
     }
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { HeaderLink } from '../../models/header-link';
 import { HeaderLinkItem } from '../../models/header-link-item';
 
@@ -7,17 +7,12 @@ import { HeaderLinkItem } from '../../models/header-link-item';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit, OnChanges {
+export class PaginationComponent implements OnChanges {
   @Input('header-link') headerLink: HeaderLink;
 
   @Output('link-select') headerLinkSelectEmitter = new EventEmitter<HeaderLinkItem>();
 
-  private currentPageNumber = 0;
-
-  constructor () { }
-
-  ngOnInit () {
-  }
+  currentPageNumber = 0;
 
   ngOnChanges (changes) {
     if (changes.headerLink) {

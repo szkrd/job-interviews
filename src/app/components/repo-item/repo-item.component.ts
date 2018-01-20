@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RepoItem } from '../../models/repo-item';
 
 @Component({
@@ -6,12 +6,6 @@ import { RepoItem } from '../../models/repo-item';
   templateUrl: './repo-item.component.html',
   styleUrls: ['./repo-item.component.scss']
 })
-export class RepoItemComponent implements OnInit {
+export class RepoItemComponent {
   @Input('item') item: RepoItem;
-
-  constructor () { }
-
-  ngOnInit () {
-  }
-
 }
