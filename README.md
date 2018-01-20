@@ -33,20 +33,22 @@ search and search results, and issues section.
   for the number of forks, open issues, stargazer count, watchers count,
   or any relevant information about the repository.
 
----
-
 ## TODO
+
+Simple jot pad or things I considered worth mentioning.
 
 ### Angular CLI
 
 - [x] add @angular-devkit/core from deps, because of this [bug](https://github.com/angular/devkit/issues/256#issuecomment-358802110)
-- [ ] check internal webpack config, commonjs require to es6 import conversion doesn't work? Is this a dts thing?
+- [x] commonjs require to es6 import conversion doesn't work? Is this a dts thing?  
+      **Answer**: yes, d.ts type definition would be needed ([example](https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2))
 
 ### Services and models
 
 - [x] convert http response sanitizers to classes and move them to the models folder
-- [ ] do I want to keep model-related logic in the smart components or
-      do I want to move them into the services?
+- [x] do I want to keep model-related logic in the smart components or
+      do I want to move them into the services?  
+      **Answer**: yes, for now, since this is a tiny project.
 
 ### Search component
 
@@ -68,5 +70,17 @@ search and search results, and issues section.
 ### Housekeeping
 
 - [x] semistandard base config for tslint
-- [ ] can we use lint-staged?
+- [ ] can we use lint-staged?  
+      **Answer**: not now. `ng lint` should accept parameters ([issue](https://github.com/angular/angular-cli/issues/7612))
+      installing eslint and running eslint and tslint [together](https://github.com/angular/angular-cli/blob/1300ee74f0f82b096d981446fa2bd5b2fc23af39/package.json#L25) is an overkill for now.
 - [ ] remove empty constructors and nginits (leftovers from ng cli)
+
+## Questions
+
+- is there a good way to auto-unsubscribe all subscribers?
+  How about [a decorator](https://www.npmjs.com/package/ngx-auto-unsubscribe)?
+- smart component vs fat services:
+  - which one is preferable? or are people using ngrx-store?
+  - I have seen directly accessing service observables/subjects from the template.
+    Is this a common practice? Is there a way to indicate this bridge in the
+    viewmodel somehow?
