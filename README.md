@@ -53,8 +53,9 @@ Simple jot pad or things I considered worth mentioning.
 ### Search component
 
 - [x] transclude dynamic text into label
-- [ ] disable button for trimmed empty text
-- [ ] min length, max length validator
+- [x] disable button for trimmed empty text
+- [x] trimming is tricky (see [here](https://github.com/angular/angular/issues/8503)), let's use 3rd party directive for now
+- [x] min length, max length validator
 
 ### Cache Service
 

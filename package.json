@@ -31,6 +31,7 @@
     "github-markdown-css": "2.10.0",
     "jquery": "3.2.1",
     "marked": "0.3.12",
+    "ng-trim-value-accessor": "2.0.2",
     "parse-link-header": "1.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.19"
