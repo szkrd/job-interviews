@@ -118,4 +118,5 @@ Simple jot pad or things I consider worth mentioning.
 - [ ] http-get-cache interceptor
 - [ ] issue service
 - [ ] repo service
-- [ ] storage-cache service
+- [x] storage-cache service
+- [x] session-storage service

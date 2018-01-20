@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss']
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent implements OnChanges {
   @Input('query') defaultQuery = '';
 
   @Input('example') example = '';
@@ -24,10 +24,11 @@ export class SearchFormComponent implements OnInit {
   }
 
   // parent -> child
-  // (since the route will reload all the components,
-  // on init is enough, we won't need on change)
-  ngOnInit () {
-    this.query.setValue(this.defaultQuery);
+  // (the route may do a soft change, so ngOnInit is not enough)
+  ngOnChanges (changes) {
+    if (changes.defaultQuery) {
+      this.query.setValue(this.defaultQuery);
+    }
   }
 
   createForm () {

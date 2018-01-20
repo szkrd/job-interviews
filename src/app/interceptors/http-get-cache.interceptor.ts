@@ -7,11 +7,7 @@ import { StorageCacheService } from '../services/storage-cache.service';
 
 @Injectable()
 export class HttpGetCacheInterceptor implements HttpInterceptor {
-  private cache: StorageCacheService;
-
-  constructor () {
-    this.cache = new StorageCacheService();
-  }
+  constructor (private cache: StorageCacheService) {}
 
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.method !== 'GET') {

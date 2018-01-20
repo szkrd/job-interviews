@@ -16,6 +16,10 @@ import { IssueItemComponent } from './components/issue-item/issue-item.component
 import { IssueService } from './services/issue.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MarkdownDirective } from './directives/markdown.directive';
+import { StorageCacheService } from './services/storage-cache.service';
+import { SessionStorageService } from './services/session-storage.service';
+
+const httpCacheBackend = new StorageCacheService(new SessionStorageService());
 
 @NgModule({
   declarations: [
@@ -42,7 +46,7 @@ import { MarkdownDirective } from './directives/markdown.directive';
     IssueService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpGetCacheInterceptor,
+      useFactory: () => new HttpGetCacheInterceptor(httpCacheBackend),
       multi: true
     }
   ],

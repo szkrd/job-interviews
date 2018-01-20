@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BROWSER_CACHE_STORAGE, CACHE_KEY } from '../app.constants';
-
-enum StorageTypes {
-  sessionStorage = 'sessionStorage',
-  localStorage = 'localStorage'
-}
+import { CACHE_KEY } from '../app.constants';
+import { SessionStorageService } from './session-storage.service';
 
 // poor man's deep clone
 const deepClone = obj => JSON.parse(JSON.stringify(obj));
@@ -12,14 +8,10 @@ const deepClone = obj => JSON.parse(JSON.stringify(obj));
 @Injectable()
 export class StorageCacheService {
   storage = {};
-  backend: StorageTypes = StorageTypes[BROWSER_CACHE_STORAGE];
 
-  constructor () {
-    if (!this.backend) {
-      throw new Error('Storage backend not implemented.');
-    }
+  constructor (private backend: SessionStorageService) {
     try {
-      this.storage = JSON.parse(window[this.backend].getItem(CACHE_KEY));
+      this.storage = JSON.parse(this.backend.getItem(CACHE_KEY));
     } catch (err) {
       console.error('Could not read storage.', err);
     }
@@ -37,7 +29,7 @@ export class StorageCacheService {
   set (id: string, value) {
     this.storage[id] = value;
     try {
-      window[this.backend].setItem(CACHE_KEY, JSON.stringify(this.storage));
+      this.backend.setItem(CACHE_KEY, JSON.stringify(this.storage));
     } catch (err) {
       console.warn('Could not write storage.', err);
     }
