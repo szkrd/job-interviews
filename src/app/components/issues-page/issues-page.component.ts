@@ -3,12 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { IssueService } from '../../services/issue.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import extractGithubHttpHeaders from '../../utils/extract-github-http-headers';
 import { IssueItem } from '../../models/issue-item';
 import { HeaderLink } from '../../models/header-link';
 import { autobind } from 'core-decorators';
 import { HeaderLinkItem } from '../../models/header-link-item';
 import { GithubError } from '../../models/github-error';
+import { GithubExtractedHeader } from '../../models/github-extracted-header';
 
 @Component({
   selector: 'app-issues-page',
@@ -80,7 +80,7 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
   onSearchResultSuccess (response: HttpResponse<any>) {
     this.isLoading = false;
     this.error = null;
-    const ghHeader = extractGithubHttpHeaders(response);
+    const ghHeader = new GithubExtractedHeader(response.headers);
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
     this.noResults = response.body.length === 0;
