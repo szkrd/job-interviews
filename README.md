@@ -66,8 +66,17 @@ Simple jot pad or things I consider worth mentioning.
 
 ### Testing
 
-- [ ] explore karma, protractor
-- [ ] is it possible to use jest (with jsdom) instead of protractor?
+- [x] how to test native commonjs-ish modules? proxyquire? karma-commonjs? object wrapping?
+      **Answer**: do NOT try to circumvent the injector system, it's going to end in tears.
+- [x] can we use puppeteer instead of karma?
+      **Answer**: yes, but it's [far from trivial](https://github.com/Quramy/angular-puppeteer-demo)
+      (needs eject, webpack middleware)
+- [ ] is it possible to run unit tests in jsdom with mocha + sinon + chai?
+      (like [here](https://kasperlewau.github.io/post/angular-without-karma/) for example - what are the caveats? will TestBed work?)
+      (or [here](http://darrinholst.com/blog/2017/11/09/testing-angular-components/), this one seems to be more robust)
+- [ ] is it possible to use jest with jsdom instead of protractor?
+- [ ] explore karma for unit tests
+- [ ] explore protractor for e2e
 
 ### Housekeeping
 
@@ -93,3 +102,20 @@ Simple jot pad or things I consider worth mentioning.
   - I have seen directly accessing service observables/subjects from the template.
     Is this a common practice? Is there a way to indicate this bridge in the
     viewmodel somehow?
+- any alternatives to karma and phantomjs? both feel cumbersome to me. 
+
+## Tests
+
+- [ ] app component
+- [ ] issue-item component
+- [ ] issues-page component
+- [ ] loader component
+- [ ] pagination component
+- [ ] repo-item component
+- [ ] repos-page component
+- [ ] search-form component
+- [x] markdown directive
+- [ ] http-get-cache interceptor
+- [ ] issue service
+- [ ] repo service
+- [ ] storage-cache service

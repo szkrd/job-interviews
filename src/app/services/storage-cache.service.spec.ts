@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { StorageCacheService } from './storage-cache.service';
 
-describe('StorageCacheService', () => {
+xdescribe('StorageCacheService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [StorageCacheService]
