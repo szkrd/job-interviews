@@ -40,6 +40,7 @@ Simple jot pad or things I consider worth mentioning.
 ### Angular CLI
 
 - [x] add @angular-devkit/core from deps, because of this [bug](https://github.com/angular/devkit/issues/256#issuecomment-358802110)
+- [x] upgrade angular cli (patch), very carefully (see [here](https://github.com/angular/angular-cli/issues/7375) and [here](https://github.com/angular/angular-cli/issues/8798))
 - [x] commonjs require to es6 import conversion doesn't work? Is this a dts thing?  
       **Answer**: yes, d.ts type definition would be needed ([example](https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2))
 
