@@ -70,15 +70,21 @@ Simple jot pad or things I considered worth mentioning.
 ### Housekeeping
 
 - [x] semistandard base config for tslint
-- [ ] can we use lint-staged?  
+- [x] can we use `lint-staged`?  
       **Answer**: not now. `ng lint` should accept parameters ([issue](https://github.com/angular/angular-cli/issues/7612))
       installing eslint and running eslint and tslint [together](https://github.com/angular/angular-cli/blob/1300ee74f0f82b096d981446fa2bd5b2fc23af39/package.json#L25) is an overkill for now.
-- [ ] remove empty constructors and nginits (leftovers from ng cli)
+- [x] can we use `semistandard` with a babel parser (tslint stripper)?  
+      **Answer**: not really. Types are imported, but type hinting gets stripped out during
+      the ts-js conversion and this will generate unused import and indentation warnings.
+      The proper way to do this is to replicate functionality from `ng-cli` I guess,
+      adding full blown eslint and run first eslint, then tslint for a given file.
+- [x] remove empty constructors and nginits (leftovers from ng cli)
 
 ## Questions
 
 - is there a good way to auto-unsubscribe all subscribers?
   How about [a decorator](https://www.npmjs.com/package/ngx-auto-unsubscribe)?
+- lint staged, precommit hooks, time to commit - isn't it going to be a bit high?
 - smart component vs fat services:
   - which one is preferable? or are people using ngrx-store?
   - I have seen directly accessing service observables/subjects from the template.
