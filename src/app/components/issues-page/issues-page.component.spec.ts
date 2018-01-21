@@ -112,6 +112,7 @@ describe('IssuesPageComponent', () => {
       url: 'http://baz.qux/'
     });
 
+    expect(component.noResults).toBeNull();
     component.rateLimitExceeded = true;
 
     // let's wake the component with the router

@@ -54,7 +54,7 @@ Simple jot pad or things I consider worth mentioning.
 - [x] add @angular-devkit/core from deps, because of this [bug](https://github.com/angular/devkit/issues/256#issuecomment-358802110)
 - [x] upgrade angular cli (patch), very carefully (see [here](https://github.com/angular/angular-cli/issues/7375) and [here](https://github.com/angular/angular-cli/issues/8798))
 - [x] commonjs require to es6 import conversion doesn't work? Is this a dts thing?  
-      **Answer**: yes, d.ts type definition would be needed ([example](https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2))
+      **Answer**: probably, d.ts type definition would be needed ([example](https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2))
 
 ### Services and models
 
@@ -85,9 +85,10 @@ Simple jot pad or things I consider worth mentioning.
 - [x] can we use puppeteer instead of karma?  
       **Answer**: yes, but it's [far from trivial](https://github.com/Quramy/angular-puppeteer-demo)
       (needs eject, webpack middleware)
-- [ ] is it possible to run unit tests in jsdom with mocha + sinon + chai?
+- [x] is it possible to run unit tests in jsdom with mocha + sinon + chai?
       (like [here](https://kasperlewau.github.io/post/angular-without-karma/) for example - what are the caveats? will TestBed work?)
       (or [here](http://darrinholst.com/blog/2017/11/09/testing-angular-components/), this one seems to be more robust)
+      **Answer**: may worth a try, but I wouldn't migrate an existing project just because I prefer a mochaish workflow 
 - [x] is it possible to use jest with jsdom instead of protractor?
       **Answer**: probably, but the migration and [setup](https://semaphoreci.com/community/tutorials/testing-angular-2-and-continuous-integration-with-jest)
       is non trivial. The price for the better performance of course is jsdom and all its quirks, it may or may not worth it for you.
@@ -95,8 +96,9 @@ Simple jot pad or things I consider worth mentioning.
 - [ ] explore protractor for e2e
 - [ ] move mocks into standalone folder? yes, to testing...
 - [ ] rename mocks to stubs, move real mocks to testing as well
-- [ ] decorators are not working in folders next to the app level?  
+- [x] decorators are not working in folders next to the app level?  
       **Answer**: webstorm [bug](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000186950-Incorrect-TS1219-warning)
+      fixed in latest 2017.3.3
 
 ### Housekeeping
 
@@ -137,7 +139,7 @@ Simple jot pad or things I consider worth mentioning.
 - [x] loader component
 - [x] pagination component
 - [x] repo-item component
-- [ ] repos-page component
+- [x] repos-page component
 - [x] search-form component
 - [x] markdown directive
 - [x] http-get-cache interceptor

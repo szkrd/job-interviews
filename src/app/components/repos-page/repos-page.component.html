@@ -8,7 +8,7 @@
   Search for repositories:
 </app-search-form>
 
-<div class="alert alert-danger" *ngIf="rateLimitExceeded">
+<div class="alert alert-danger rate-limit-exceeded" *ngIf="rateLimitExceeded">
   Warning! GitHub API ratelimit exceeded!
   Please try again later.
 </div>
@@ -16,10 +16,12 @@
 <div class="alert alert-danger" *ngIf="error">
   Error! Could not load repository list.
   <br>
-  ({{error.message}})
+  <span class="error-message">
+    ({{error.message}})
+  </span>
 </div>
 
-<div class="alert alert-warning" *ngIf="noResults === true">
+<div class="alert alert-warning no-results" *ngIf="noResults === true">
   No repositories found.
 </div>
 
