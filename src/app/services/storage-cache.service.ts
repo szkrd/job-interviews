@@ -5,8 +5,16 @@ import { SessionStorageService } from './session-storage.service';
 // poor man's deep clone
 const deepClone = obj => JSON.parse(JSON.stringify(obj));
 
+// we need the interface definition, because implementing classes
+// with private fields in the mocks is a no go
+// (https://github.com/Microsoft/TypeScript/issues/471)
+export interface StorageCacheServiceInterface {
+  get (id: string): any;
+  set (id: string, value): void;
+}
+
 @Injectable()
-export class StorageCacheService {
+export class StorageCacheService implements StorageCacheServiceInterface {
   storage = {};
 
   constructor (private backend: SessionStorageService) {
