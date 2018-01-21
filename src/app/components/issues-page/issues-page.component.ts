@@ -80,7 +80,7 @@ export class IssuesPageComponent implements OnInit, OnDestroy {
   onSearchResultSuccess (response: HttpResponse<any>) {
     this.isLoading = false;
     this.error = null;
-    const ghHeader = new GithubExtractedHeader(response.headers);
+    const ghHeader = new GithubExtractedHeader(response.headers); // TODO inject?
     this.rateLimitExceeded = ghHeader.rateLimit.remaining === 0;
     this.searchHeaderLink = ghHeader.link;
     this.noResults = response.body.length === 0;

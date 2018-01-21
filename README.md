@@ -94,6 +94,7 @@ Simple jot pad or things I consider worth mentioning.
 - [x] explore karma for unit tests
 - [ ] explore protractor for e2e
 - [ ] move mocks into standalone folder? yes, to testing...
+- [ ] rename mocks to stubs, move real mocks to testing as well
 - [ ] decorators are not working in folders next to the app level?  
       **Answer**: webstorm [bug](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000186950-Incorrect-TS1219-warning)
 
@@ -132,7 +133,7 @@ Simple jot pad or things I consider worth mentioning.
 
 - [x] app component
 - [x] issue-item component
-- [ ] issues-page component
+- [x] issues-page component
 - [x] loader component
 - [x] pagination component
 - [x] repo-item component

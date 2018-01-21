@@ -2,10 +2,12 @@
 
 <h1 class="h4">
   Open issues of
-  <a [routerLink]="['/repos']" [queryParams]="{q: queryString}">{{queryString}}</a>
+  <a [routerLink]="['/repos']" [queryParams]="{q: queryString}" class="go-back">
+    {{queryString}}
+  </a>
 </h1>
 
-<div class="alert alert-danger" *ngIf="rateLimitExceeded">
+<div class="alert alert-danger rate-limit-exceeded" *ngIf="rateLimitExceeded">
   Warning! GitHub API ratelimit exceeded!
   Please try again later.
 </div>
@@ -13,10 +15,12 @@
 <div class="alert alert-danger" *ngIf="error">
   Error! Could not load open isses for this repository.
   <br>
-  ({{error.message}})
+  <span class="error-message">
+    ({{error.message}})
+  </span>
 </div>
 
-<div class="alert alert-success" *ngIf="noResults === true">
+<div class="alert alert-success no-results" *ngIf="noResults === true">
   No open issues found \o/
 </div>
 
