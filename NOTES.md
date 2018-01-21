@@ -44,6 +44,7 @@ mockFooInstances = mockEl.map(mEl => mEl.injector.get(MockFooDirective));
 ## Testing components with @input and @output with a wrapper component
 
 If setting the @input directly is not enough, one can easily create a fake wrapper.
+Without a wrapper NgOnChanges will not fire, SImpleChanges must be triggered manually.
 
 [source](./src/app/components/search-form/search-form.component.spec.ts)
 
