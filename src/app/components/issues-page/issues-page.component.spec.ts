@@ -1,18 +1,21 @@
 /* tslint:disable: no-floating-promises directive-selector */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IssuesPageComponent } from './issues-page.component';
-import createSpy = jasmine.createSpy;
 import { ActivatedRoute, Router } from '@angular/router';
-import { IssueService } from '../../services/issue.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Component, DebugElement, Input } from '@angular/core';
-import { MockRouterLinkDirective } from '../../../testing/mock-router-link.directive';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+import { IssuesPageComponent } from './issues-page.component';
+import { IssueService } from '../../services/issue.service';
+import { MockRouterLinkDirective } from '../../../testing/mock-router-link.directive';
 import { getTextWithSelector } from '../../../testing/utils';
-import { By } from '@angular/platform-browser';
+import { MockPaginationComponent } from '../../../testing/mock-pagination.component';
+import { MockIssueItemComponent } from '../../../testing/mock-issue-item.component';
+import { MockLoaderComponent } from '../../../testing/mock-loader.component';
+import createSpy = jasmine.createSpy;
 
 class MockRouter {
   navigate = createSpy('navigate');
@@ -32,29 +35,6 @@ class MockIssueService {
   }
 }
 
-@Component({
-  selector: 'app-loader',
-  template: '<div id="app-loader"></div>'
-})
-class MockAppLoaderComponent {}
-
-@Component({
-  selector: 'app-issue-item',
-  template: '<div class="app-issue-item"></div>'
-})
-class MockAppIssueItemComponent {
-  @Input('item') item;
-}
-
-@Component({
-  selector: 'app-pagination',
-  template: '<div id="app-pagination"></div>'
-})
-class MockAppPaginationComponent {
-  @Input('header-link') headerLink;
-}
-
-// test begins here
 // ============================================================================
 
 describe('IssuesPageComponent', () => {
@@ -75,9 +55,9 @@ describe('IssuesPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         IssuesPageComponent,
-        MockAppLoaderComponent,
-        MockAppIssueItemComponent,
-        MockAppPaginationComponent,
+        MockLoaderComponent,
+        MockIssueItemComponent,
+        MockPaginationComponent,
         MockRouterLinkDirective
       ],
       providers: [
