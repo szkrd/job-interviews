@@ -113,7 +113,7 @@ Simple jot pad or things I consider worth mentioning.
 ## Tests
 
 - [ ] app component
-- [ ] issue-item component
+- [x] issue-item component
 - [ ] issues-page component
 - [x] loader component
 - [ ] pagination component

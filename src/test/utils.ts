@@ -1,7 +1,7 @@
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
-export function changeInputValue (el: HTMLInputElement, value) {
+export function changeInputValue (el: HTMLInputElement, value = '') {
   const event = new Event('input', {
     bubbles: true,
     cancelable: true
@@ -10,8 +10,8 @@ export function changeInputValue (el: HTMLInputElement, value) {
   el.dispatchEvent(event);
 }
 
-export function getNativelElementByCss (el: DebugElement, selector = 'div'): HTMLElement {
-  return el.query(By.css(selector)).nativeElement;
+export function getTextWithSelector (el: DebugElement, selector = 'div'): string {
+  return (el.query(By.css(selector)).nativeElement.textContent || '').trim();
 }
 
 const ButtonClickEvents = {
