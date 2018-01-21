@@ -3,8 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RepoItemComponent } from './repo-item.component';
 import { RepoItem } from '../../models/repo-item';
 import { getTextWithSelector } from '../../../testing/utils';
-import { DebugElement, Directive, Input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { MockRouterLinkDirective } from '../../../testing/mock-router-link.directive';
 
 const repoItem = new RepoItem({
   id: 1,
@@ -18,14 +19,6 @@ const repoItem = new RepoItem({
   open_issues_count: 444444,
   watchers: 555555
 });
-
-@Directive({
-  selector: '[routerLink], [queryParams]'
-})
-export class MockRouterLinkDirective {
-  @Input('routerLink') routerLink: any;
-  @Input('queryParams') queryParams: any;
-}
 
 describe('RepoItemComponent', () => {
   let component: RepoItemComponent;

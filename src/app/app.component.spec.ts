@@ -1,22 +1,10 @@
 /* tslint:disable: no-floating-promises directive-selector component-selector */
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { Component, DebugElement, Directive, Input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-
-@Directive({
-  selector: '[routerLink]'
-})
-export class MockRouterLinkDirective {
-  @Input('routerLink') routerLink: any;
-  @Input('queryParams') queryParams: any;
-}
-
-@Component({
-  selector: 'router-outlet',
-  template: '<div id="router-outlet"></div>'
-})
-export class MockRouterOutletComponent {}
+import { MockRouterLinkDirective } from '../testing/mock-router-link.directive';
+import { MockRouterOutletComponent } from '../testing/mock-router-outlet.directive';
 
 describe('AppComponent', () => {
   let component: AppComponent;

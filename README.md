@@ -93,7 +93,9 @@ Simple jot pad or things I consider worth mentioning.
       is non trivial. The price for the better performance of course is jsdom and all its quirks, it may or may not worth it for you.
 - [x] explore karma for unit tests
 - [ ] explore protractor for e2e
-- [ ] move mocks into standalone folder?
+- [ ] move mocks into standalone folder? yes, to testing...
+- [ ] decorators are not working in folders next to the app level?  
+      **Answer**: webstorm [bug](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000186950-Incorrect-TS1219-warning)
 
 ### Housekeeping
 
