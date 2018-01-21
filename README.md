@@ -117,7 +117,7 @@ Simple jot pad or things I consider worth mentioning.
 - [ ] issues-page component
 - [x] loader component
 - [ ] pagination component
-- [ ] repo-item component
+- [x] repo-item component
 - [ ] repos-page component
 - [x] search-form component
 - [x] markdown directive
