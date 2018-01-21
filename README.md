@@ -1,6 +1,15 @@
 # HortonEntry
 
-- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
+1. `npm i`
+2. run dev: `ng serve`
+3. run tests: `ng test`
+
+If the GitHub api is not available, please install the demo fixtures.
+See readme [here](./fixtures/README.md).
+
+## ng-cli 
+
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4 (updated to 1.6.5).
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 - Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -8,30 +17,30 @@
 
 ## Task
 
-Create a Typescript application using A4+ that will allow a user to search
-for repository by name and display a repository's relevant information
-such as:
-
-- URL
-- description
-- forks count
-- stargazers count
-- open issues count
-- etc.
-
-Also, display the available issues of a repository in a separate section in the UI.
-
-Implement the best design possible for the user interface -
-search and search results, and issues section.
-
-- You can use Twitter Bootstrap and any JavaScript libraries to support AngularJS.
-- Use best practices in writing JavaScript / Typescript, CSS / LESS, and HTML.
-- Write clearly and use proper MVC structure to write the application.
-- Bonus #1: Write tests. (Any type of test is accepted.)
-- Bonus #2: Add another section for visualisation chart
-  (using a JavaScript charting library that you already know)
-  for the number of forks, open issues, stargazer count, watchers count,
-  or any relevant information about the repository.
+> Create a Typescript application using A4+ that will allow a user to search
+> for repository by name and display a repository's relevant information
+> such as:
+>
+> - URL
+> - description
+> - forks count
+> - stargazers count
+> - open issues count
+> - etc.
+>
+> Also, display the available issues of a repository in a separate section in the UI.
+>
+> Implement the best design possible for the user interface -
+> search and search results, and issues section.
+>
+> - You can use Twitter Bootstrap and any JavaScript libraries to support AngularJS.
+> - Use best practices in writing JavaScript / Typescript, CSS / LESS, and HTML.
+> - Write clearly and use proper MVC structure to write the application.
+> - Bonus #1: Write tests. (Any type of test is accepted.)
+> - Bonus #2: Add another section for visualisation chart
+>   (using a JavaScript charting library that you already know)
+>   for the number of forks, open issues, stargazer count, watchers count,
+>   or any relevant information about the repository.
 
 ## TODO
 
@@ -50,6 +59,8 @@ Simple jot pad or things I consider worth mentioning.
 - [x] do I want to keep model-related logic in the smart components or
       do I want to move them into the services?  
       **Answer**: yes, for now, since this is a tiny project.
+- [ ] getting the whole http request (body and header) feels wrong, what is the proper way
+      of dealing with pagination and ratelimit errors?
 
 ### Search component
 
