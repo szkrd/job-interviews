@@ -85,8 +85,10 @@ Simple jot pad or things I consider worth mentioning.
 - [ ] is it possible to run unit tests in jsdom with mocha + sinon + chai?
       (like [here](https://kasperlewau.github.io/post/angular-without-karma/) for example - what are the caveats? will TestBed work?)
       (or [here](http://darrinholst.com/blog/2017/11/09/testing-angular-components/), this one seems to be more robust)
-- [ ] is it possible to use jest with jsdom instead of protractor?
-- [ ] explore karma for unit tests
+- [x] is it possible to use jest with jsdom instead of protractor?
+      **Answer**: probably, but the migration and [setup](https://semaphoreci.com/community/tutorials/testing-angular-2-and-continuous-integration-with-jest)
+      is non trivial. The price for the better performance of course is jsdom and all its quirks, it may or may not worth it for you.
+- [x] explore karma for unit tests
 - [ ] explore protractor for e2e
 - [ ] move mocks into standalone folder?
 
@@ -121,7 +123,7 @@ Simple jot pad or things I consider worth mentioning.
   responsive design? I remember having problems with selenium finding elements not visible
   in the current responsive layout (defined by browser window size).
 
-## Tests
+## Unit tests
 
 - [ ] app component
 - [x] issue-item component
@@ -133,7 +135,7 @@ Simple jot pad or things I consider worth mentioning.
 - [x] search-form component
 - [x] markdown directive
 - [x] http-get-cache interceptor
-- [ ] issue service
+- [x] issue service
 - [ ] repo service
 - [x] storage-cache service
 - [x] session-storage service
