@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PaginationComponent } from './pagination.component';
 import { HeaderLink } from '../../models/header-link';
 import { HeaderLinkItem } from '../../models/header-link-item';
-import { clickElement, getTextWithSelector, triggerInput } from '../../../test/utils';
+import { clickElement, getTextWithSelector, triggerInput } from '../../../testing/utils';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import createSpy = jasmine.createSpy;

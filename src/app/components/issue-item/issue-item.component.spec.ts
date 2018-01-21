@@ -4,7 +4,7 @@ import { IssueItemComponent } from './issue-item.component';
 import { IssueItem } from '../../models/issue-item';
 import { DebugElement, Directive, Input, OnInit } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { getTextWithSelector } from '../../../test/utils';
+import { getTextWithSelector } from '../../../testing/utils';
 import createSpy = jasmine.createSpy;
 
 const rgba = require('color-normalize');

@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RepoItemComponent } from './repo-item.component';
 import { RepoItem } from '../../models/repo-item';
-import { getTextWithSelector } from '../../../test/utils';
+import { getTextWithSelector } from '../../../testing/utils';
 import { DebugElement, Directive, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
