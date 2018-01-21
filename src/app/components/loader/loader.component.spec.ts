@@ -1,11 +1,11 @@
 /* tslint:disable: no-floating-promises */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoaderComponent } from './loader.component';
 
-xdescribe('LoaderComponent', () => {
+describe('LoaderComponent', () => {
   let component: LoaderComponent;
   let fixture: ComponentFixture<LoaderComponent>;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,9 +18,14 @@ xdescribe('LoaderComponent', () => {
     fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    el = fixture.debugElement.nativeElement;
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a spinner element', () => {
+    expect(el.querySelector('.spinner')).toBeTruthy();
   });
 });
