@@ -128,7 +128,7 @@ Simple jot pad or things I consider worth mentioning.
 
 ## Unit tests
 
-- [ ] app component
+- [x] app component
 - [x] issue-item component
 - [ ] issues-page component
 - [x] loader component

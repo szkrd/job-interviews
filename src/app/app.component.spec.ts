@@ -1,28 +1,54 @@
-/* tslint:disable: no-floating-promises */
-import { TestBed, async } from '@angular/core/testing';
+/* tslint:disable: no-floating-promises directive-selector component-selector */
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-xdescribe('AppComponent', () => {
+import { Component, DebugElement, Directive, Input } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+@Directive({
+  selector: '[routerLink]'
+})
+export class MockRouterLinkDirective {
+  @Input('routerLink') routerLink: any;
+  @Input('queryParams') queryParams: any;
+}
+
+@Component({
+  selector: 'router-outlet',
+  template: '<div id="router-outlet"></div>'
+})
+export class MockRouterOutletComponent {}
+
+describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let el: DebugElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ]
+      declarations: [ AppComponent, MockRouterLinkDirective, MockRouterOutletComponent]
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  }));
+    el = fixture.debugElement;
+  });
+
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have a router outlet', () => {
+    expect(el.query(By.css('#router-outlet'))).toBeTruthy();
+  });
+
+  it('should have a title link that routes back to root', () => {
+    const titleEl = el.query(By.css('.app-title'));
+    expect(titleEl).toBeTruthy();
+    expect(titleEl.nativeElement.textContent.trim()).toBeTruthy();
+    const dir = titleEl.injector.get(MockRouterLinkDirective);
+    expect(dir.routerLink).toBe('/');
+  });
 });

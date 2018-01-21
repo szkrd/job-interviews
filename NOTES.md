@@ -64,6 +64,17 @@ class TestComponent {
 
 The real component is available via `component.child`, which may be convenient.
 
+## Get component or directive attached to element
+
+```typescript
+const dir = el.query(By.css('.foo-bar')).injector.get(MockRouterLinkDirective);
+```
+
+## Do I need the async wrapper in the first beforeEach?
+
+Yes. From the docs:  
+"this is necessary in order to call the asynchronous TestBed.**compileComponents** method."
+
 ## The dom is not updating
 
 Have you called `fixture.detectChanges();`? During testing the on changes reactivity
