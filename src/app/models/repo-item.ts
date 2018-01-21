@@ -13,7 +13,7 @@ export class RepoItem {
   constructor (rawItem) {
     this.id = rawItem.id;
     this.url = rawItem.html_url;
-    this.homepage = rawItem.html_url || '';
+    this.homepage = rawItem.homepage || '';
     this.name = rawItem.name;
     this.fullName = rawItem.full_name;
     this.description = rawItem.description || '';

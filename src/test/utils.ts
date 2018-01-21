@@ -11,7 +11,11 @@ export function changeInputValue (el: HTMLInputElement, value = '') {
 }
 
 export function getTextWithSelector (el: DebugElement, selector = 'div'): string {
-  return (el.query(By.css(selector)).nativeElement.textContent || '').trim();
+  const qEl = el.query(By.css(selector));
+  if (!qEl) {
+    throw new Error(`getTextWithSelector: "${selector}" items not found.`);
+  }
+  return (qEl.nativeElement.textContent || '').trim();
 }
 
 const ButtonClickEvents = {
