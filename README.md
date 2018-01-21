@@ -106,17 +106,20 @@ Simple jot pad or things I consider worth mentioning.
 - any alternatives to karma and phantomjs? both feel cumbersome to me.
 - how to mock imported or required dependencies in unit tests? 3rd party can be wrapped,
   but what about Observable.of for example?
+- karma is "visible" in the browser. How do you deal with complex css animations and
+  responsive design? I remember having problems with selenium finding elements not visible
+  in the current responsive layout (defined by browser window size).
 
 ## Tests
 
 - [ ] app component
 - [ ] issue-item component
 - [ ] issues-page component
-- [ ] loader component
+- [x] loader component
 - [ ] pagination component
 - [ ] repo-item component
 - [ ] repos-page component
-- [ ] search-form component
+- [x] search-form component
 - [x] markdown directive
 - [x] http-get-cache interceptor
 - [ ] issue service
