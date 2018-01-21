@@ -1,9 +1,9 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { IssueService } from './issue.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { API_URL } from '../app.constants';
+import { API_URL, ISSUE_ITEMS_PER_PAGE } from '../app.constants';
 
-fdescribe('IssueService', () => {
+describe('IssueService', () => {
   let injector: TestBed;
   let issueService: IssueService;
   let httpMock: HttpTestingController;
@@ -28,7 +28,13 @@ fdescribe('IssueService', () => {
 
   describe('search', () => {
     it('should search for issues and return the whole response', () => {
-      const url = `${API_URL}/repos/foo/issues?page=2&per_page=15&state=open&sort=created&order=desc`;
+      const url = `${API_URL}/repos/foo/issues
+        ?page=2
+        &per_page=${ISSUE_ITEMS_PER_PAGE}
+        &state=open
+        &sort=created
+        &order=desc
+      `.replace(/\s/g, '');
       const dummyResponse = { foo: 'bar' };
 
       issueService.search('foo', 2).subscribe(response => {
@@ -38,7 +44,6 @@ fdescribe('IssueService', () => {
       const req = httpMock.expectOne(url);
       expect(req.request.method).toEqual('GET');
       req.flush(dummyResponse);
-      httpMock.verify();
     });
   });
 });

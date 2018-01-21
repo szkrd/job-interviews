@@ -1,8 +1,11 @@
 # HortonEntry
 
+Simple angular 5 client side application using GitHub's public API.
+
 1. `npm i`
 2. run dev: `ng serve`
 3. run tests: `ng test`
+4. run lint: `ng lint` (semistandard + ts default)
 
 If the GitHub api is not available, please install the demo fixtures.
 See readme [here](./fixtures/README.md).
@@ -136,6 +139,6 @@ Simple jot pad or things I consider worth mentioning.
 - [x] markdown directive
 - [x] http-get-cache interceptor
 - [x] issue service
-- [ ] repo service
+- [x] repo service
 - [x] storage-cache service
 - [x] session-storage service
