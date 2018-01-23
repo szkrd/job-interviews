@@ -58,7 +58,7 @@ Simple jot pad or things I consider worth mentioning.
 
 ### Services and models
 
-- [x] convert http response sanitizers to clOnInitasses and move them to the models folder
+- [x] convert http response sanitizers to ngOnInit classes and move them to the models folder
 - [x] do I want to keep model-related logic in the smart components or
       do I want to move them into the services?  
       **Answer**: yes, for now, since this is a tiny project.
@@ -87,9 +87,9 @@ Simple jot pad or things I consider worth mentioning.
       (needs eject, webpack middleware)
 - [x] is it possible to run unit tests in jsdom with mocha + sinon + chai?
       (like [here](https://kasperlewau.github.io/post/angular-without-karma/) for example - what are the caveats? will TestBed work?)
-      (or [here](http://darrinholst.com/blog/2017/11/09/testing-angular-components/), this one seems to be more robust)
+      (or [here](http://darrinholst.com/blog/2017/11/09/testing-angular-components/), this one seems to be more robust)  
       **Answer**: may worth a try, but I wouldn't migrate an existing project just because I prefer a mochaish workflow 
-- [x] is it possible to use jest with jsdom instead of protractor?
+- [x] is it possible to use jest with jsdom instead of protractor?  
       **Answer**: probably, but the migration and [setup](https://semaphoreci.com/community/tutorials/testing-angular-2-and-continuous-integration-with-jest)
       is non trivial. The price for the better performance of course is jsdom and all its quirks, it may or may not worth it for you.
 - [x] explore karma for unit tests
