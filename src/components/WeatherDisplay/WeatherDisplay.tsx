@@ -15,7 +15,7 @@ export default function WeatherDisplay(props: IProps) {
     <div className={styles.weatherDisplay}>
       <h2>{locationName}</h2>
       <ul>
-        <li>{Math.round(temperature)} ℃</li>
+        <li>{temperature} ℃</li>
         <li>{description}</li>
         <li>
           <img src={iconUrl} alt={description} className="icon" />

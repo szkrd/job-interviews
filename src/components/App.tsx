@@ -11,6 +11,7 @@ import Loader from './Loader/Loader'
 import openWeather, { IWeatherResponse } from '../utils/api/openWeather'
 import { AxiosResponse } from 'axios'
 import WeatherDisplay from './WeatherDisplay/WeatherDisplay'
+import fixAccents from '../utils/localization/fixAccents'
 
 class WeatherData {
   locationName = ''
@@ -35,8 +36,8 @@ const App: React.FC = () => {
       const data = result.data
       const weatherItem = data.weather[0] || {}
       setWeatherData({
-        locationName: data.name,
-        temperature: data.main.temp,
+        locationName: fixAccents(data.name || ''),
+        temperature: Math.round(data.main.temp || 0),
         description: weatherItem.description || '',
         iconId: weatherItem.icon || ''
       })
