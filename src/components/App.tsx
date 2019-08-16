@@ -5,10 +5,10 @@ import geoLocation, {
   GeoLocationUnavailableError,
   PositionError,
   PositionErrorCode
-} from '../utils/geoLocation'
+} from '../utils/browser/geoLocation'
 import ErrorMessage from './ErrorMessage/ErrorMessage'
 import Loader from './Loader/Loader'
-import openWeather, { IWeatherResponse } from '../utils/openWeather'
+import openWeather, { IWeatherResponse } from '../utils/api/openWeather'
 import { AxiosResponse } from 'axios'
 import WeatherDisplay from './WeatherDisplay/WeatherDisplay'
 
@@ -16,6 +16,7 @@ class WeatherData {
   locationName = ''
   temperature = 0
   description = ''
+  iconId = ''
 }
 
 const App: React.FC = () => {
@@ -32,10 +33,12 @@ const App: React.FC = () => {
         IWeatherResponse
       > = yield openWeather.weather.byGeographicCoordinates(position.coords)
       const data = result.data
+      const weatherItem = data.weather[0] || {}
       setWeatherData({
         locationName: data.name,
         temperature: data.main.temp,
-        description: (data.weather[0] || {}).description || ''
+        description: weatherItem.description || '',
+        iconId: weatherItem.icon || ''
       })
       setIsLoading(false)
     }).catch((error) => {
