@@ -7,26 +7,31 @@
       @keydown.space="handleAction"
       @keydown.enter="handleAction"
   >
+    <!-- cover image above titles -->
     <figure class="cover pull-up" v-if="coverUrl && !coverUnderHeader" :style="coverStyle">
       <img v-if="!coverHeight" :src="coverUrl" alt="Photo of the room"/>
       <figcaption v-if="coverHeight && coverDescription">{{ coverDescription }}</figcaption>
     </figure>
-    <header v-if="title || subtitle || thumbnailUrl">
+    <!-- titles -->
+    <header v-if="hasTitles">
       <div v-if="thumbnailUrl" class="thumbnail" :style="{ backgroundImage: `url(${thumbnailUrl})` }"></div>
       <div class="titles" v-if="title || subtitle">
         <h2 v-if="title">{{ title }}</h2>
         <h3 v-if="subtitle">{{ subtitle }}</h3>
       </div>
     </header>
-    <figure class="cover" v-if="coverUnderHeader" :style="coverStyle">
+    <!-- cover image below titles -->
+    <figure class="cover" :class="{'pull-up': !hasTitles}" v-if="coverUnderHeader" :style="coverStyle">
       <!-- TODO maybe? move to component, pull up as prop -->
       <img v-if="!coverHeight" :src="coverUrl" alt="Photo of the room"/>
       <figcaption v-if="coverHeight">Photo of the room</figcaption>
     </figure>
+    <!-- body -->
     <main v-if="hasBody" class="grow">
       <slot name="body"></slot>
     </main>
     <main v-if="grow && borderlessFooter" class="grow dummy"></main>
+    <!-- footer -->
     <footer v-if="hasFooter" :class="{ 'pull-up': !hasBody, borderless: !grow && borderlessFooter }">
       <slot name="footer"></slot>
     </footer>
@@ -52,6 +57,7 @@
     }
 
     &:focus {
+      outline: 0;
       border-color: #2F2A8D;
       box-shadow: 0 0 1px 3px rgba(47, 42, 141, .2);
     }
@@ -166,6 +172,11 @@ module.exports = {
     },
     hasFooter () {
       return !!this.$slots.footer;
+    },
+    hasTitles () {
+      // (if I thought that more thant five hooks in react leads to spaghetti,
+      // then I guess vue observability invites in the spaghettapocalypse)
+      return !!(this.title || this.subtitle || this.thumbnailUrl)
     },
     isClickable () {
       return !!(this.$listeners && this.$listeners.click);

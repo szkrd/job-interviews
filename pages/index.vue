@@ -137,6 +137,22 @@
         </Card>
       </div>
       <!-- endregion -->
+
+      <!-- region variation: fixed cover height, no titles, image below title -->
+      <div class="card-box">
+        <Card
+            cover-url="/_nuxt/assets/room.jpg"
+            :cover-under-header="true"
+            :cover-height="100"
+            :grow="gridMode"
+        >
+          <div slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et
+          </div>
+        </Card>
+      </div>
+      <!-- endregion -->
     </div>
   </div>
 </template>
