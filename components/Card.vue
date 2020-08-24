@@ -1,5 +1,12 @@
 <template>
-  <div class="card-component" :class="{grow}">
+  <div
+      class="card-component"
+      :class="{grow, clickable: isClickable}"
+      :tabindex="isClickable ? 0 : -1"
+      @click="handleAction"
+      @keydown.space="handleAction"
+      @keydown.enter="handleAction"
+  >
     <figure class="cover pull-up" v-if="coverUrl && !coverUnderHeader" :style="coverStyle">
       <img v-if="!coverHeight" :src="coverUrl" alt="Photo of the room"/>
       <figcaption v-if="coverHeight && coverDescription">{{ coverDescription }}</figcaption>
@@ -19,7 +26,8 @@
     <main v-if="hasBody" class="grow">
       <slot name="body"></slot>
     </main>
-    <footer v-if="hasFooter" :class="{ 'pull-up': !hasBody, borderless: borderlessFooter }">
+    <main v-if="grow && borderlessFooter" class="grow dummy"></main>
+    <footer v-if="hasFooter" :class="{ 'pull-up': !hasBody, borderless: !grow && borderlessFooter }">
       <slot name="footer"></slot>
     </footer>
   </div>
@@ -34,6 +42,20 @@
   color: #2D2D2D;
   display: flex;
   flex-direction: column;
+  overflow: hidden; // yuck, but hover would bite off the corners
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(45, 45, 45, .04);
+    }
+
+    &:focus {
+      border-color: #2F2A8D;
+      box-shadow: 0 0 1px 3px rgba(47, 42, 141, .2);
+    }
+  }
 }
 
 .cover {
@@ -113,19 +135,30 @@ footer {
 <script>
 module.exports = {
   props: {
-    coverUrl: String,
-    // leave unset for ratio TODO
+    coverUrl: String, // if we had the time/energy, we could add image load/error handling...
+    // leave unset for ratio
     coverHeight: Number,
-    // by default it's above, the first element inside the card TODO
+    // by default it's above, the first element inside the card
     coverUnderHeader: Boolean,
     coverDescription: String,
     thumbnailUrl: String,
     title: String,
     subtitle: String,
     isLoading: Boolean,
-    onClick: Function,
     // adds flex grow to the root node
     grow: Boolean
+  },
+  methods: {
+    handleAction (event) {
+      if (event instanceof KeyboardEvent) {
+        event.preventDefault();
+      } else {
+        // I really hate removing the focus, but some designers hate to
+        // see it after clicking or tapping on the item, so I'd probably ask his or her preference...
+        document.activeElement.blur();
+      }
+      this.$emit('click', event);
+    }
   },
   computed: {
     hasBody () {
@@ -134,6 +167,9 @@ module.exports = {
     hasFooter () {
       return !!this.$slots.footer;
     },
+    isClickable () {
+      return !!(this.$listeners && this.$listeners.click);
+    },
     coverStyle () {
       return {
         height: this.coverHeight ? `${this.coverHeight}px` : 'auto',
@@ -141,6 +177,8 @@ module.exports = {
       };
     },
     // image size ratio may leave a couple of stray pixels under the picture
+    // (but this is only annoying for non-grid mode, where the footer is
+    // immediately below the image)
     borderlessFooter () {
       return this.coverUnderHeader && !this.hasBody;
     }

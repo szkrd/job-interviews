@@ -2,9 +2,15 @@
   <div class="root-component" :class="{'width-flipped': widthFlipped, zoomed}">
     <h1>Card anatomy</h1>
     <p class="controls" @click="persist">
-      <button @click="changeZoom">zoom in/out</button>
-      <button @click="changeCardWidths">change width</button>
-      <button @click="changeGridMode">grid mode</button>
+      <button @click="onChangeZoomClick" :class="{toggled: zoomed}">
+        zoom in/out
+      </button>
+      <button @click="onChangeCardWidthsClick" :class="{toggled: widthFlipped}">
+        change width
+      </button>
+      <button @click="onChangeGridModeClick" :class="{toggled: gridMode}">
+        grid mode
+      </button>
     </p>
     <div class="card-boxes">
       <div class="card-box">
@@ -14,6 +20,7 @@
             cover-url="/_nuxt/assets/room.jpg"
             cover-description="air conditioned room with a beautiful lakeside view"
             thumbnail-url="/_nuxt/assets/room.jpg"
+            @click="onDemoCardClickA"
             :grow="gridMode"
         >
           <div slot="body">
@@ -51,6 +58,7 @@
             subtitle="Card subtitle"
             cover-url="/_nuxt/assets/room.jpg"
             thumbnail-url="/_nuxt/assets/room.jpg"
+            @click="onDemoCardClickB"
             :grow="gridMode"
         >
           <div slot="body">
@@ -141,6 +149,8 @@
   }
 
   &.zoomed .card-boxes {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
     transform: scale(.5);
     transform-origin: top left;
     width: 200%;
@@ -159,10 +169,22 @@ h1 {
 .controls {
   padding: 0 0 24px 0;
   margin: 0;
+
+  button {
+    border-radius: 3px;
+    background-color: silver;
+    border: 2px outset gray;
+    padding: 5px;
+
+    &.toggled {
+      border: 2px inset gray;
+      background-color: gray;
+    }
+  }
 }
 
 .card-boxes {
-  box-shadow: 0 0 5px inset rgba(0, 0, 255, .3);
+  box-shadow: 0 0 5px inset rgba(0, 0, 255, .2);
   border-radius: 4px;
   width: 100%;
   display: flex;
@@ -172,7 +194,7 @@ h1 {
 .card-box {
   box-shadow: 0 0 5px inset rgba(255, 0, 0, .2);
   border-radius: 4px;
-  padding: 5px;
+  padding: 6px;
   width: 320px;
   min-height: 600px;
   transition: all .3s;
@@ -201,13 +223,19 @@ module.exports = {
     }
   },
   methods: {
-    changeCardWidths () {
+    onDemoCardClickA () {
+      alert(42);
+    },
+    onDemoCardClickB () {
+      confirm('Open the Pod bay doors? Are you sure?');
+    },
+    onChangeCardWidthsClick () {
       this.widthFlipped = !this.widthFlipped;
     },
-    changeGridMode () {
+    onChangeGridModeClick () {
       this.gridMode = !this.gridMode;
     },
-    changeZoom () {
+    onChangeZoomClick () {
       this.zoomed = !this.zoomed;
     },
     persist () {
