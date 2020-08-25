@@ -1,7 +1,10 @@
 <template>
-  <div class="root-component" :class="{'width-flipped': widthFlipped, zoomed}">
+  <div class="root-component" :class="{'width-flipped': widthFlipped, zoomed, outlined}">
     <h1>Card anatomy</h1>
     <p class="controls" @click="persist">
+      <button @click="onChangeOutlinedClick" :class="{toggled: outlined}">
+        container outlines
+      </button>
       <button @click="onChangeZoomClick" :class="{toggled: zoomed}">
         zoom in/out
       </button>
@@ -10,6 +13,9 @@
       </button>
       <button @click="onChangeGridModeClick" :class="{toggled: gridMode}">
         grid mode
+      </button>
+      <button @click="onChangeIsLoadingClick" :class="{toggled: isLoading}">
+        loading
       </button>
     </p>
     <div class="card-boxes">
@@ -22,10 +28,11 @@
             thumbnail-url="/_nuxt/assets/room.jpg"
             @click="onDemoCardClickA"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et
+            Lorem <em>ipsum</em> dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor <strong>incididunt</strong> ut labore et
           </div>
           <div slot="footer">
             Card footer
@@ -38,10 +45,12 @@
         <Card
             cover-url="/_nuxt/assets/room.jpg"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et
+            Lorem ipsum dolor sit amet,
+            <a href="https://en.wikipedia.org/wiki/Lorem_ipsum" target="_blank">consectetur</a>
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
           </div>
           <div slot="footer">
             Card footer
@@ -60,6 +69,7 @@
             thumbnail-url="/_nuxt/assets/room.jpg"
             @click="onDemoCardClickB"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -81,6 +91,7 @@
             cover-url="/_nuxt/assets/room.jpg"
             thumbnail-url="/_nuxt/assets/room.jpg"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="footer">
             Card footer
@@ -91,7 +102,8 @@
 
       <!-- region variation: only body and footer -->
       <div class="card-box">
-        <Card :grow="gridMode">
+        <Card :grow="gridMode"
+              :is-loading="isLoading">
           <div slot="body">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et
@@ -109,6 +121,7 @@
             title="Card title"
             thumbnail-url="/_nuxt/assets/room.jpg"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -126,6 +139,7 @@
             cover-url="/_nuxt/assets/room.jpg"
             :cover-height="100"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -145,6 +159,7 @@
             :cover-under-header="true"
             :cover-height="100"
             :grow="gridMode"
+            :is-loading="isLoading"
         >
           <div slot="body">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -187,6 +202,7 @@ h1 {
   margin: 0;
 
   button {
+    cursor: pointer;
     border-radius: 3px;
     background-color: silver;
     border: 2px outset gray;
@@ -196,11 +212,14 @@ h1 {
       border: 2px inset gray;
       background-color: gray;
     }
+
+    &:hover {
+      opacity: .9;
+    }
   }
 }
 
 .card-boxes {
-  box-shadow: 0 0 5px inset rgba(0, 0, 255, .2);
   border-radius: 4px;
   width: 100%;
   display: flex;
@@ -208,7 +227,6 @@ h1 {
 }
 
 .card-box {
-  box-shadow: 0 0 5px inset rgba(255, 0, 0, .2);
   border-radius: 4px;
   padding: 6px;
   width: 320px;
@@ -216,6 +234,16 @@ h1 {
   transition: all .3s;
   display: flex;
   flex-direction: column;
+}
+
+.outlined {
+  .card-boxes {
+    box-shadow: 0 0 5px inset rgba(0, 0, 255, .2);
+  }
+
+  .card-box {
+    box-shadow: 0 0 5px inset rgba(255, 0, 0, .2);
+  }
 }
 </style>
 <script>
@@ -225,13 +253,15 @@ h1 {
 // broken mess, I still have to press refresh way too often...
 const LS_KEY = 'kasa-entry-state';
 const storageState = process.browser ? JSON.parse(localStorage.getItem(LS_KEY) || '{}') : {};
-const persistable = ['zoomed', 'gridMode', 'widthFlipped'];
+const persistable = ['outlined', 'zoomed', 'gridMode', 'widthFlipped', 'isLoading'];
 
 module.exports = {
   data: () => ({
+    outlined: false,
     zoomed: false,
     gridMode: false,
-    widthFlipped: false
+    widthFlipped: false,
+    isLoading: false
   }),
   mounted () {
     if (process.browser) {
@@ -245,6 +275,9 @@ module.exports = {
     onDemoCardClickB () {
       confirm('Open the Pod bay doors? Are you sure?');
     },
+    onChangeOutlinedClick () {
+      this.outlined = !this.outlined;
+    },
     onChangeCardWidthsClick () {
       this.widthFlipped = !this.widthFlipped;
     },
@@ -253,6 +286,9 @@ module.exports = {
     },
     onChangeZoomClick () {
       this.zoomed = !this.zoomed;
+    },
+    onChangeIsLoadingClick () {
+      this.isLoading = !this.isLoading;
     },
     persist () {
       if (process.browser) {

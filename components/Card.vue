@@ -1,40 +1,67 @@
 <template>
   <div
       class="card-component"
-      :class="{grow, clickable: isClickable}"
-      :tabindex="isClickable ? 0 : -1"
+      :class="{grow, clickable: !isLoading && isClickable, skeleton: isLoading}"
+      :tabindex="!isLoading && isClickable ? 0 : -1"
       @click="handleAction"
       @keydown.space="handleAction"
       @keydown.enter="handleAction"
   >
     <!-- cover image above titles -->
     <figure class="cover pull-up" v-if="coverUrl && !coverUnderHeader" :style="coverStyle">
+      <SkeletonHelper v-if="isLoading" :stretch="true"/>
       <img v-if="!coverHeight" :src="coverUrl" alt="Photo of the room"/>
-      <figcaption v-if="coverHeight && coverDescription">{{ coverDescription }}</figcaption>
+      <figcaption v-if="!isLoading && coverHeight && coverDescription">{{ coverDescription }}</figcaption>
     </figure>
     <!-- titles -->
-    <header v-if="hasTitles">
+    <header v-if="!isLoading && hasTitles">
       <div v-if="thumbnailUrl" class="thumbnail" :style="{ backgroundImage: `url(${thumbnailUrl})` }"></div>
       <div class="titles" v-if="title || subtitle">
         <h2 v-if="title">{{ title }}</h2>
         <h3 v-if="subtitle">{{ subtitle }}</h3>
       </div>
     </header>
+    <!-- titles skeleton -->
+    <header v-if="isLoading && hasTitles">
+      <div v-if="thumbnailUrl" class="thumbnail">
+        <SkeletonHelper :stretch="true"/>
+      </div>
+      <div class="titles" v-if="title || subtitle">
+        <h2 v-if="title">
+          <SkeletonHelper :height-px="28" :width-percent="80"/>
+        </h2>
+        <h3 v-if="subtitle">
+          <SkeletonHelper :height-px="20" :width-percent="50"/>
+        </h3>
+      </div>
+    </header>
     <!-- cover image below titles -->
     <figure class="cover" :class="{'pull-up': !hasTitles}" v-if="coverUnderHeader" :style="coverStyle">
-      <!-- TODO maybe? move to component, pull up as prop -->
+      <SkeletonHelper v-if="isLoading" :stretch="true"/>
       <img v-if="!coverHeight" :src="coverUrl" alt="Photo of the room"/>
-      <figcaption v-if="coverHeight">Photo of the room</figcaption>
+      <figcaption v-if="!isLoading && coverHeight">{{ coverDescription }}</figcaption>
     </figure>
     <!-- body -->
     <main v-if="hasBody" class="grow">
-      <slot name="body"></slot>
+      <div v-if="isLoading">
+        <SkeletonHelper :width-percent="60"/>
+        <SkeletonHelper :width-percent="80"/>
+        <SkeletonHelper :width-percent="70"/>
+      </div>
+      <div v-if="!isLoading">
+        <slot name="body"></slot>
+      </div>
     </main>
     <main v-if="grow && borderlessFooter" class="grow dummy"></main>
     <!-- footer -->
     <footer v-if="hasFooter" :class="{ 'pull-up': !hasBody, borderless: !grow && borderlessFooter }">
-      <slot name="footer"></slot>
+      <SkeletonHelper v-if="isLoading" :width-percent="30"/>
+      <div v-if="!isLoading">
+        <slot name="footer"></slot>
+      </div>
     </footer>
+    <!-- skeleton coverlayer -->
+    <div v-if="isLoading" class="fade-out"></div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -124,6 +151,44 @@ footer {
   border-top: 1px solid rgba(45, 45, 45, 0.2);
 }
 
+// skeleton overrides
+
+.card-component.skeleton {
+  position: relative;
+  // rendered #fefefe according to the picker, but on my display both looks white
+  background: #fcfcfc;
+  // it really depends on the design... if we want to fade the (possibly) bottom positioned footer,
+  // like it is on the design, then the cover layer is better, if we want the card bg to fade to
+  // transparent, then this one should be preferred...
+  // background: linear-gradient(180deg, #fff .1%, #f0f0f0 1%, #fff 100%);
+  border-color: transparent;
+
+  .cover {
+    position: relative;
+    background: rgba(45, 45, 45, 0.05);
+
+    img, figcaption {
+      visibility: hidden;
+    }
+  }
+
+  header {
+    .thumbnail {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .titles {
+      width: 60%;
+      height: 100%;
+    }
+  }
+
+  footer {
+    border-color: transparent;
+  }
+}
+
 // utility classes
 
 .pull-up {
@@ -136,6 +201,16 @@ footer {
 
 .grow {
   flex-grow: 1;
+}
+
+.fade-out {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
 </style>
 <script>
@@ -156,6 +231,9 @@ module.exports = {
   },
   methods: {
     handleAction (event) {
+      if (this.isLoading) {
+        return;
+      }
       if (event instanceof KeyboardEvent) {
         event.preventDefault();
       } else {
@@ -176,7 +254,7 @@ module.exports = {
     hasTitles () {
       // (if I thought that more thant five hooks in react leads to spaghetti,
       // then I guess vue observability invites in the spaghettapocalypse)
-      return !!(this.title || this.subtitle || this.thumbnailUrl)
+      return !!(this.title || this.subtitle || this.thumbnailUrl);
     },
     isClickable () {
       return !!(this.$listeners && this.$listeners.click);
@@ -184,7 +262,7 @@ module.exports = {
     coverStyle () {
       return {
         height: this.coverHeight ? `${this.coverHeight}px` : 'auto',
-        backgroundImage: `url(${this.coverUrl})`
+        backgroundImage: this.isLoading ? 'none' : `url(${this.coverUrl})`
       };
     },
     // image size ratio may leave a couple of stray pixels under the picture
