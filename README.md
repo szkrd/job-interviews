@@ -5,6 +5,7 @@ use `npm run dev` to launch it.
 
 ## Comments
 
+- [Demo screen recording is here](./docs/kasa_demo_20200825_211135.mp4).
 - Vue, after React, feels weird; the "magic" attributes are more like Angular... I find it hard to believe
   that such a beautiful thing as React came from Facebook.
 - I wonder how much fun can debugging computed observables be.
