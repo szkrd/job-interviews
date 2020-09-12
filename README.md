@@ -8,12 +8,11 @@ use `npm run dev` to launch it.
 - Vue, after React, feels weird; the "magic" attributes are more like Angular... I find it hard to believe
   that such a beautiful thing as React came from Facebook.
 - I wonder how much fun can debugging computed observables be.
-  Probably it goes [like this](https://media.giphy.com/media/xUNd9YJwF6ifDUnqNi/giphy.gif).
 - Using inline (vue) js expressions makes the code look like spaghetti, but moving all of them
   to computeds will make me scroll up and down all the time, plus it spreads render/style
   logic throughout the component. I don't know which one's better (or worse).
 - Skeletons are hard. This one... I don't believe in code that knows the future (or FTL drives).
-  If the data of the card is being loaded, then we probably won't know it's internal schema
+  If the data of the card is being loaded, then we probably won't know its internal schema
   and whether it has a footer, a body, two titles or none, etc. So _I think_
   in "real life" I would've created one static SkeletonCard component and that's it.
 - Picking colors above the f5f5f5 range is painful.
@@ -55,3 +54,5 @@ In the end we would like to see 4 different card variations below or next to eac
 ### Technical details
 
 For the project use Vue/Nuxt.js as your framework. Upload your finished project to the GitLab repo we created for you, and let us know when you're finished.
+
+![figma thumbnail](./docs/figma-tiny.png)
