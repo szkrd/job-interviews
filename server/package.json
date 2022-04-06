@@ -2,9 +2,9 @@
   "name": "server",
   "version": "0.0.1",
   "description": "biroda-entry server",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "dev": "nodemon ./index.js",
+    "dev": "nodemon ./index.mjs",
     "format": "prettier --write .",
     "lint": "eslint ."
   },
@@ -12,8 +12,10 @@
   "author": "szkrd",
   "license": "ISC",
   "dependencies": {
+    "chalk": "5.0.1",
     "dotenv": "16.0.0",
-    "express": "4.17.3"
+    "express": "4.17.3",
+    "got": "12.0.3"
   },
   "devDependencies": {
     "eslint": "8.12.0",
