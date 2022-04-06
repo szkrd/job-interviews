@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./index.mjs",
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint --ext .mjs ."
   },
   "keywords": [],
   "author": "szkrd",
