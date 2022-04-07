@@ -6,12 +6,16 @@ const headers = {
   'Content-Type': 'application/json;charset=utf-8',
 };
 
-// Search for movies.
+/**
+ * Search for movies.
+ */
 function search(query = '') {
   return got(`${config.tmdb.apiUrl}/search/movie`, { headers, searchParams: { query } }).json();
 }
 
-// Get the primary information about a movie.
+/**
+ * Get the primary information about a movie.
+ */
 function getDetails(id = 0) {
   return got(`${config.tmdb.apiUrl}/movie/${id}`, { headers }).json();
 }
