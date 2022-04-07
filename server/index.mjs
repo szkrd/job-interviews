@@ -6,7 +6,7 @@ import { config } from './modules/config.mjs';
 import { routeGetFavicon } from './routes/getFavicon.mjs';
 import { routeGetHealth } from './routes/getHealth.mjs';
 import { routeGetMovies } from './routes/getMovies.mjs';
-import { routeGetMoviesById } from './routes/routeGetMoviesById.mjs';
+import { routeGetMoviesById } from './routes/getMoviesById.mjs';
 
 const app = express();
 app.use(cors());
