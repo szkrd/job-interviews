@@ -38,7 +38,7 @@ export const routeGetMoviesById = async (req, res, next) => {
   try {
     wiki = await wikipediaApi.searchForMovie(title, releaseYear);
   } catch (error) {
-    log.error('xxx' + error);
+    log.error('Wikipedia search failed', error);
     res.status(500).send({ error: String(error), source: 'wikipedia' });
     return next();
   }
