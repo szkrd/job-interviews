@@ -1,5 +1,6 @@
 import got from 'got';
 import { config } from './config.mjs';
+import { log } from './log.mjs';
 import { clone } from './utils.mjs';
 
 const headers = {
@@ -48,8 +49,8 @@ async function getGenreName(id = 0) {
     try {
       const result = await getMovieGenres();
       genres = result.genres;
-    } catch (err) {
-      console.error('Could not download genres!', err);
+    } catch (error) {
+      log.error('Could not download genres!', error);
       return '';
     }
   }

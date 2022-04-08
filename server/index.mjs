@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import cors from 'cors';
 import express from 'express';
 import { config } from './modules/config.mjs';
+import { log } from './modules/log.mjs';
 import { routeGetFavicon } from './routes/getFavicon.mjs';
 import { routeGetHealth } from './routes/getHealth.mjs';
 import { routeGetMovies } from './routes/getMovies.mjs';
@@ -25,5 +26,5 @@ app.get('/movies/:id', routeGetMoviesById);
 const { host, port } = config.app;
 app.listen(port, host, () => {
   const { cyan } = chalk;
-  console.info(`Express listening on ${cyan(host)}:${cyan(port)}`);
+  log.info(`Express listening on ${cyan(host)}:${cyan(port)}`);
 });

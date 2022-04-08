@@ -1,6 +1,7 @@
 import got from 'got';
 import * as cheerio from 'cheerio';
 import { config } from './config.mjs';
+import { log } from './log.mjs';
 
 /**
  * Trims a movie title and removes the wikipedia forbidden characters
@@ -20,7 +21,7 @@ function normalizeTitle(title = '') {
  * the movie has already been released and wikipedia people do
  * maintain a list of films for that given year)
  */
-function getSearchUrl(title = '', releaseYear = 1900) {
+function getWikiSearchUrl(title = '', releaseYear = 1900) {
   return (
     config.wikipedia.apiUrl +
     '?' +
@@ -42,7 +43,7 @@ function findMatchingMovie(searchResult = [], title = '') {
     normalizeTitle(item.title ?? '').startsWith(title)
   );
   if (matches.length !== 1) {
-    console.warn(`Wikipedia fuzzy search for "${title}" had ${matches.length} candidates.`);
+    log.warn(`Wikipedia fuzzy search for "${title}" had ${matches.length} candidates.`);
   }
   return matches[0] ?? {};
 }
@@ -69,7 +70,7 @@ function findFirstWikipediaParagraph(rawHtml = '') {
     para.find('sup').replaceWith(''); // remove footnote references
     return para.text().trim();
   }
-  console.warn('Wikipedia article paragraphs not found!');
+  log.warn('Wikipedia article paragraphs not found!');
   return '';
 }
 
@@ -81,8 +82,8 @@ function findFirstWikipediaParagraph(rawHtml = '') {
  */
 async function searchForMovie(title = '', releaseYear = 1900) {
   title = normalizeTitle(title);
-  const url = getSearchUrl(title, releaseYear);
-  console.info(`Calling wiki url "${url}"...`);
+  const url = getWikiSearchUrl(title, releaseYear);
+  log.info(`Calling wiki url "${url}"...`);
   // get title and pageid (snippet could be useful, but it's rather rudely
   // truncated so it may not be _that_ useful for a short description in our case)
   const searchResult = await got(url)
@@ -90,7 +91,7 @@ async function searchForMovie(title = '', releaseYear = 1900) {
     .then((result) => findMatchingMovie(result, title));
   const pageId = searchResult.pageid;
   if (!pageId) {
-    throw new Error('Wikipedia page id not found.'); // there's not much to do if this happens
+    log.warn(`Wikipedia page id not found for the movie "${title}".`); // let's skip the wikipedia part then
   }
   // to get fullurl (or canonicalurl); the "FULLPAGENAME" in wikipedia docs
   // refers to the very last part of the canonical url, eg.:
@@ -111,8 +112,8 @@ async function searchForMovie(title = '', releaseYear = 1900) {
       },
     }).json();
     singleMetaResult = metaResult?.query?.pages[String(pageId)] ?? {};
-  } catch (err) {
-    console.error('Error getting wikipedia info prop (for the canonical url)!', err);
+  } catch (error) {
+    log.error('Error getting wikipedia info prop (for the canonical url)!', error);
   }
   const canonicalUrl = singleMetaResult.canonicalurl ?? '';
   // now that we have the canonical url (which is nicer than the ?curid one),
@@ -123,8 +124,8 @@ async function searchForMovie(title = '', releaseYear = 1900) {
     try {
       rawHtml = await got(canonicalUrl).text();
       text = findFirstWikipediaParagraph(rawHtml);
-    } catch (err) {
-      console.error('Error downloading html wikipedia page!', err);
+    } catch (error) {
+      log.error('Error downloading html wikipedia page!', error);
     }
   }
   return {

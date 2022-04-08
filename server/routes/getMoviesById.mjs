@@ -1,3 +1,4 @@
+import { log } from '../modules/log.mjs';
 import { tmdbApi } from '../modules/tmdbApi.mjs';
 import { wikipediaApi } from '../modules/wikipediaApi.mjs';
 
@@ -10,17 +11,22 @@ import { wikipediaApi } from '../modules/wikipediaApi.mjs';
 export const routeGetMoviesById = async (req, res, next) => {
   const { id } = req.params;
 
-  // invalid movie id
+  // invalid movie id, bail out with 400
   if (!id || !/^\d+$/.test(id)) {
-    res.status(400).end();
+    res.status(400).send({ error: 'Invalid id.' });
     return next();
   }
 
+  // first let's get the tmdb details, if we can't that's a show stopper
   let movie = {};
   try {
     movie = await tmdbApi.getDetails(id);
   } catch (error) {
-    res.status(500).send({ error, source: 'tmdb' });
+    const message = String(error);
+    let status = 500;
+    // at this point it's much easier to parse the got message than to dig into its error
+    if (message.endsWith('(Not Found)')) status = 404;
+    res.status(status).send({ error: message, source: 'tmdb' });
     return next();
   }
 
@@ -28,12 +34,12 @@ export const routeGetMoviesById = async (req, res, next) => {
   const title = movie.title;
   const releaseYear = movie.release_date.split(/-/)[0];
   let wiki = {};
-  console.info(`Searching wikipedia for the movie "${title}" from the year ${releaseYear}...`);
+  log.info(`Searching wikipedia for the movie "${title}" from the year ${releaseYear}...`);
   try {
     wiki = await wikipediaApi.searchForMovie(title, releaseYear);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ error, source: 'wikipedia' });
+    log.error('xxx' + error);
+    res.status(500).send({ error: String(error), source: 'wikipedia' });
     return next();
   }
   let overviewSource = 'none';

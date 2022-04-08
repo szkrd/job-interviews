@@ -14,7 +14,7 @@ export const routeGetMovies = async (req, res, next) => {
 
   // invalid query
   if (!query) {
-    res.status(400).end();
+    res.status(400).send({ error: 'Invalid query.' });
     return next();
   }
 
@@ -22,7 +22,7 @@ export const routeGetMovies = async (req, res, next) => {
   try {
     result = await tmdbApi.search(query);
   } catch (error) {
-    res.status(500).send({ error });
+    res.status(500).send({ error: String(error) });
     return next();
   }
 
