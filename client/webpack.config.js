@@ -24,11 +24,16 @@ module.exports = {
   module: {
     rules: [
       {
+        // this is NOT scoped, it's as vanilla as you can get and is mostly
+        // here because ant still uses css/less for styling and this is
+        // their recommended way (opposed to jss, emotion, scss modules etc.)
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        loader: 'babel-loader',
       },
       {
         test: /\.(ts|tsx)?$/,

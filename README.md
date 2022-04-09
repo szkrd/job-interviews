@@ -36,4 +36,27 @@ Technical details:
 
 ## implementation
 
-WIP
+These are my notes, reactions and musings during development.
+
+### server
+
+- I haven't got enough experience with ts on the server (unfortunately), so this is
+  vanilla js (with the new module system), if I had to choose a node server side
+  framework, [nestjs](https://nestjs.com/) looks really nice and I'm really looking
+  for [deno](https://deno.land/)
+- Validation and error handling are absolutely minimal.
+- I used **apiary/aglio** for API documentation before (which is a format above markdown),
+  but I'm sure there are much better tools out there these days.
+- We used **got** when **request**'s lifecycle ended, but it's a bit awkward; real
+  fetch is still behind feature flag, isomorphic fetch _was_ popular at times,
+  but I'm not sure what's the greatest and latest in node world nowdayjs.
+  What I know is that in the browser I'm absolutely tired of fetch's quirks.
+
+### client
+
+- I used **Fluent** and **Material** (long ago) for components before, now I wanted to try
+  something different and I remember people talking about [ant](https://ant.design/),
+  but I'm not sure if I like it:
+  - no jss, css is global, customization is done via less, not in code
+  - string component props are types and not enums
+- ...
