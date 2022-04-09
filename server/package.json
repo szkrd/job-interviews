@@ -4,6 +4,7 @@
   "description": "biroda-entry server",
   "main": "index.mjs",
   "scripts": {
+    "start": "node ./index.mjs",
     "dev": "nodemon ./index.mjs",
     "format": "prettier --write .",
     "lint": "eslint --ext .mjs ."
