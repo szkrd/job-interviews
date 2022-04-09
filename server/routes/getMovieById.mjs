@@ -8,7 +8,7 @@ import { wikipediaApi } from '../modules/wikipediaApi.mjs';
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
  */
-export const routeGetMoviesById = async (req, res, next) => {
+export const routeGetMovieById = async (req, res, next) => {
   const { id } = req.params;
 
   // invalid movie id, bail out with 400

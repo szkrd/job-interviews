@@ -6,8 +6,8 @@ import { config } from './modules/config.mjs';
 import { log } from './modules/log.mjs';
 import { routeGetFavicon } from './routes/getFavicon.mjs';
 import { routeGetHealth } from './routes/getHealth.mjs';
+import { routeGetMovieById } from './routes/getMovieById.mjs';
 import { routeGetMovies } from './routes/getMovies.mjs';
-import { routeGetMoviesById } from './routes/getMoviesById.mjs';
 
 const app = express();
 app.use(cors());
@@ -21,7 +21,7 @@ if (config.tmdb.accessToken.length < 128) {
 app.get('/favicon.ico', routeGetFavicon);
 app.get('/health', routeGetHealth);
 app.get('/movies', routeGetMovies);
-app.get('/movies/:id', routeGetMoviesById);
+app.get('/movie/:id', routeGetMovieById);
 
 const { host, port } = config.app;
 app.listen(port, host, () => {

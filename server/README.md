@@ -44,10 +44,10 @@ Search for movies with query params
 }
 ```
 
-### GET /movies/:id
+### GET /movie/:id
 
 Get movie data (from Wikipedia and TMDB) by TMDB id
-(`http://localhost:8080/movies/128`).
+(`http://localhost:8080/movie/128`).
 
 ```json
 {
