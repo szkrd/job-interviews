@@ -2,10 +2,11 @@ import { Layout } from 'antd';
 import 'antd/dist/antd.css'; // ant still uses css/less (instead of a jss solution)
 import { Content, Header } from 'antd/lib/layout/layout';
 import 'modern-normalize/modern-normalize.css'; // god bless sindre
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { getMovies, IGetMoviesResponse } from './api/getMovies';
 import AppFooter from './components/AppFooter';
 import CenterSpin from './components/CenterSpin';
+import DetailsModal from './components/DetailsModal';
 import SearchHeader from './components/SearchHeader';
 import SearchResultsTable from './components/SearchResultsTable';
 import { useLocationHash } from './hooks/useLocationHash';
@@ -30,9 +31,12 @@ export default function App() {
     setSearchValueRef.current(query);
   });
 
+  const onSearchSubmit = useCallback((val: string) => updateLocationHashParams('query', val), []);
+  const onMovieTitleClick = useCallback((id: number) => updateLocationHashParams('id', id), []);
   const isSearching = searchState === ApiCallState.Pending;
   const showResults =
     searchFor !== '' && searchResult !== null && searchState === ApiCallState.Fulfilled;
+
   return (
     <Layout style={style.hFull}>
       <Header style={style.m0p0}>
@@ -40,12 +44,15 @@ export default function App() {
           setValue={setSearchValueRef}
           hasBackButton={searchFor !== ''}
           searchDisabled={isSearching}
-          onSubmit={(val) => updateLocationHashParams('query', val)}
+          onSubmit={onSearchSubmit}
         />
       </Header>
       <Content style={styles(style.hFull, style.overflowYAuto, { marginTop: 10 })}>
         {isSearching && <CenterSpin />}
-        {showResults && <SearchResultsTable dataSource={searchResult.results} />}
+        {showResults && (
+          <SearchResultsTable dataSource={searchResult.results} onItemClick={onMovieTitleClick} />
+        )}
+        <DetailsModal />
       </Content>
       <AppFooter />
     </Layout>

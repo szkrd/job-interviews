@@ -69,4 +69,10 @@ These are my notes, reactions and musings during development.
 
 ### screenshots
 
-![main screen](./demo/demo01-main-screen.png)
+![main screen](./demo/demo-main-screen.png)
+
+![no result](./demo/demo-main-screen-no-result.png)
+
+![details modal](./demo/demo-details-modal.png)
+
+![details modal](./demo/demo-details-modal-link-hover.png)

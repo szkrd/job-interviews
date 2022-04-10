@@ -23,6 +23,7 @@ module.exports = {
       template: 'public/index.html',
       hash: true,
       filename: '../dist/index.html',
+      favicon: './public/favicon.ico',
     }),
     new DefinePlugin({
       // let's hope babel is fine with this, I'm not 200% sure though

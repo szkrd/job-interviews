@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getLocationHashParams } from '../utils/navigation';
-import { usePrevious } from './usePrevious';
 
 /**
  * Subscribe to location hash changes and get the given
@@ -14,7 +13,7 @@ import { usePrevious } from './usePrevious';
 export function useLocationHash(queryName: string, onChange?: (val: string | undefined) => void) {
   const firstValue = getLocationHashParams()[queryName];
   const [value, setValue] = useState<string | undefined>(firstValue);
-  const prevValue = usePrevious(value);
+  const prevValue = useRef('');
 
   useEffect(() => {
     const onHashChange = (event?: HashChangeEvent) => {
@@ -23,7 +22,8 @@ export function useLocationHash(queryName: string, onChange?: (val: string | und
       const params = getLocationHashParams(url.hash);
       const newValue = params[queryName];
       // since other query sections can change, let's decrease trigger happyness
-      if (newValue !== prevValue) {
+      if (newValue !== prevValue?.current) {
+        prevValue.current = newValue;
         setValue(newValue);
         if (typeof onChange === 'function') onChange(newValue);
       }

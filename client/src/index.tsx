@@ -8,8 +8,5 @@ import App from './App';
 const rootEl = document.getElementById('root') as HTMLDivElement;
 rootEl.style.height = '100%';
 const root = createRoot(rootEl);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// <React.StrictMode> had to go, because of ant component errors
+root.render(<App />);

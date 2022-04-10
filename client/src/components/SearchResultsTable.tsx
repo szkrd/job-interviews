@@ -1,4 +1,5 @@
-import { Table, Tag } from 'antd';
+import { Button, Table, Tag } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
 import { BaseType } from 'antd/lib/typography/Base';
 import Text from 'antd/lib/typography/Text';
 import React, { CSSProperties } from 'react';
@@ -12,7 +13,9 @@ const imageStyle: CSSProperties = {
   display: 'block',
 };
 
-const columns = [
+const getColumns = (
+  onItemClick: ((id: number) => void) | undefined
+): ColumnsType<IMovieSearchResultItem> => [
   {
     title: 'Poster',
     dataIndex: 'poster',
@@ -24,6 +27,15 @@ const columns = [
     title: 'Title',
     dataIndex: 'title',
     key: 'title',
+    render: (title: string, item: IMovieSearchResultItem) => {
+      return onItemClick ? (
+        <Button type="link" onClick={() => onItemClick(item.id)}>
+          {title}
+        </Button>
+      ) : (
+        <Text>{title}</Text>
+      );
+    },
   },
   {
     title: 'Score',
@@ -57,9 +69,11 @@ const columns = [
 
 interface ISearchResultsTableProps {
   dataSource: IMovieSearchResultItem[];
+  onItemClick?: (id: number) => void;
 }
 
 export default function SearchResultsTable(props: ISearchResultsTableProps) {
+  const columns = getColumns(props.onItemClick);
   return (
     <Table columns={columns} dataSource={props.dataSource} rowKey="id" style={{ margin: 10 }} />
   );

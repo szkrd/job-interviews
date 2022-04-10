@@ -20,7 +20,6 @@ function SearchForm(props: ISearchHeaderProps) {
   const [searchValue, setSearchValue] = useState(props.value ?? '');
   if (props.setValue)
     props.setValue.current = (val) => {
-      console.log('inner event');
       setSearchValue(val);
     };
 
