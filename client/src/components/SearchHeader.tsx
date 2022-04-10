@@ -1,6 +1,7 @@
 import { Button, Form, Input, PageHeader } from 'antd';
 import { random } from 'lodash';
 import React, { MutableRefObject, useCallback, useState } from 'react';
+import { goToRootPage } from '../utils/navigation';
 
 const movieTitleExamples = [
   'Star Wars',
@@ -12,7 +13,9 @@ const movieTitleExamples = [
 
 export interface ISearchHeaderProps {
   value?: string;
+  hasBackButton?: boolean;
   onSubmit?: (value: string) => void;
+  /** Callable function to set the value from outside */
   setValue?: MutableRefObject<(val: string) => void>;
 }
 
@@ -52,9 +55,11 @@ function SearchForm(props: ISearchHeaderProps) {
 }
 
 export default function SearchHeader(props: ISearchHeaderProps) {
+  const onBack = props.hasBackButton ? goToRootPage : undefined;
   return (
     <PageHeader
       title="Movies"
+      onBack={onBack}
       subTitle="search for movies using tmdb and wikipedia"
       style={{ backgroundColor: '#eee' }}
       extra={<SearchForm {...props} />}

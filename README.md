@@ -57,6 +57,9 @@ These are my notes, reactions and musings during development.
 - I used **Fluent** and **Material** (long ago) for components before, now I wanted to try
   something different and I remember people talking about [ant](https://ant.design/),
   but I'm not sure if I like it:
-  - no jss, css is global, customization is done via less, not in code
-  - string component props are types and not enums
-- ...
+  - No jss, css is global, customization is done via less, not in code.
+  - String component props are types and not enums.
+- No **CRA** (Create React App): I used to like tinkering with webpack without CRA, but these
+  days CRA seems to be the norm, which may or may not be a good thing.
+- Why **axios**? Simply because at work we use fetch and my hatred towards fetch
+  grew stadily over the years; the amount of quirks with fetch puts into league of XMLHttp.

@@ -39,8 +39,8 @@ Search for movies with query params
       "poster": "https://www.themoviedb.org/t/p/w220_and_h330_face//hVw2DULeNpnpvDvRwuX4HaXMDMv.jpg"
     }
   ],
-  "total_pages": 1,
-  "total_results": 1
+  "totalPages": 1,
+  "totalResults": 1
 }
 ```
 

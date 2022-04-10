@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -9,6 +10,9 @@ module.exports = {
   mode: 'development',
   devServer: {
     port: 3000,
+    // somewhat annoyingly the proxy setup did not work, even though
+    // we use it every day with CRA and webpack 4 just fine...
+    // proxy: ...
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,6 +23,11 @@ module.exports = {
       template: 'public/index.html',
       hash: true,
       filename: '../dist/index.html',
+    }),
+    new DefinePlugin({
+      // let's hope babel is fine with this, I'm not 200% sure though
+      // (just like a significant portion of the interwebs)...
+      API_URL: JSON.stringify(process.env.API_URL),
     }),
   ],
   module: {

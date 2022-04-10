@@ -44,5 +44,11 @@ export const routeGetMovies = async (req, res, next) => {
     poster: `${TMDB_IMAGE_PATH}/${tmdbMovie.poster_path}`,
   }));
 
-  res.send(result);
+  // return with proper camelCase
+  res.send({
+    page: result.page,
+    results: result.results,
+    totalPages: result.total_pages,
+    totalResults: result.total_results,
+  });
 };

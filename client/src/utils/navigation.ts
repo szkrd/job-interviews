@@ -27,3 +27,15 @@ export function updateLocationHashParams(key: string, value: string | number | b
 export function getLocationHashParams(hash?: string) {
   return queryString.parse(getLocationHashQuery(hash));
 }
+
+/** Hash change must be fired manually on app start, unless we use a "proper" html5 history implementation */
+export function triggerInitialHashChange() {
+  setTimeout(() => {
+    window.dispatchEvent(new HashChangeEvent('hashchange', { newURL: window.location.href }));
+  }, 500);
+}
+
+export function goToRootPage() {
+  // the other option is to do a `window.location.href = '/';` should we need a full reload
+  window.location.hash = queryString.from({ query: '' });
+}

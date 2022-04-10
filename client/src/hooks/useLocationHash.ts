@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getLocationHashParams } from '../utils/navigation';
 import { usePrevious } from './usePrevious';
 
@@ -15,10 +15,10 @@ export function useLocationHash(queryName: string, onChange?: (val: string | und
   const firstValue = getLocationHashParams()[queryName];
   const [value, setValue] = useState<string | undefined>(firstValue);
   const prevValue = usePrevious(value);
-  const firstRun = useRef(true);
 
   useEffect(() => {
     const onHashChange = (event?: HashChangeEvent) => {
+      if (!event || event?.newURL === event?.oldURL) return;
       const url = new URL(event ? event.newURL : window.location.href);
       const params = getLocationHashParams(url.hash);
       const newValue = params[queryName];
@@ -29,11 +29,6 @@ export function useLocationHash(queryName: string, onChange?: (val: string | und
       }
     };
     addEventListener('hashchange', onHashChange);
-    // _logically_ this is a component did mount, so it _should_ run only once, but heck, we _do_ need this...
-    if (firstRun) {
-      firstRun.current = false;
-      onHashChange();
-    }
     return () => removeEventListener('hashchange', onHashChange);
   }, []);
   return value;
