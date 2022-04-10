@@ -14,7 +14,7 @@ export interface ISearchHeaderProps {
   setValue?: MutableRefObject<(val: string) => void>;
 }
 
-const isEmpty = (text: string) => text.trim().length === 0;
+const isEmpty = (text = '') => text.trim().length === 0;
 
 function SearchForm(props: ISearchHeaderProps) {
   const [searchValue, setSearchValue] = useState(props.value ?? '');
