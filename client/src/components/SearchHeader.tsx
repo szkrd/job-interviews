@@ -1,16 +1,9 @@
 import { Button, Form, Input, PageHeader } from 'antd';
 import React, { MutableRefObject, useCallback, useState } from 'react';
+import { famousMovieTitles } from '../data/famousMovieTitles';
 import { style } from '../utils/css';
 import { goToRootPage } from '../utils/navigation';
 import { random } from '../utils/number';
-
-const movieTitleExamples = [
-  'Star Wars',
-  'The Godfather',
-  'Pulp Fiction',
-  'Back to the Future',
-  'Blade Runner',
-];
 
 export interface ISearchHeaderProps {
   value?: string;
@@ -35,7 +28,7 @@ function SearchForm(props: ISearchHeaderProps) {
     if (!isEmpty(searchValue) && props.onSubmit) props.onSubmit(searchValue);
   }, [searchValue]);
 
-  const randomMovieName = movieTitleExamples[random(movieTitleExamples.length - 1)];
+  const randomMovieName = famousMovieTitles[random(famousMovieTitles.length - 1)];
   const isSubmitDisabled = isEmpty(searchValue) || props.searchDisabled;
   return (
     <Form layout="inline">

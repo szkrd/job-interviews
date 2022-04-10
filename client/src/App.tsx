@@ -7,6 +7,7 @@ import { getMovies, IGetMoviesResponse } from './api/getMovies';
 import AppFooter from './components/AppFooter';
 import CenterSpin from './components/CenterSpin';
 import SearchHeader from './components/SearchHeader';
+import SearchResultsTable from './components/SearchResultsTable';
 import { useLocationHash } from './hooks/useLocationHash';
 import { apiCall, ApiCallState } from './utils/apiCall';
 import { style, styles } from './utils/css';
@@ -42,15 +43,9 @@ export default function App() {
           onSubmit={(val) => updateLocationHashParams('query', val)}
         />
       </Header>
-      <Content style={styles(style.hFull, style.overflowYAuto)}>
+      <Content style={styles(style.hFull, style.overflowYAuto, { marginTop: 10 })}>
         {isSearching && <CenterSpin />}
-        {showResults && (
-          <ul style={{ margin: 20 }}>
-            {searchResult.results.map((result) => (
-              <li key={result.id}>{result.title}</li>
-            ))}
-          </ul>
-        )}
+        {showResults && <SearchResultsTable dataSource={searchResult.results} />}
       </Content>
       <AppFooter />
     </Layout>

@@ -1,6 +1,6 @@
 import { tmdbApi } from '../modules/tmdbApi.mjs';
 
-const TMDB_IMAGE_PATH = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
+const TMDB_IMAGE_PATH = 'https://www.themoviedb.org/t/p/w45';
 
 /**
  * Search for movies with `query`;
@@ -41,7 +41,7 @@ export const routeGetMovies = async (req, res, next) => {
     score: tmdbMovie.vote_average * 10,
     genres: (tmdbMovie.genre_ids ?? []).map((gId) => genres.get(gId) ?? { id: gId, name: '' }),
     releaseDate: tmdbMovie.release_date,
-    poster: `${TMDB_IMAGE_PATH}/${tmdbMovie.poster_path}`,
+    poster: tmdbMovie.poster_path ? `${TMDB_IMAGE_PATH}/${tmdbMovie.poster_path}` : '',
   }));
 
   // return with proper camelCase
