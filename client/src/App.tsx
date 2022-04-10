@@ -1,11 +1,11 @@
 import 'antd/dist/antd.css'; // ant still uses css/less (instead of a jss solution)
-import { noop } from 'lodash';
 import 'modern-normalize/modern-normalize.css'; // god bless sindre
 import React, { useRef, useState } from 'react';
 import { getMovies, IGetMoviesResponse } from './api/getMovies';
 import SearchHeader from './components/SearchHeader';
 import { useLocationHash } from './hooks/useLocationHash';
 import { apiCall, ApiCallState } from './utils/apiCall';
+import { noop } from './utils/function';
 import { triggerInitialHashChange, updateLocationHashParams } from './utils/navigation';
 
 triggerInitialHashChange();

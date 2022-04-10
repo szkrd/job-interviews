@@ -1,7 +1,7 @@
 import { Button, Form, Input, PageHeader } from 'antd';
-import { random } from 'lodash';
 import React, { MutableRefObject, useCallback, useState } from 'react';
 import { goToRootPage } from '../utils/navigation';
+import { random } from '../utils/number';
 
 const movieTitleExamples = [
   'Star Wars',
