@@ -9,7 +9,7 @@ module.exports = {
   devtool: 'source-map',
   mode: 'development',
   devServer: {
-    port: 3000,
+    port: process.env.PORT ?? 3000,
     // somewhat annoyingly the proxy setup did not work, even though
     // we use it every day with CRA and webpack 4 just fine...
     // proxy: ...
