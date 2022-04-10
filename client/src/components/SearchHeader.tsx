@@ -1,5 +1,6 @@
 import { Button, Form, Input, PageHeader } from 'antd';
 import React, { MutableRefObject, useCallback, useState } from 'react';
+import { style } from '../utils/css';
 import { goToRootPage } from '../utils/navigation';
 import { random } from '../utils/number';
 
@@ -15,6 +16,7 @@ export interface ISearchHeaderProps {
   value?: string;
   hasBackButton?: boolean;
   onSubmit?: (value: string) => void;
+  searchDisabled?: boolean;
   /** Callable function to set the value from outside */
   setValue?: MutableRefObject<(val: string) => void>;
 }
@@ -34,19 +36,21 @@ function SearchForm(props: ISearchHeaderProps) {
   }, [searchValue]);
 
   const randomMovieName = movieTitleExamples[random(movieTitleExamples.length - 1)];
+  const isSubmitDisabled = isEmpty(searchValue) || props.searchDisabled;
   return (
     <Form layout="inline">
       <Form.Item label="Movie title">
         {/* ant does have an Input.Search, but the button part can not be disabled individually */}
         <Input
           placeholder={randomMovieName}
+          disabled={props.searchDisabled}
           value={searchValue}
           onChange={(el) => setSearchValue(el.target.value)}
           onPressEnter={handleSubmit}
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" onClick={handleSubmit} disabled={isEmpty(searchValue)}>
+        <Button type="primary" onClick={handleSubmit} disabled={isSubmitDisabled}>
           Search
         </Button>
       </Form.Item>
@@ -61,7 +65,7 @@ export default function SearchHeader(props: ISearchHeaderProps) {
       title="Movies"
       onBack={onBack}
       subTitle="search for movies using tmdb and wikipedia"
-      style={{ backgroundColor: '#eee' }}
+      style={style.bgIndigo200}
       extra={<SearchForm {...props} />}
     />
   );
