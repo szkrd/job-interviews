@@ -63,9 +63,13 @@ These are my notes, reactions and musings during development.
 - No **CRA** (Create React App): I used to like tinkering with webpack without CRA, but these
   days CRA seems to be the norm, which may or may not be a good thing.
 - Why **axios**? Simply because at work we use fetch and my hatred towards fetch
-  grew stadily over the years; the amount of quirks with fetch puts into league of XMLHttp.
+  grew stadily over the years; the amount of quirks with fetch puts it into league of XMLHttp.
 - Why no **redux**? While I love redux (especially redux toolkit) I decided against it
   the project being so small - without a store it would be much harder to extend of course.
+- Why no **react-router**? The task (imo) implied a single page, but I wanted to fool around
+  a bit with good old hash location - but of course, as always, good routing is very hard
+  to do (html5 history, first routing, back button support, avoiding unneeded rerenders),
+  etc.
 
 ### screenshots
 
