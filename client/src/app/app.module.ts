@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DiscoverMoviesComponent } from './components/discover-movies/discover-movies.component';
@@ -14,6 +14,7 @@ import { NgForNumberPipe } from './pipes/ng-for-number.pipe';
 import { CastAndCrewComponent } from './components/cast-and-crew/cast-and-crew.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { TextEllipsisPipe } from './pipes/text-ellipsis.pipe';
+import { ErrorNotificationComponent } from './components/error-notification/error-notification.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,13 @@ import { TextEllipsisPipe } from './pipes/text-ellipsis.pipe';
     NgForNumberPipe,
     CastAndCrewComponent,
     ReviewsComponent,
-    TextEllipsisPipe
+    TextEllipsisPipe,
+    ErrorNotificationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

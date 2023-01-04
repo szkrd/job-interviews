@@ -3,9 +3,11 @@ const https = require('http')
 const chalk = require('chalk')
 const httpProxy = require('http-proxy')
 
+// PORT, TARGET, ACCESS_TOKEN, RESPONSE_TIME
 const port = parseInt(process.env.PORT, 10) || 5050
 const target = process.env.TARGET || 'https://api.themoviedb.org/'
 const token = process.env.ACCESS_TOKEN
+const responseTime = parseInt(process.env.RESPONSE_TIME, 10) || 0
 if (!token || token.length < 128) {
   console.error('Invalid or missing ACCESS_TOKEN env var!')
   process.exit(1)
@@ -33,6 +35,8 @@ proxy
 console.info(chalk.green(`Proxy target is "${target}";\nlistening on port ${port}\n`))
 https
   .createServer((req, res) => {
-    proxy.web(req, res, { target })
+    const proxyWeb = () => proxy.web(req, res, { target })
+    const caller = responseTime ? () => setTimeout(proxyWeb, responseTime) : proxyWeb;
+    caller();
   })
   .listen(port)

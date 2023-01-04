@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-import { environment as env } from '../../../environments/environment';
 import { IDetails } from '../../types/movies';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-movie-details-page',
@@ -17,7 +16,8 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   details$: Observable<IDetails>;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private api: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +37,6 @@ export class MovieDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   getDetails() {
-    this.details$ = ajax.getJSON(`${env.apiUrl}/movie/${this.id}`);
+    this.details$ = this.api.getMovieDetails(this.id);
   }
 }

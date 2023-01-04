@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ajax } from 'rxjs/ajax';
-import { environment as env } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ICredits } from '../../types/people';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-cast-and-crew',
@@ -14,7 +13,11 @@ export class CastAndCrewComponent implements OnInit {
   credit$: Observable<ICredits>;
   @Input() movieId: number;
 
+  constructor(
+    private api: ApiService
+  ) {}
+
   ngOnInit(): void {
-    this.credit$ = ajax.getJSON(`${env.apiUrl}/movie/${this.movieId}/credits`);
+    this.credit$ = this.api.getMovieCredits(this.movieId);
   }
 }

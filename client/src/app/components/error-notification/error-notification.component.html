@@ -1,0 +1,6 @@
+<ul class="error-notification-component">
+  <li *ngFor="let error of errors">
+    <a href="#" (click)="onRemoveClick($event, error)">X</a>
+    {{error.message}}
+  </li>
+</ul>

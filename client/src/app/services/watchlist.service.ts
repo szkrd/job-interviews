@@ -42,6 +42,11 @@ export class WatchlistService {
     this.persist();
   }
 
+  reset() {
+    this.count.next(this.list.length = 0);
+    localStorage.removeItem(this.LS_KEY);
+  }
+
   private persist() {
     localStorage.setItem(this.LS_KEY, String(this.list));
   }

@@ -21,6 +21,6 @@ export interface ICrew {
 
 export interface ICredits {
   id?: number;
-  cast: ICast[];
-  crew: ICrew[];
+  cast?: ICast[];
+  crew?: ICrew[];
 }

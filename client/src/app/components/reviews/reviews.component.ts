@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IReview } from '../../types/movies';
-import { ajax } from 'rxjs/ajax';
-import { environment as env } from '../../../environments/environment';
-import { IReviewResponse } from '../../types/api';
-import { map } from 'rxjs/operators';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-reviews',
@@ -15,8 +12,11 @@ export class ReviewsComponent implements OnInit {
   reviews$: Observable<IReview[]>;
   @Input() movieId: number;
 
+  constructor(
+    public api: ApiService
+  ) {}
+
   ngOnInit(): void {
-    this.reviews$ = ajax.getJSON(`${env.apiUrl}/movie/${this.movieId}/reviews`)
-      .pipe(map((data: IReviewResponse) => data.results));
+    this.reviews$ = this.api.getReviews(this.movieId);
   }
 }
