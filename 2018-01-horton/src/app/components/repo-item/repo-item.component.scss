@@ -1,0 +1,43 @@
+@import '../../../../node_modules/bootstrap/scss/bootstrap';
+
+:host {
+  display: block;
+  padding-bottom: 1rem;
+}
+
+h2.h4 a {
+  color: $orange;
+}
+
+.description {
+  color: $gray-600;
+}
+
+dl dt, dl dd {
+  float: left;
+}
+
+dl dt {
+  clear: both;
+  padding-right: .2rem;
+
+  i.fa {
+    width: 1rem;
+    text-align: center;
+  }
+}
+
+dd {
+  color: $gray-600;
+
+  a {
+    i.fa {
+      opacity: 0;
+      transition: all .5s ease-out;
+    }
+
+    &:hover i.fa {
+      opacity: .8;
+    }
+  }
+}

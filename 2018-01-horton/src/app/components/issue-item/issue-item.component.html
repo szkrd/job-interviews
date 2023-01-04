@@ -1,0 +1,32 @@
+<div class="container" (click)="toggleBody($event)" [ngClass]="{static: !item.body, opened: showBody}">
+  <div class="row">
+    <div class="col-md">
+      <span class="title">
+        {{item.title}}
+      </span>
+    </div>
+    <div class="col-md-auto short-meta">
+      <span class="id">#{{item.id}}</span>
+      opened by
+      <span class="user-name">{{item.userName}}</span>
+      at
+      <span class="date">{{item.createdAt | date:'short'}}</span>
+    </div>
+  </div>
+  <div class="row" *ngIf="item.labels.length">
+    <div class="col">
+      <ul class="list-unstyled labels">
+        <li *ngFor="let label of item.labels" [ngStyle]="{backgroundColor: label.color}">
+          <span class="light">
+            {{label.name}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" *ngIf="item.body && showBody">
+    <div class="col">
+      <div class="body js-issue-item-body" [appMarkdown]="item.body"></div>
+    </div>
+  </div>
+</div>

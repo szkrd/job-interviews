@@ -1,0 +1,52 @@
+<h2 class="h4">
+  <a [href]="item.url" target="_blank" class="repo-url">
+    {{item.fullName}}
+  </a>
+</h2>
+<p class="description">
+  {{item.description}}
+</p>
+<dl class="clearfix">
+  <dt>
+    <i class="fa fa-code-fork"></i>
+    Forks:
+  </dt>
+  <dd class="fork-count">
+    {{item.forks | number}}
+  </dd>
+
+  <dt>
+    <i class="fa fa-star"></i>
+    Stars:
+  </dt>
+  <dd class="stargazer-count">
+    {{item.stargazersCount | number}}
+  </dd>
+
+  <dt>
+    <i class="fa fa-eye"></i>
+    Watchers:
+  </dt>
+  <dd class="watcher-count">
+    {{item.watchers | number}}
+  </dd>
+
+  <dt>
+    <i class="fa fa-bug"></i>
+    Issue count:
+  </dt>
+  <dd class="issue-count">
+    <a
+      class="issue-link"
+      [routerLink]="['/issues']"
+      [queryParams]="{q: item.fullName}"
+      *ngIf="item.openIssuesCount > 0; else no_issues"
+    >
+      {{item.openIssuesCount | number}}
+      <i class="fa fa-arrow-right"></i>
+    </a>
+    <ng-template #no_issues>
+      0
+    </ng-template>
+  </dd>
+</dl>

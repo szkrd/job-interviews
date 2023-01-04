@@ -1,0 +1,23 @@
+<form class="form-inline" [formGroup]="form" (ngSubmit)="submit()">
+  <label class="xsr-only" for="query">
+    <ng-content></ng-content>
+  </label>
+  <input
+    type="search"
+    class="form-control mb-2 mr-sm-2"
+    name="query"
+    id="query"
+    minlength="2"
+    maxlength="100"
+    required
+    [placeholder]="example"
+    [formControl]="query"
+  >
+  <button
+    type="submit"
+    class="btn btn-primary mb-2"
+    [disabled]="form.invalid"
+  >
+    Submit
+  </button>
+</form>
