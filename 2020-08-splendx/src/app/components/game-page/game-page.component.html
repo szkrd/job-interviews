@@ -1,0 +1,34 @@
+<div class="game-page-component">
+  <header>
+    <app-header-logo></app-header-logo>
+    <app-setup-game theme="dark"></app-setup-game>
+  </header>
+  <main>
+    <div class="info-bar">
+      <p>
+        <label>Current tries:</label>
+        <strong>{{currentTries}}</strong>
+      </p>
+      <p>
+        <label>Best:</label>
+        <strong>{{best}}</strong>
+      </p>
+      <button (click)="onRestartClick()">
+        restart
+      </button>
+    </div>
+    <ul class="cards" [class.locked]="uiLocked">
+      <li *ngFor="let card of cards" [@cardAnimation]>
+        <app-card
+          (click)="onCardClick(card)"
+          [imageId]="card.id"
+          [visible]="card.visible"
+          [showNumbers]="true"
+        ></app-card>
+      </li>
+    </ul>
+    <p class="success-message" *ngIf="showSuccessMessage">
+      You have won the game in {{currentTries}} steps!
+    </p>
+  </main>
+</div>
