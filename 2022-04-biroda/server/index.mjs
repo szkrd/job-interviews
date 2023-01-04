@@ -1,6 +1,6 @@
-// import 'dotenv/config';
 import chalk from 'chalk';
 import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import { config } from './modules/config.mjs';
 import { log } from './modules/log.mjs';

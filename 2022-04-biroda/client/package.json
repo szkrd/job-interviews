@@ -7,7 +7,8 @@
     "format": "prettier --write .",
     "lint": "eslint --ext .ts --ext tsx .",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "dev": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
