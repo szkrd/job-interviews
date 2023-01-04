@@ -1,0 +1,10 @@
+<div class="top-rated-component">
+  <h2>Top movies of all time</h2>
+  <ul>
+    <li *ngFor="let movie of movies$ | async">
+      <a [routerLink]="['/movie', movie.id]">
+        {{movie.title}}
+      </a>
+    </li>
+  </ul>
+</div>

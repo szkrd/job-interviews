@@ -1,0 +1,17 @@
+<div class="cast-and-crew-component">
+  <div *ngIf="credit$ | async as credits">
+    <h2>Cast</h2>
+    <ul>
+      <li *ngFor="let member of credits.cast.slice(0, maxShown)">
+        <p>
+          <strong>{{member.character || 'unspecified'}}</strong> - {{member.name}}
+        </p>
+      </li>
+    </ul>
+    <p *ngIf="credits.cast.length > maxShown && maxShown !== -1">
+      <button (click)="maxShown = -1">
+        Show all {{credits.cast.length}}
+      </button>
+    </p>
+  </div>
+</div>

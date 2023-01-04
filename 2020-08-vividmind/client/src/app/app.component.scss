@@ -1,0 +1,10 @@
+.app-component {
+  padding: 5px 10px 10px 10px;
+  min-width: 320px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 45px rgba(0, 0, 0, .2);
+  //flex: 1;
+  min-height: calc(100% - 15px);
+}

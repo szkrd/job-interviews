@@ -1,0 +1,18 @@
+html, body, form, fieldset, table, tr, td, img {
+  font-family: Arial, serif;
+}
+
+input, button, select, textarea, optgroup, option {
+  font-family: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: silver;
+}

@@ -1,0 +1,8 @@
+<div class="watchlist-link-component">
+  <a href="#" routerLink="/watchlist">
+    My watchlist
+    <span *ngIf="count | async">
+      ({{count | async}})
+    </span>
+  </a>
+</div>
