@@ -1,0 +1,19 @@
+{
+  "name": "card-component",
+  "author": "Szabolcs Kurdi",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "normalize.css": "8.0.1",
+    "nuxt": "2.14.3"
+  },
+  "devDependencies": {
+    "node-sass": "4.14.1",
+    "prettier": "2.1.0",
+    "sass-loader": "9.0.3"
+  }
+}
