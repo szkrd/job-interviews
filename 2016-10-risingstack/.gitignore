@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+logs
+*.log
+data
+smtpPickup/*.eml
+node_modules

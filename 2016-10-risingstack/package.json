@@ -1,0 +1,51 @@
+{
+  "name": "risingstack-entry",
+  "version": "1.0.0",
+  "description": "An entry test for the job interview at rs, late 2015.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "gulp",
+    "test": "node tests",
+    "test:watch": "node tests -w",
+    "flush-data": "gulp flush",
+    "mongo:start": "gulp mongo-start",
+    "mongo:stop": "gulp mongo-stop"
+  },
+  "author": "Szabolcs Kurdi",
+  "email": "szabolcs.kurdi@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "co": "4.5.4",
+    "gulp": "3.9.0",
+    "gulp-nodemon": "2.0.3",
+    "handlebars": "3.0.3",
+    "hapi": "8.8.0",
+    "hapi-auth-jwt": "2.1.2",
+    "hapi-mongodb-promises": "peeter-tomberg/hapi-mongodb-promises",
+    "joi": "6.5.0",
+    "jsonwebtoken": "5.0.2",
+    "lodash": "3.10.0",
+    "mongodb": "2.2.10",
+    "nodemailer": "1.4.0",
+    "nodemailer-pickup-transport": "0.1.1",
+    "promised-mongo": "1.2.0",
+    "shelljs": "0.5.1",
+    "simple-node-logger": "0.92.21",
+    "touch": "0.0.3"
+  },
+  "devDependencies": {
+    "babel": "6.5.2",
+    "babel-plugin-transform-async-to-generator": "6.16.0",
+    "babel-polyfill": "6.16.0",
+    "babel-preset-es2015": "6.16.0",
+    "babel-register": "6.16.3",
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "co-mocha": "1.1.2",
+    "inject-then": "2.0.0",
+    "mocha": "2.5.3",
+    "proxyquire": "1.6.0",
+    "sinon": "1.15.4"
+  }
+}

@@ -1,0 +1,5 @@
+--require co-mocha
+--require chai
+--require chai-as-promised
+--require test/_helpers
+--timeout 5000
