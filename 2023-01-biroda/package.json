@@ -1,0 +1,21 @@
+{
+  "name": "biroda-entry",
+  "version": "0.0.1",
+  "description": "entry interview task client and server",
+  "main": "index.js",
+  "scripts": {
+    "format": "cd server && npm run format && cd ../client && npm run format",
+    "lint": "cd server && npm run lint && cd ../client && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szkrd/biroda-entry.git"
+  },
+  "keywords": [],
+  "author": "szkrd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szkrd/biroda-entry/issues"
+  },
+  "homepage": "https://github.com/szkrd/biroda-entry#readme"
+}
