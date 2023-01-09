@@ -1,0 +1,18 @@
+@import '/src/styles/variables';
+
+.button {
+  background-color: $color-slate;
+  border-radius: 5px;
+  height: 30px;
+  border: 0;
+  padding: 0 5px;
+  text-align: center;
+  font-size: 14px;
+  color: $color-aluminium-highlight;
+}
+
+// themes
+.light {
+  background-color: $color-white;
+  color: $color-slate-shadow;
+}

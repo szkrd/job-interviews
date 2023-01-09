@@ -1,0 +1,46 @@
+@import '/src/styles/variables';
+
+.headerBar {
+  height: 75px;
+  background-color: $color-scarlet-red-highlight;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  a {
+    display: block;
+    width: 136px;
+    height: 50px;
+    overflow: hidden;
+    color: $color-white;
+    border-radius: 5px;
+    outline: none;
+    position: relative;
+  }
+
+  // copyright and trademark information is very important
+  // in this day and age
+  .copyright {
+    font-size: 11px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 2px;
+  }
+}
+
+.ads {
+  width: 468px;
+  height: 60px;
+  box-shadow: 0 0 40px inset $color-white;
+  border-radius: 2px;
+}
+
+.search {
+  input[type='search'] {
+    margin: 0 10px 0;
+  }
+}

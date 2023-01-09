@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { getMostPopularMovies } from '../../../api/getMostPopularMovies';
 import { IGetMoviesResponse } from '../../../api/getMovies';
 import { apiCall, ApiCallState } from '../../../utils/apiCall';
+import MovieGrid from '../../common/MovieGrid/MovieGrid';
 import Spinner from '../../common/Spinner/Spinner';
 
 const LandingPage: FC = () => {
@@ -20,7 +21,10 @@ const LandingPage: FC = () => {
   }, [location]);
   return (
     <div>
-      <Spinner />
+      {[ApiCallState.Pending, ApiCallState.Uninitialized].includes(searchState) && <Spinner />}
+      {searchState === ApiCallState.Fulfilled && (
+        <MovieGrid dataSource={searchResult?.results ?? []} />
+      )}
     </div>
   );
 };

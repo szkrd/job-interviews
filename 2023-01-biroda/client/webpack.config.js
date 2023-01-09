@@ -8,7 +8,14 @@ const sourceMap = true;
 
 const cssLoader = {
   loader: 'css-loader',
-  options: { importLoaders: 1, modules: true, sourceMap },
+  options: {
+    importLoaders: 1,
+    modules: {
+      // name is the filename, which is slightly annoying, but it's still better than the default hash
+      localIdentName: '[name]__[local]--[hash:base64:5]',
+    },
+    sourceMap,
+  },
 };
 
 const sassLoader = { loader: 'sass-loader', options: { sourceMap } };
