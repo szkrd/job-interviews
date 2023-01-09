@@ -1,0 +1,15 @@
+@import '/src/styles/variables';
+
+.searchInput {
+  border: 0;
+  color: $color-white;
+  border-radius: 5px;
+  line-height: 30px;
+  height: 30px;
+  padding: 0 5px;
+}
+
+// themes
+.header {
+  background-color: $color-scarlet-red-shadow;
+}

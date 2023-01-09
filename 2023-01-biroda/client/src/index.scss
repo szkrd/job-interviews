@@ -1,0 +1,15 @@
+// vscode can only follow project absolute/relative links (like /client/src/styles/variables);
+// relative links would help, but since we have no auto import in scss, at least absolute
+// links can be easily copy-pasted into per component module scss files
+@import '/src/styles/variables';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: $color-aluminium-highlight;
+}

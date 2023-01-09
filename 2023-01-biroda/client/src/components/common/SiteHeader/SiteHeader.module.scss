@@ -1,0 +1,17 @@
+@import '/src/styles/variables';
+
+.siteHeader {
+  height: 75px;
+  background-color: $color-scarlet-red-highlight;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  border-bottom: 5px solid $color-aluminium-shadow;
+}
+
+.logo {
+  a {
+    display: block;
+    width: 125px;
+  }
+}

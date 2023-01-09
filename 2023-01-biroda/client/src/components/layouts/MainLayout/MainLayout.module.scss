@@ -1,0 +1,8 @@
+@import '/src/styles/variables';
+
+.mainLayout {
+  height: '100%';
+  width: 1000px;
+  margin: 0 auto;
+  background-color: $color-white;
+}

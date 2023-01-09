@@ -5,6 +5,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
 const sourceMap = true;
+
+const cssLoader = {
+  loader: 'css-loader',
+  options: { importLoaders: 1, modules: true, sourceMap },
+};
+
+const sassLoader = { loader: 'sass-loader', options: { sourceMap } };
+
 module.exports = {
   entry: './src/index.tsx',
   devtool: 'source-map',
@@ -36,20 +44,16 @@ module.exports = {
     rules: [
       {
         test: /\.module\.scss$/i,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { modules: true, importLoaders: 1, sourceMap } },
-          { loader: 'sass-loader', options: { sourceMap } },
-        ],
+        use: ['style-loader', cssLoader, sassLoader],
       },
       {
         test: /\.scss$/i,
         exclude: /\.module\.scss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', cssLoader, sassLoader],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', cssLoader],
       },
       {
         test: /\.js$/,

@@ -1,10 +1,11 @@
-import { Layout } from 'antd';
+import { Layout as div } from 'antd';
 import { Content, Header } from 'antd/lib/layout/layout';
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { getMostPopularMovies } from '../api/getMostPopularMovies';
-import { IGetMoviesResponse } from '../api/getMovies';
-import { apiCall, ApiCallState } from '../utils/apiCall';
+import { getMostPopularMovies } from '../../../api/getMostPopularMovies';
+import { IGetMoviesResponse } from '../../../api/getMovies';
+import { apiCall, ApiCallState } from '../../../utils/apiCall';
+import SiteHeader from '../../common/SiteHeader/SiteHeader';
 import styles from './MainLayout.module.scss';
 
 export default function MainLayout() {
@@ -21,14 +22,12 @@ export default function MainLayout() {
     return caller.abort;
   }, [location]);
   return (
-    <Layout className={styles.layout}>
-      <Header>
-        <Link to="/foobar">foobar</Link>
-      </Header>
+    <div className={styles.mainLayout}>
+      <SiteHeader />
       <Content>
         content outlet:
         <Outlet />
       </Content>
-    </Layout>
+    </div>
   );
 }

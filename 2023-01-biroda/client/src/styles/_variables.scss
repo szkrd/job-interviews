@@ -1,0 +1,46 @@
+// to import this file from anywhere:
+// @import '/src/styles/variables';
+
+// tango scss variables from: https://gist.github.com/quark-zju/10947588
+//
+//             Highlight           Shadow
+// Aluminium   #eeeeec   #d3d7cf   #babdb6
+// Butter      #fce94f   #edd400   #c4a000
+// Chameleon   #8ae234   #73d216   #4e9a06
+// Orange      #fcaf3e   #f57900   #ce5c00
+// Chocolate   #e9b96e   #c17d11   #8f5902
+// Sky Blue    #729fcf   #3465a4   #204a87
+// Plum        #ad7fa8   #75507b   #5c3566
+// Slate       #888a85   #555753   #2e3436
+// Scarlet Red #ef2929   #cc0000   #a40000
+
+$color-aluminium: #d3d7cf;
+$color-aluminium-highlight: #eeeeec;
+$color-aluminium-shadow: #babdb6;
+$color-butter: #edd400;
+$color-butter-highlight: #fce94f;
+$color-butter-shadow: #c4a000;
+$color-chameleon: #73d216;
+$color-chameleon-highlight: #8ae234;
+$color-chameleon-shadow: #4e9a06;
+$color-orange: #f57900;
+$color-orange-highlight: #fcaf3e;
+$color-orange-shadow: #ce5c00;
+$color-chocolate: #c17d11;
+$color-chocolate-highlight: #e9b96e;
+$color-chocolate-shadow: #8f5902;
+$color-sky-blue: #3465a4;
+$color-sky-blue-highlight: #729fcf;
+$color-sky-blue-shadow: #204a87;
+$color-plum: #75507b;
+$color-plum-highlight: #ad7fa8;
+$color-plum-shadow: #5c3566;
+$color-slate: #555753;
+$color-slate-highlight: #888a85;
+$color-slate-shadow: #2e3436;
+$color-scarlet-red: #cc0000;
+$color-scarlet-red-highlight: #ef2929;
+$color-scarlet-red-shadow: #a40000;
+
+$color-white: #fff;
+$color-black: #000;

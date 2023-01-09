@@ -1,0 +1,35 @@
+@import './variables';
+
+// export itself will duplicate code if used at multiple places, so let's be extra careful
+:export {
+  color-aluminium: $color-aluminium;
+  color-aluminium-highlight: $color-aluminium-highlight;
+  color-aluminium-shadow: $color-aluminium-shadow;
+  color-butter: $color-butter;
+  color-butter-highlight: $color-butter-highlight;
+  color-butter-shadow: $color-butter-shadow;
+  color-chameleon: $color-chameleon;
+  color-chameleon-highlight: $color-chameleon-highlight;
+  color-chameleon-shadow: $color-chameleon-shadow;
+  color-orange: $color-orange;
+  color-orange-highlight: $color-orange-highlight;
+  color-orange-shadow: $color-orange-shadow;
+  color-chocolate: $color-chocolate;
+  color-chocolate-highlight: $color-chocolate-highlight;
+  color-chocolate-shadow: $color-chocolate-shadow;
+  color-sky-blue: $color-sky-blue;
+  color-sky-blue-highlight: $color-sky-blue-highlight;
+  color-sky-blue-shadow: $color-sky-blue-shadow;
+  color-plum: $color-plum;
+  color-plum-highlight: $color-plum-highlight;
+  color-plum-shadow: $color-plum-shadow;
+  color-slate: $color-slate;
+  color-slate-highlight: $color-slate-highlight;
+  color-slate-shadow: $color-slate-shadow;
+  color-scarlet-red: $color-scarlet-red;
+  color-scarlet-red-highlight: $color-scarlet-red-highlight;
+  color-scarlet-red-shadow: $color-scarlet-red-shadow;
+
+  color-white: $color-white;
+  color-black: $color-black;
+}
