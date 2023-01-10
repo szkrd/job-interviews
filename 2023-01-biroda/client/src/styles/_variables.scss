@@ -1,19 +1,10 @@
 // to import this file from anywhere:
 // @import '/src/styles/variables';
 
-// tango scss variables from: https://gist.github.com/quark-zju/10947588
+// TODO: should we use css vars proper? probably theming would be much easier...
+// (with scss either we a use a theme helper function or generate a whole new css)
 //
-//             Highlight           Shadow
-// Aluminium   #eeeeec   #d3d7cf   #babdb6
-// Butter      #fce94f   #edd400   #c4a000
-// Chameleon   #8ae234   #73d216   #4e9a06
-// Orange      #fcaf3e   #f57900   #ce5c00
-// Chocolate   #e9b96e   #c17d11   #8f5902
-// Sky Blue    #729fcf   #3465a4   #204a87
-// Plum        #ad7fa8   #75507b   #5c3566
-// Slate       #888a85   #555753   #2e3436
-// Scarlet Red #ef2929   #cc0000   #a40000
-
+// tango scss variables from: https://gist.github.com/quark-zju/10947588
 $color-aluminium: #d3d7cf;
 $color-aluminium-highlight: #eeeeec;
 $color-aluminium-shadow: #babdb6;
