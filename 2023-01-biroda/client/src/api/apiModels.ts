@@ -10,6 +10,7 @@ export interface IMovieSearchResultItem {
   genres: IMovieGenre[];
   releaseDate: string;
   poster: string;
+  posterHigh?: string;
 }
 
 export interface AbortablePromise<T> extends Promise<T> {
