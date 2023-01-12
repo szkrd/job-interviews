@@ -1,11 +1,14 @@
 <script setup>
 import AppFooter from './AppFooter.vue';
 import SearchHeader from './SearchHeader.vue';
+import { useRouter } from 'vue-router';
 
-function onSearchSubmit() {
-  console.log('>>> TODO submit');
+const router = useRouter();
+
+function onSearchSubmit(text = '') {
+  console.log('>>> TODO submit', text);
+  router.push({ query: { query: text } });
 }
-
 </script>
 <template>
   <a-layout class="single-page">

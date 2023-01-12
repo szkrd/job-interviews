@@ -14,7 +14,7 @@ const searchValue = ref('');
 const randomMovieName = getRandomItem(famousMovieTitles);
 
 function handleSubmit() {
-  if (searchValue && props.onSubmit) props.onSubmit(searchValue);
+  if (searchValue && props.onSubmit) props.onSubmit(searchValue.value);
 }
 </script>
 <template>
