@@ -1,0 +1,65 @@
+.hFull {
+  height: 100%;
+}
+
+.wFull {
+  width: 100%;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.p0 {
+  padding: 0;
+}
+
+.m0p0 {
+  @extend .m0;
+  @extend .p0;
+}
+
+.mt1 {
+  margin-top: 10px;
+}
+
+.mr1 {
+  margin-right: 10px;
+}
+
+.mb1 {
+  margin-bottom: 10px;
+}
+
+.ml1 {
+  margin-left: 10px;
+}
+
+.m1 {
+  margin: 10px;
+}
+
+.placeContentCenter {
+  align-items: center;
+  justify-content: center;
+}
+
+.bgIndigo200 {
+  background-color: rgb(199, 210, 254);
+}
+
+.bgIndigo300 {
+  background-color: rgb(165, 180, 252);
+}
+
+.italic {
+  font-style: italic;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.overflowYAuto {
+  overflow-y: auto;
+}
