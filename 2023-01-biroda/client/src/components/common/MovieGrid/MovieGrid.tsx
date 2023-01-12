@@ -2,22 +2,19 @@ import React, { FC, MouseEventHandler, useCallback, useState } from 'react';
 import { IMovieSearchResultItem } from '../../../api/apiModels';
 import DateFormat from '../DateFormat/DateFormat';
 import Modal from '../Modal/Modal';
+import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieScore from '../MovieScore/MovieScore';
 import styles from './MovieGrid.module.scss';
 
 interface IMovieGrid {
   dataSource: IMovieSearchResultItem[];
-  onMovieClick: (id: number) => void;
 }
 
-const MovieGrid: FC<IMovieGrid> = ({ dataSource, onMovieClick }) => {
+const MovieGrid: FC<IMovieGrid> = ({ dataSource }) => {
   const [selectedId, setSelectedId] = useState(-1);
-  const handleMovieClick: MouseEventHandler<HTMLButtonElement> = useCallback(
-    (event) => {
-      onMovieClick(parseInt(event.currentTarget.dataset.id ?? '-1', 10));
-    },
-    [onMovieClick]
-  );
+  const handleMovieClick: MouseEventHandler<HTMLButtonElement> = useCallback((event) => {
+    setSelectedId(parseInt(event.currentTarget.dataset.id ?? '-1', 10));
+  }, []);
   const handleModalClose = useCallback(() => {
     setSelectedId(-1);
   }, []);
@@ -41,7 +38,7 @@ const MovieGrid: FC<IMovieGrid> = ({ dataSource, onMovieClick }) => {
           </li>
         ))}
       </ul>
-      {/* <Modal title="lorem ipsum" onClose={handleModalClose} /> */}
+      <MovieDetails onClose={handleModalClose} id={selectedId} />
     </>
   );
 };

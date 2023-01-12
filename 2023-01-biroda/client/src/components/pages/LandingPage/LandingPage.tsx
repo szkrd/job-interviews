@@ -11,9 +11,6 @@ const LandingPage: FC = () => {
   const [searchState, setSearchState] = useState(ApiCallState.Uninitialized);
   const [searchResult, setSearchResult] = useState<IGetMoviesResponse | null>(null);
   const location = useLocation();
-  const onMovieClick = useCallback((id: number) => {
-    console.log('1>>>', id);
-  }, []);
   useEffect(() => {
     if (location.pathname !== '/' || searchState !== ApiCallState.Uninitialized) return;
     const caller = apiCall.fromComponent<IGetMoviesResponse>(
@@ -27,7 +24,7 @@ const LandingPage: FC = () => {
     <Page title="Most popular movies">
       {[ApiCallState.Pending, ApiCallState.Uninitialized].includes(searchState) && <Spinner />}
       {searchState === ApiCallState.Fulfilled && (
-        <MovieGrid dataSource={searchResult?.results ?? []} onMovieClick={onMovieClick} />
+        <MovieGrid dataSource={searchResult?.results ?? []} />
       )}
     </Page>
   );
