@@ -1,9 +1,9 @@
 import { Footer } from 'antd/lib/layout/layout';
 import Text from 'antd/lib/typography/Text';
 import React from 'react';
-import { famousQuotes } from '../data/famousQuotes';
-import { styles, style as st } from '../utils/css';
-import { random } from '../utils/number';
+import { famousQuotes } from '../../data/famousQuotes';
+import { styles, style as st } from '../../utils/css';
+import { random } from '../../utils/number';
 
 export default function AppFooter() {
   const quote = famousQuotes[random(famousQuotes.length - 1)];

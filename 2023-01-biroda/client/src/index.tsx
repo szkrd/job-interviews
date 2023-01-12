@@ -2,10 +2,10 @@ import 'modern-normalize/modern-normalize.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './components/ErrorPage';
+import ErrorPage from './components/pages/ErrorPage/ErrorPage';
 import MainLayout from './components/layouts/MainLayout/MainLayout';
 import LandingPage from './components/pages/LandingPage/LandingPage';
-import SearchResultsPage from './components/SearchResultsPage';
+import SearchResultsPage from './components/pages/SearchResultsPage/SearchResultsPage';
 import './index.scss';
 
 const router = createHashRouter([
