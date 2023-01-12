@@ -1,0 +1,74 @@
+@use 'sass:color';
+@import '/src/styles/mixins';
+@import '/src/styles/variables';
+
+.bodyModal {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  background-color: color.adjust($color-black, $alpha: -0.35);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-index-modal-cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalWindow {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  max-height: 80vh;
+  border: 1px solid $color-aluminium-shadow;
+  background-color: $color-white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px color.adjust($color-black, $alpha: -0.5);
+}
+
+.header {
+  padding: 10px;
+  background-color: $color-aluminium-highlight;
+  display: flex;
+  justify-content: space-between;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .closeWrapper {
+    color: $color-aluminium-shadow;
+
+    & > button {
+      @include reset-button;
+      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover svg {
+        stroke: $color-slate;
+      }
+    }
+  }
+}
+
+.content {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.footer {
+  padding: 10px;
+}

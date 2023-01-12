@@ -1,0 +1,71 @@
+@import '/src/styles/variables';
+
+.movieScore {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.value {
+  display: block;
+  font-weight: bold;
+  margin: 0 0 0 5px;
+}
+
+.star {
+  display: block;
+  fill: $color-butter;
+  stroke: $color-butter-shadow;
+  position: relative;
+  z-index: $z-index-increase;
+
+  &:first-child {
+    margin: 0;
+  }
+}
+
+.shadow {
+  fill: $color-aluminium-shadow;
+  stroke: $color-aluminium-shadow;
+  position: absolute;
+  filter: blur(2px);
+  top: 2px;
+  left: 2px;
+}
+
+.star0 {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.star1 {
+  filter: grayscale(90%);
+  opacity: 0.6;
+}
+
+.star2 {
+  filter: grayscale(80%);
+  opacity: 0.7;
+}
+
+.star3 {
+  filter: grayscale(70%);
+  opacity: 0.8;
+}
+
+.star4 {
+  filter: grayscale(60%);
+  opacity: 0.9;
+}
+
+.star5 {
+  filter: grayscale(50%);
+}
+
+.star6 {
+  filter: grayscale(25%);
+}
+
+.star7 {
+  filter: grayscale(10%);
+}

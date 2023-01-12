@@ -1,3 +1,4 @@
+@import '/src/styles/mixins';
 @import '/src/styles/variables';
 
 .movieGrid {
@@ -6,10 +7,8 @@
   display: grid;
   gap: 20px;
   grid-auto-rows: minmax(20px, auto);
-  margin: 20px;
   padding: 0;
   height: 100%;
-  overflow: hidden;
 
   & > li {
     margin: 0;
@@ -20,6 +19,20 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    .clickable {
+      @include reset-button;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: 0 0 30px inset $color-aluminium;
+      }
+    }
 
     .details {
       flex-grow: 1;
@@ -51,6 +64,7 @@
       margin: 0;
       padding: 0;
       font-size: 12px;
+      color: $color-aluminium-shadow;
     }
   }
 }

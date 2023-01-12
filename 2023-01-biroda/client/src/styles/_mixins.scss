@@ -1,0 +1,25 @@
+// to import this file from anywhere:
+// @import '/src/styles/mixins';
+
+// reset html button element, except the outline
+// (use outline:none if you _really_ want to do that)
+@mixin reset-button {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  text-align: inherit;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}

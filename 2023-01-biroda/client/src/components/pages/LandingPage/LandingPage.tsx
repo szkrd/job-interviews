@@ -1,15 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getMostPopularMovies } from '../../../api/getMostPopularMovies';
 import { IGetMoviesResponse } from '../../../api/getMovies';
 import { apiCall, ApiCallState } from '../../../utils/apiCall';
 import MovieGrid from '../../common/MovieGrid/MovieGrid';
+import Page from '../../common/Page/Page';
 import Spinner from '../../common/Spinner/Spinner';
 
 const LandingPage: FC = () => {
   const [searchState, setSearchState] = useState(ApiCallState.Uninitialized);
   const [searchResult, setSearchResult] = useState<IGetMoviesResponse | null>(null);
   const location = useLocation();
+  const onMovieClick = useCallback((id: number) => {
+    console.log('1>>>', id);
+  }, []);
   useEffect(() => {
     if (location.pathname !== '/' || searchState !== ApiCallState.Uninitialized) return;
     const caller = apiCall.fromComponent<IGetMoviesResponse>(
@@ -20,12 +24,12 @@ const LandingPage: FC = () => {
     return caller.abort;
   }, [location]);
   return (
-    <div>
+    <Page title="Most popular movies">
       {[ApiCallState.Pending, ApiCallState.Uninitialized].includes(searchState) && <Spinner />}
       {searchState === ApiCallState.Fulfilled && (
-        <MovieGrid dataSource={searchResult?.results ?? []} />
+        <MovieGrid dataSource={searchResult?.results ?? []} onMovieClick={onMovieClick} />
       )}
-    </div>
+    </Page>
   );
 };
 
