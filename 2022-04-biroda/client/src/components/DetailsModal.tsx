@@ -15,9 +15,9 @@ const linkStyle: CSSProperties = { marginRight: 10 };
 // the proper issue exists, I still can't read the kanji :(
 const BrokenModal = Modal as any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
-function ExternalLink({ text, url, key }: { text: string; url?: string; key: string }) {
+function ExternalLink({ text, url }: { text: string; url?: string }) {
   return url ? (
-    <Link href={url} target="_blank" key={key} style={linkStyle}>
+    <Link href={url} target="_blank" style={linkStyle}>
       {text}
     </Link>
   ) : null;
