@@ -6,6 +6,8 @@ export interface IGetMovieByIdResponse {
   title: string;
   overview: string;
   overviewSource: string;
+  poster?: string;
+  backdrop?: string;
   wikipediaUrl?: string;
   imdbUrl: string;
 }

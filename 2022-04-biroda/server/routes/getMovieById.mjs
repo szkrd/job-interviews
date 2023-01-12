@@ -2,6 +2,8 @@ import { log } from '../modules/log.mjs';
 import { tmdbApi } from '../modules/tmdbApi.mjs';
 import { wikipediaApi } from '../modules/wikipediaApi.mjs';
 
+const TMDB_IMAGE_PATH_LARGE = 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2';
+
 /**
  * Get movie data (from Wikipedia and TMDB)
  * @param {import('express').Request} req
@@ -52,6 +54,8 @@ export const routeGetMovieById = async (req, res, next) => {
   res.send({
     id: movie.id,
     title,
+    poster: movie.poster_path ? TMDB_IMAGE_PATH_LARGE + movie.poster_path : '',
+    backdrop: movie.backdrop_path ? TMDB_IMAGE_PATH_LARGE + movie.backdrop_path : '',
     overview: wiki.firstParagraph || wiki.teaserSnippet || movie.overview || '',
     overviewSource,
     wikipediaUrl: wiki.canonicalUrl || '',
