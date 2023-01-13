@@ -36,6 +36,7 @@ const columns = [
   },
 ];
 </script>
+<!-- ====================================================================== -->
 <template>
   <a-table :columns="columns" :dataSource="dataSource" rowKey="id" class="m-1">
     <template #bodyCell="{ column, record }">
@@ -59,12 +60,15 @@ const columns = [
     </template>
   </a-table>
 </template>
+<!-- ====================================================================== -->
 <style scoped>
 .poster {
   width: 45px;
   height: 68px;
   background-color: #eee;
+  border-radius: 2px;
   border: 1px solid #ddd;
+  box-shadow: 0 2px 2px #eee;
   display: block;
 }
 </style>

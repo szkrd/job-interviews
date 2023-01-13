@@ -25,6 +25,7 @@ function handleSubmit() {
   if (searchValue && props.onSubmit) props.onSubmit(searchValue.value);
 }
 </script>
+<!-- ====================================================================== -->
 <template>
   <a-page-header
     title="Movies"

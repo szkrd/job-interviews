@@ -13,6 +13,18 @@
 .text-right { text-align: right; }
 .text-center { text-align: center; }
 .overflow-y-auto { overflow-y: auto; }
+.overflow-hidden { overflow: hidden; }
 .flex { display: flex; }
+.gap-0 { gap: 0; }
+.gap-1 { gap: 10px; }
+.gap-2 { gap: 20px; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-center	{ align-items: center; }
 .font-italic, .italic { font-style: italic; }
 .font-bold, .bold, .strong { font-weight: 700; }
+.z-0 { z-index: 0; }
+.z-1 { z-index: 1; }
+.z-2 { z-index: 2; }

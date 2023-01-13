@@ -2,13 +2,13 @@
 import AppFooter from './AppFooter.vue';
 import SearchHeader from './SearchHeader.vue';
 import { useRouter } from 'vue-router';
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { apiCall, ApiCallState } from '../utils/apiCall.ts';
 import { getMovies } from '../api/getMovies.ts';
 import CenterSpin from './CenterSpin.vue';
 import SearchResultsTable from './SearchResultsTable.vue';
 import DetailsModal from './DetailsModal.vue';
-import CenterErrorMessage from "./CenterErrorMessage.vue";
+import CenterErrorMessage from './CenterErrorMessage.vue';
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
@@ -41,6 +41,7 @@ watchEffect(async () => {
   return call;
 });
 </script>
+<!-- ====================================================================== -->
 <template>
   <a-layout class="h-full">
     <a-layout-header class="m-0-p-0">
