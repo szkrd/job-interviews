@@ -4,6 +4,7 @@ import { apiCall } from '../utils/apiCall';
 export interface IMovieGenre {
   id: number;
   name: string;
+  color: string;
 }
 
 export interface IMovieSearchResultItem {

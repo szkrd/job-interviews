@@ -1,4 +1,5 @@
 import { tmdbApi } from '../modules/tmdbApi.mjs';
+import { getGenreColor } from '../modules/utils.mjs';
 
 const TMDB_IMAGE_PATH = 'https://www.themoviedb.org/t/p/w45';
 
@@ -31,7 +32,7 @@ export const routeGetMovies = async (req, res, next) => {
   const genres = new Map();
   for (let idx = 0; idx < genreIds.length; idx++) {
     const name = await tmdbApi.getGenreName(genreIds[idx]);
-    genres.set(genreIds[idx], { id: genreIds[idx], name });
+    genres.set(genreIds[idx], { id: genreIds[idx], name, color: getGenreColor(name) });
   }
 
   // cherrypick some props
@@ -39,7 +40,9 @@ export const routeGetMovies = async (req, res, next) => {
     id: tmdbMovie.id,
     title: tmdbMovie.title,
     score: tmdbMovie.vote_average * 10,
-    genres: (tmdbMovie.genre_ids ?? []).map((gId) => genres.get(gId) ?? { id: gId, name: '' }),
+    genres: (tmdbMovie.genre_ids ?? []).map(
+      (gId) => genres.get(gId) ?? { id: gId, name: '', color: getGenreColor() }
+    ),
     releaseDate: tmdbMovie.release_date,
     poster: tmdbMovie.poster_path ? `${TMDB_IMAGE_PATH}/${tmdbMovie.poster_path}` : '',
   }));

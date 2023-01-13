@@ -27,6 +27,10 @@ function onSearchBack() {
   router.push({ query: { query: undefined } });
 }
 
+function onMovieTitleClick(id) {
+  console.log('TODO >>> clicked movie id:', id);
+}
+
 watchEffect(async () => {
   if (!urlQuery.value) return;
   return apiCall.fromComponent(getMovies(urlQuery.value), searchResult, searchState);
@@ -44,7 +48,7 @@ watchEffect(async () => {
     </a-layout-header>
     <a-layout-content class="h-full overflow-y-auto mt-1">
       <CenterSpin v-if="searchState === ApiCallState.Pending" />
-      <SearchResultsTable v-if="showResults" :dataSource="searchResult.results" />
+      <SearchResultsTable v-if="showResults" :dataSource="searchResult.results" :onItemClick="onMovieTitleClick"/>
     </a-layout-content>
     <AppFooter />
   </a-layout>
