@@ -17,7 +17,7 @@ const searchResult = ref<IGetMoviesResponse | undefined>();
 const searchState = ref<ApiCallState>(ApiCallState.Uninitialized);
 const showResults = computed(
   () =>
-    urlQuery.value !== '' && // storm won't catch the missing `.value`
+    urlQuery.value !== '' &&
     searchResult.value &&
     searchState.value === ApiCallState.Fulfilled
 );
@@ -37,7 +37,7 @@ function onMovieTitleClick(id: string) {
 watchEffect(async () => {
   if (!urlQuery.value || urlQuery.value === lastUrlQuery.value) return;
   const call = apiCall.fromComponent(getMovies(urlQuery.value), searchResult, searchState);
-  lastUrlQuery.value = urlQuery.value; // if the api call fails,
+  lastUrlQuery.value = urlQuery.value;
   return call;
 });
 </script>
