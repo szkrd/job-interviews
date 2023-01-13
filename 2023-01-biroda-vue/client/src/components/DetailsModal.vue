@@ -1,8 +1,8 @@
-<script setup>
-import { computed, ref, watchEffect, watch } from 'vue';
+<script lang="ts" setup>
+import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { getMovieById } from '../api/getMovieById.ts';
-import { apiCall, ApiCallState } from '../utils/apiCall.ts';
+import { getMovieById, IGetMovieByIdResponse } from "../api/getMovieById";
+import { apiCall, ApiCallState } from '../utils/apiCall';
 import CenterSpin from './CenterSpin.vue';
 import CenterErrorMessage from './CenterErrorMessage.vue';
 
@@ -11,7 +11,7 @@ const urlQuery = computed(() => String(router.currentRoute.value.query?.query ??
 const urlId = computed(() => String(router.currentRoute.value.query?.id ?? ''));
 const visible = computed(() => !!urlId.value);
 const selectedId = ref('');
-const result = ref(null);
+const result = ref<IGetMovieByIdResponse | undefined>();
 const callState = ref(ApiCallState.Uninitialized);
 
 // reset the modal, since we're not really destroying it
@@ -49,12 +49,12 @@ watch(
       </div>
     </template>
     <!-- content -->
-    <CenterSpin v-if="callState === ApiCallState.Pending" />
+    <CenterSpin v-if="callState === ApiCallState.Pending" class="m-h-5" />
     <CenterErrorMessage v-if="callState === ApiCallState.Rejected" />
     <div v-if="callState === ApiCallState.Fulfilled" class="flex gap-2 z-1">
       <img :src="result?.poster" width="150" height="225" alt="Poster" class="poster" />
       <a-typography-paragraph>
-        <a-typography-text>{{ result?.overview }}</a-typography-text>
+        <a-typography-text>{{ result?.overview || 'Details are not available for this movie.' }}</a-typography-text>
         <br />
         <a-typography-text type="secondary">({{ result?.overviewSource }})</a-typography-text>
       </a-typography-paragraph>

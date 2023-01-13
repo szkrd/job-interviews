@@ -1,4 +1,4 @@
-interface IFamousQuote {
+export interface IFamousQuote {
   text: string;
   author: string;
 }

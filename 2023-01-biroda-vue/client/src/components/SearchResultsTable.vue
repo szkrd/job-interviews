@@ -1,12 +1,12 @@
-<script setup>
-import { formatDate } from '../utils/date.ts';
+<script lang="ts" setup>
+import { formatDate } from '../utils/date';
 
 const props = defineProps({
   dataSource: Array,
-  onItemClick: Function,
+  onItemClick: { type: Function, required: true },
 });
 
-function getScoreTextType(score) {
+function getScoreTextType(score: number) {
   if (score > 80) return 'success';
   if (score < 20) return 'danger';
 }

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { queryString } from './queryString.ts';
+import { queryString } from './queryString';
 import { Ref } from 'vue';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

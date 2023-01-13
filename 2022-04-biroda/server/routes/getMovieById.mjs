@@ -54,6 +54,7 @@ export const routeGetMovieById = async (req, res, next) => {
   res.send({
     id: movie.id,
     title,
+    releaseDate: movie.release_date || '',
     poster: movie.poster_path ? TMDB_IMAGE_PATH_LARGE + movie.poster_path : '',
     backdrop: movie.backdrop_path ? TMDB_IMAGE_PATH_LARGE + movie.backdrop_path : '',
     overview: wiki.firstParagraph || wiki.teaserSnippet || movie.overview || '',

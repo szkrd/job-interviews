@@ -12,8 +12,6 @@ export interface IGetMovieByIdResponse {
   imdbUrl: string;
 }
 
-export function getMovieById(
-  id: number | string
-): Promise<AxiosResponse<IGetMovieByIdResponse, unknown>> {
+export function getMovieById(id: number | string): Promise<AxiosResponse<IGetMovieByIdResponse, unknown>> {
   return apiCall.get(`/movie/${id}`);
 }

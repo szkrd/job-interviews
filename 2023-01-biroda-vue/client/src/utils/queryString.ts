@@ -1,5 +1,5 @@
 function parse(text: string): Record<string, string> {
-  return Object.fromEntries(new URLSearchParams(text));
+  return Object.fromEntries(new URLSearchParams(text) as any);
 }
 
 function from(obj: Record<string, string | number | boolean>): string {

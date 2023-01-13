@@ -1,7 +1,7 @@
-<script setup>
+<script lang="ts" setup>
 import { computed, onBeforeUpdate, ref } from 'vue';
-import { getRandomItem } from '../utils/array.ts';
-import { famousMovieTitles } from '../data/famousMovieTitles.ts';
+import { getRandomItem } from '../utils/array';
+import { famousMovieTitles } from '../data/famousMovieTitles';
 
 const props = defineProps({
   urlQueryValue: String,
@@ -14,11 +14,11 @@ const searchValue = ref(props.urlQueryValue ?? '');
 const randomMovieName = getRandomItem(famousMovieTitles);
 
 // conditional event binding (ant page header @back is optional)
-const atPageBackEventName = computed(() => (props.urlQueryValue !== '' ? 'back' : undefined));
+const atPageBackEventName = computed(() => (props.urlQueryValue !== '' ? 'back' : ''));
 
 onBeforeUpdate(() => {
   // allow parent to send the value "down" (for example because the user modified the url manually)
-  if (props.urlQueryValue !== searchValue.value) searchValue.value = props.urlQueryValue;
+  if (props.urlQueryValue !== searchValue.value) searchValue.value = props.urlQueryValue ?? '';
 });
 
 function handleSubmit() {
