@@ -3,8 +3,9 @@
 ## usage
 
 1. `cd server && npm install`
-2. copy and edit the dotenv example (`cp .env.example .env && nano .env`)
-3. `node .` or `npm run dev`
+2. create a [tmdb access **token**](https://developers.themoviedb.org/3/getting-started/authentication#bearer-token)
+3. set the **env vars**: copy and edit the dotenv example (`cp .env.example .env && nano .env`)
+4. `node .` or `npm run dev`
 
 ## api
 

@@ -7,9 +7,12 @@ import { apiCall, ApiCallState } from '../utils/apiCall.ts';
 import { getMovies } from '../api/getMovies.ts';
 import CenterSpin from './CenterSpin.vue';
 import SearchResultsTable from './SearchResultsTable.vue';
+import DetailsModal from './DetailsModal.vue';
+import CenterErrorMessage from "./CenterErrorMessage.vue";
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
+const lastUrlQuery = ref('');
 const searchResult = ref([]);
 const searchState = ref(ApiCallState.Uninitialized);
 const showResults = computed(
@@ -28,12 +31,14 @@ function onSearchBack() {
 }
 
 function onMovieTitleClick(id) {
-  console.log('TODO >>> clicked movie id:', id);
+  router.push({ query: { query: urlQuery.value, id } });
 }
 
 watchEffect(async () => {
-  if (!urlQuery.value) return;
-  return apiCall.fromComponent(getMovies(urlQuery.value), searchResult, searchState);
+  if (!urlQuery.value || urlQuery.value === lastUrlQuery.value) return;
+  const call = apiCall.fromComponent(getMovies(urlQuery.value), searchResult, searchState);
+  lastUrlQuery.value = urlQuery.value; // if the api call fails,
+  return call;
 });
 </script>
 <template>
@@ -48,7 +53,9 @@ watchEffect(async () => {
     </a-layout-header>
     <a-layout-content class="h-full overflow-y-auto mt-1">
       <CenterSpin v-if="searchState === ApiCallState.Pending" />
-      <SearchResultsTable v-if="showResults" :dataSource="searchResult.results" :onItemClick="onMovieTitleClick"/>
+      <SearchResultsTable v-if="showResults" :dataSource="searchResult.results" :onItemClick="onMovieTitleClick" />
+      <CenterErrorMessage v-if="searchState === ApiCallState.Rejected" />
+      <DetailsModal />
     </a-layout-content>
     <AppFooter />
   </a-layout>

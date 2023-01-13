@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { queryString } from './queryString.ts';
-import {Ref} from "vue";
+import { Ref } from 'vue';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const prefix = (window as any).API_URL ?? 'http://localhost:8080';

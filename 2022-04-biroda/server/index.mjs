@@ -23,6 +23,12 @@ app.get('/health', routeGetHealth);
 app.get('/movies', routeGetMovies);
 app.get('/movie/:id', routeGetMovieById);
 
+// fallback if no other route handler matches the request
+app.use((_, res) => {
+  res.status(404);
+  res.json({ error: 'Not found' });
+});
+
 const { host, port } = config.app;
 app.listen(port, host, () => {
   const { cyan } = chalk;

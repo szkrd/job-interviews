@@ -13,7 +13,7 @@ const props = defineProps({
 const searchValue = ref(props.urlQueryValue ?? '');
 const randomMovieName = getRandomItem(famousMovieTitles);
 
-// conditional event biding (ant page header @back is optional)
+// conditional event binding (ant page header @back is optional)
 const atPageBackEventName = computed(() => (props.urlQueryValue !== '' ? 'back' : undefined));
 
 onBeforeUpdate(() => {
@@ -38,11 +38,7 @@ function handleSubmit() {
       <a-form layout="inline" @submit.prevent="handleSubmit">
         <a-form-item label="Movie title">
           <!-- ant needs v-model:value, plain v-model will not work -->
-          <a-input
-            v-model:value="searchValue"
-            :placeholder="randomMovieName"
-            :disabled="searchDisabled"
-          />
+          <a-input v-model:value="searchValue" :placeholder="randomMovieName" :disabled="searchDisabled" />
         </a-form-item>
         <a-form-item>
           <!-- ant has a compact input group to group the button and the input, but an inline a-form-input will break that -->
