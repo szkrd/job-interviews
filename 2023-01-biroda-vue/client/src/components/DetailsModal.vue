@@ -52,7 +52,7 @@ watch(
     <CenterSpin v-if="callState === ApiCallState.Pending" class="m-h-5" />
     <CenterErrorMessage v-if="callState === ApiCallState.Rejected" />
     <div v-if="callState === ApiCallState.Fulfilled" class="flex gap-2 z-1">
-      <img :src="result?.poster" width="150" height="225" alt="Poster" class="poster" />
+      <img :src="result?.poster" width="150" height="225" alt="Poster" class="poster" v-if="result?.poster" />
       <a-typography-paragraph>
         <a-typography-text>{{ result?.overview || 'Details are not available for this movie.' }}</a-typography-text>
         <br />

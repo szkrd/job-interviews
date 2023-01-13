@@ -7,13 +7,6 @@
 | 2020-08 | Splendex     | ts, angular 10                   | -                                           | medium     |
 | 2020-08 | VividMind    | ts, angular 10                   | http-proxy (tmdb api)                       | high       |
 | 2022-04 | Biroda       | ts, react, lodash, ant ui, axios | express, got, cheerio (tmdb api, wikipedia) | high       |
+| 2023-01 | Biroda       | ts, vue, vite, ant, axios        | (uses the 2022-04 one)                      | medium     |
 
-Remotes merged ([with unrelated histories](https://stackoverflow.com/a/17373088)):
-
-- https://github.com/szkrd/bigfish-entry.git
-- https://github.com/szkrd/biroda-entry.git
-- https://github.com/szkrd/horton-entry.git
-- https://github.com/szkrd/kasa-entry.git
-- https://github.com/szkrd/risingstack-entry.git
-- https://github.com/szkrd/splendx-entry.git
-- https://github.com/szkrd/vivid-entry.git
+Older remotes were merged ([with unrelated histories](https://stackoverflow.com/a/17373088)) into this project.
