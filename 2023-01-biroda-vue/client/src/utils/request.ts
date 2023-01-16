@@ -35,7 +35,7 @@ interface IRequestOptions extends RequestInit {
  * A small fetch wrapper, that prefers json requests and responses.
  * It will always try to parse the response (be that an error or a success
  * message, if it fails then the response object will be `ok: false` with
- * an additional `json: false`.
+ * an additional `json: false`).
  * @param url      full url or api path
  * @param options  fetch's request init with some convenience props added
  */
