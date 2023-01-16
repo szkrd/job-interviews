@@ -1,9 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import { queryString } from './queryString';
 import { Ref } from 'vue';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const prefix = (window as any).API_URL ?? 'http://localhost:8080';
+import { request } from "./request";
 
 export enum ApiCallState {
   Uninitialized,
@@ -13,13 +9,12 @@ export enum ApiCallState {
 }
 
 function get(url: string, queryParams?: Record<string, string | number | boolean>) {
-  const qs = queryParams ? queryString.from(queryParams) : '';
-  return axios.get(prefix + url + (qs ? `?${qs}` : ''));
+  return request(url, { query: queryParams });
 }
 
 /** Simple api call helper to be used from components */
 function fromComponent<T>(
-  callFn: Promise<AxiosResponse<T, unknown>>,
+  callFn: Promise<T>,
   resultRef: Ref<T>,
   callStateRef: Ref<ApiCallState>
 ) {
@@ -27,10 +22,10 @@ function fromComponent<T>(
   return callFn
     .then((response) => {
       callStateRef.value = ApiCallState.Fulfilled;
-      resultRef.value = response.data;
+      resultRef.value = response;
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => {
+      // we log the error in the fetch wrapper already
       callStateRef.value = ApiCallState.Rejected;
     });
 }
