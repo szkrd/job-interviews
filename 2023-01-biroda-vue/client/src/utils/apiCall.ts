@@ -1,5 +1,5 @@
 import { Ref } from 'vue';
-import { request } from "./request";
+import { request } from './request';
 
 export enum ApiCallState {
   Uninitialized,
@@ -13,11 +13,7 @@ function get(url: string, queryParams?: Record<string, string | number | boolean
 }
 
 /** Simple api call helper to be used from components */
-function fromComponent<T>(
-  callFn: Promise<T>,
-  resultRef: Ref<T>,
-  callStateRef: Ref<ApiCallState>
-) {
+function fromComponent<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: Ref<ApiCallState>) {
   callStateRef.value = ApiCallState.Pending;
   return callFn
     .then((response) => {

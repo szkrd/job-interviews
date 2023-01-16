@@ -4,7 +4,7 @@ import SearchHeader from './SearchHeader.vue';
 import { useRouter } from 'vue-router';
 import { computed, ref, watchEffect } from 'vue';
 import { apiCall, ApiCallState } from '../utils/apiCall';
-import { getMovies, IGetMoviesResponse } from "../api/getMovies";
+import { getMovies, IGetMoviesResponse } from '../api/getMovies';
 import CenterSpin from './CenterSpin.vue';
 import SearchResultsTable from './SearchResultsTable.vue';
 import DetailsModal from './DetailsModal.vue';
@@ -16,10 +16,7 @@ const lastUrlQuery = ref('');
 const searchResult = ref<IGetMoviesResponse | undefined>();
 const searchState = ref<ApiCallState>(ApiCallState.Uninitialized);
 const showResults = computed(
-  () =>
-    urlQuery.value !== '' &&
-    searchResult.value &&
-    searchState.value === ApiCallState.Fulfilled
+  () => urlQuery.value !== '' && searchResult.value && searchState.value === ApiCallState.Fulfilled
 );
 
 function onSearchSubmit(text = '') {

@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { apiCall } from '../utils/apiCall';
 
 export interface IMovieGenre {
@@ -22,6 +21,6 @@ export interface IGetMoviesResponse {
   results: IMovieSearchResultItem[];
 }
 
-export function getMovies(query: string): Promise<AxiosResponse<IGetMoviesResponse, unknown>> {
+export function getMovies(query: string): Promise<IGetMoviesResponse> {
   return apiCall.get('/movies', { query });
 }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { getMovieById, IGetMovieByIdResponse } from "../api/getMovieById";
+import { getMovieById, IGetMovieByIdResponse } from '../api/getMovieById';
 import { apiCall, ApiCallState } from '../utils/apiCall';
 import CenterSpin from './CenterSpin.vue';
 import CenterErrorMessage from './CenterErrorMessage.vue';

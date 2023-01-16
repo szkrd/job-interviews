@@ -68,10 +68,11 @@ export const routeGetMovieById = async (req, res, next) => {
       genres: movie.genres || [],
       homepage: movie.homepage || '',
       runTime: movie.runtime ?? -1,
-      status: movie.status, // Rumored, Planned, In Production, Post Production, Released, Canceled
+      // Rumored, Planned, InProduction, PostProduction, Released, Canceled, Unknown
+      status: String(movie.status || 'Unknown').replace(/\s/g, ''),
       tagLine: movie.tagLine || '',
       video: movie.video ?? false,
-      score: movie.vote_average * 10,
+      score: (movie.vote_average ?? 0) * 10,
     };
     if (movie.belongs_to_collection) {
       const data = movie.belongs_to_collection;
