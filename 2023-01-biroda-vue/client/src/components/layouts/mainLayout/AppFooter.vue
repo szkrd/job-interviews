@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { famousQuotes } from '../data/famousQuotes';
-import { getRandomItem } from '../utils/array';
+import { famousQuotes } from '../../../data/famousQuotes';
+import { getRandomItem } from '../../../utils/array';
 const quote = getRandomItem(famousQuotes);
 </script>
 <!-- ====================================================================== -->

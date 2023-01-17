@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import LoginForm from './LoginForm.vue';
 
 type TNoop = () => void;
 
-const props = defineProps({
-  visible: Boolean,
-  onClose: Function,
-});
+const props = defineProps<{
+  visible: boolean;
+  onClose: () => void;
+}>();
 
 const noop: TNoop = () => {};
 const triggerFormSubmit = ref(noop);

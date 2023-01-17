@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { getMovieById, IGetMovieByIdResponse } from '../api/getMovieById';
-import { apiCall, ApiCallState } from '../utils/apiCall';
-import CenterSpin from './CenterSpin.vue';
-import CenterErrorMessage from './CenterErrorMessage.vue';
+import { getMovieById, IGetMovieByIdResponse } from '../../../api/getMovieById';
+import { apiCall, ApiCallState } from '../../../utils/apiCall';
+import CenterSpin from '../../common/CenterSpin.vue';
+import CenterErrorMessage from '../../common/CenterErrorMessage.vue';
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
@@ -28,7 +28,7 @@ watch(
   urlId,
   () => {
     if (!urlId.value || urlId.value === selectedId.value) return;
-    apiCall.fromComponent(getMovieById(urlId.value), result, callState);
+    apiCall.toRefs(getMovieById(urlId.value), result, callState);
     selectedId.value = urlId.value;
   },
   { immediate: true }

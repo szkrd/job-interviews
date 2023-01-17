@@ -1,11 +1,15 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue';
-import { getFormSubmitFromRef } from '../utils/dom';
+import { getFormSubmitFromRef } from '../../../utils/dom';
+import { FormInstance } from 'ant-design-vue';
 
-const props = defineProps({
-  insideModal: Boolean,
-  onCreate: Function,
-});
+type TCallback = () => void;
+
+const props = defineProps<{
+  insideModal: boolean;
+  onCreate: (submitFn: TCallback, resetFn: TCallback) => void;
+}>();
+const formRef = ref<FormInstance>();
 
 const formState = reactive({
   username: '',
@@ -29,10 +33,7 @@ onMounted(() => {
     // submit (as a dom event) works okay _under the hood_
     const submitFn = () => submitButton.click();
     // but reset dealing with reactive fields, does not
-    const resetFn = () => {
-      formState.password = formState.username = '';
-      formState.remember = true;
-    };
+    const resetFn = () => formRef.value?.resetFields();
     props.onCreate(submitFn, resetFn);
   }
 });
@@ -40,6 +41,7 @@ onMounted(() => {
 <!-- ====================================================================== -->
 <template>
   <a-form
+    ref="formRef"
     id="login-form"
     :model="formState"
     name="basic"

@@ -13,7 +13,7 @@ function get(url: string, queryParams?: Record<string, string | number | boolean
 }
 
 /** Simple api call helper to be used from components */
-function fromComponent<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: Ref<ApiCallState>) {
+function toRefs<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: Ref<ApiCallState>) {
   callStateRef.value = ApiCallState.Pending;
   return callFn
     .then((response) => {
@@ -26,4 +26,4 @@ function fromComponent<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: R
     });
 }
 
-export const apiCall = { get, fromComponent };
+export const apiCall = { get, toRefs };

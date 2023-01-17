@@ -1,44 +1,25 @@
 <script lang="ts" setup>
-import { formatDate } from '../utils/date';
+import { formatDate } from '../../../utils/date';
+import { getTableColumns } from '../../../utils/ant';
+import { IMovieSearchResultItem } from '../../../api/getMovies';
 
-const props = defineProps({
-  dataSource: Array,
-  onItemClick: { type: Function, required: true },
-});
+const props = defineProps<{
+  dataSource: IMovieSearchResultItem[];
+  onItemClick: (id: number) => void;
+  /** Comma delimited list of column names (affects the column order) */
+  fields: string;
+}>();
 
 function getScoreTextType(score: number) {
   if (score > 80) return 'success';
   if (score < 20) return 'danger';
 }
 
-const columns = [
-  {
-    title: 'Poster',
-    dataIndex: 'poster',
-    key: 'poster',
-    // while in react tsx we had `render:`, here we will need template references
-  },
-  { title: 'Title', dataIndex: 'title', key: 'title' },
-  {
-    title: 'Score',
-    dataIndex: 'score',
-    key: 'score',
-  },
-  {
-    title: 'Release date',
-    dataIndex: 'releaseDate',
-    key: 'releaseDate',
-  },
-  {
-    title: 'Genres',
-    key: 'genres',
-    dataIndex: 'genres',
-  },
-];
+const columns = getTableColumns(props.dataSource, props.fields);
 </script>
 <!-- ====================================================================== -->
 <template>
-  <a-table :columns="columns" :dataSource="dataSource" rowKey="id" class="m-1">
+  <a-table :columns="columns" :dataSource="dataSource" rowKey="id" class="table m-1" v-if="dataSource">
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'poster'">
         <img :src="record.poster" class="poster" v-if="record.poster" :alt="record.title" />
@@ -70,5 +51,9 @@ const columns = [
   border: 1px solid #ddd;
   box-shadow: 0 2px 2px #eee;
   display: block;
+}
+/* since we need to pass the ant component boundary, we need the deep helper */
+.table :deep(th) {
+  text-transform: capitalize;
 }
 </style>
