@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 <!-- ====================================================================== -->
 <template>
-  <div class="flex flex-col h-full place-content-center">
+  <div class="flex-col h-full place-content-center">
     <a-typography-paragraph>Logging out...</a-typography-paragraph>
     <a-spin />
   </div>

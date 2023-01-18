@@ -23,10 +23,10 @@
 .overflow-y-auto { overflow-y: auto; }
 .overflow-hidden { overflow: hidden; }
 .flex { display: flex; }
-.flex-row { flex-direction: row; }
-.flex-row-reverse { flex-direction: row-reverse; }
-.flex-col { flex-direction: column; }
-.flex-col-reverse { flex-direction: column-reverse; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-row-reverse { display: flex; flex-direction: row-reverse; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-col-reverse { display: flex; flex-direction: column-reverse; }
 .gap-0 { gap: 0; }
 .gap-1 { gap: 10px; }
 .gap-2 { gap: 20px; }
