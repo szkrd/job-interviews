@@ -2,6 +2,7 @@
 import { onMounted, reactive, ref } from 'vue';
 import { getFormSubmitFromRef } from '../../../utils/dom';
 import { FormInstance } from 'ant-design-vue';
+import { userService } from '../../../services/userService';
 
 type TCallback = () => void;
 
@@ -20,7 +21,7 @@ const formState = reactive({
 const locator = ref(null);
 
 function onSubmit() {
-  console.log('TODO >>> Submit');
+  userService.login(formState.username, formState.password);
 }
 
 // on mount we expose the form submit and reset triggers, so that

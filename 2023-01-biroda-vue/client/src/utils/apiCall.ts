@@ -8,17 +8,32 @@ export enum ApiCallState {
   Fulfilled,
 }
 
-function get(url: string, queryParams?: Record<string, string | number | boolean>) {
+export type TQueryParams = Record<string, string | number | boolean>;
+
+function get(url: string, queryParams?: TQueryParams) {
   return request(url, { query: queryParams });
 }
 
-/** Simple api call helper to be used from components */
-function toRefs<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: Ref<ApiCallState>) {
+function post(url: string, serializableData: any, queryParams?: TQueryParams) {
+  if (!serializableData) throw new Error('Missing payload.');
+  return request(url, { method: 'POST', data: serializableData, query: queryParams });
+}
+
+/**
+ * Simple api call helper that saves the call state
+ * and the response to the given vue refs.
+ */
+function toRefs<T>(
+  callFn: Promise<T>,
+  resultRef: Ref<T> | null | ((response: T) => void),
+  callStateRef: Ref<ApiCallState>
+) {
   callStateRef.value = ApiCallState.Pending;
   return callFn
     .then((response) => {
       callStateRef.value = ApiCallState.Fulfilled;
-      resultRef.value = response;
+      if (resultRef && 'value' in resultRef) resultRef.value = response;
+      if (resultRef && typeof resultRef === 'function') resultRef(response);
     })
     .catch(() => {
       // we log the error in the fetch wrapper already
@@ -26,4 +41,4 @@ function toRefs<T>(callFn: Promise<T>, resultRef: Ref<T>, callStateRef: Ref<ApiC
     });
 }
 
-export const apiCall = { get, toRefs };
+export const apiCall = { get, post, toRefs };
