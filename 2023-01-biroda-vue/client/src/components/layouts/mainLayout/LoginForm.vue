@@ -3,6 +3,8 @@ import { onMounted, reactive, ref } from 'vue';
 import { getFormSubmitFromRef } from '../../../utils/dom';
 import { FormInstance } from 'ant-design-vue';
 import { userService } from '../../../services/userService';
+import { ApiCallState } from '../../../utils/apiCall';
+import CenterErrorMessage from '../../common/CenterErrorMessage.vue';
 
 type TCallback = () => void;
 
@@ -21,7 +23,9 @@ const formState = reactive({
 const locator = ref(null);
 
 function onSubmit() {
-  userService.login(formState.username, formState.password);
+  if (formState.username && formState.password) {
+    userService.login(formState.username, formState.password);
+  }
 }
 
 // on mount we expose the form submit and reset triggers, so that
@@ -34,7 +38,10 @@ onMounted(() => {
     // submit (as a dom event) works okay _under the hood_
     const submitFn = () => submitButton.click();
     // but reset dealing with reactive fields, does not
-    const resetFn = () => formRef.value?.resetFields();
+    const resetFn = () => {
+      formRef.value?.resetFields();
+      userService.loginState.value = ApiCallState.Uninitialized;
+    };
     props.onCreate(submitFn, resetFn);
   }
 });
@@ -64,9 +71,18 @@ onMounted(() => {
       <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
     </a-form-item>
 
-    <!-- it seems to me that refs are not passing through ant ui elements, v-show must be used instead of v-if -->
     <a-form-item :wrapper-col="{ offset: 8, span: 16 }" v-show="!insideModal">
       <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
+
+    <div v-if="userService.loginState.value === ApiCallState.Rejected" class="mt-2" :class="{ 'pull-up': insideModal }">
+      <CenterErrorMessage>Invalid username or password.</CenterErrorMessage>
+    </div>
   </a-form>
 </template>
+<!-- ====================================================================== -->
+<style scoped>
+.pull-up {
+  margin-bottom: -10px;
+}
+</style>

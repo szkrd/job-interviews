@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { DownOutlined, UserOutlined } from '@ant-design/icons-vue';
 import { computed, ref, watch } from 'vue';
 import { getRandomItem } from '../../../utils/array';
 import { famousMovieTitles } from '../../../data/famousMovieTitles';
@@ -6,6 +7,7 @@ import LoginModal from './LoginModal.vue';
 import { useRouter } from 'vue-router';
 import { ApiCallState } from '../../../utils/apiCall';
 import { movieSearchService } from '../../../services/movieSearchService';
+import { userService } from '../../../services/userService';
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
@@ -13,6 +15,7 @@ const searchValue = ref(urlQuery.value ?? '');
 const randomMovieName = getRandomItem(famousMovieTitles);
 const loginModalVisible = ref(false);
 const searchInProgress = movieSearchService.searchState.value === ApiCallState.Pending;
+const { loggedInUserName } = userService;
 
 // conditional event binding (ant page header @back is optional)
 const atPageBackEventName = computed(() => (urlQuery.value !== '' ? 'back' : ''));
@@ -71,9 +74,32 @@ function closeLoginModal() {
             >
           </a-form-item>
         </a-form>
-        <a-button type="link" @click="openLoginModal">Login</a-button>
+        <a-button type="link" @click="openLoginModal" v-if="!loggedInUserName">Login</a-button>
+        <a-dropdown v-else>
+          <a-button type="link" @click.prevent>
+            <UserOutlined />
+            {{ loggedInUserName }}
+            <DownOutlined />
+          </a-button>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item>
+                <router-link to="/watchlist" class="link">watchlist</router-link>
+              </a-menu-item>
+              <a-menu-item>
+                <router-link to="/logout" class="link">logout</router-link>
+              </a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
       </div>
     </template>
   </a-page-header>
   <LoginModal :visible="loginModalVisible" :onClose="closeLoginModal" />
 </template>
+<style scoped>
+.link,
+.link:hover {
+  color: var(--ant-primary-color);
+}
+</style>

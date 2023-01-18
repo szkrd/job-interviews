@@ -72,9 +72,10 @@ export function request(url: string, options: IRequestOptions = {}) {
   const jsonType = 'application/json';
   if (!optHeaders['Content-Type']) optHeaders['Content-Type'] = jsonType;
   if (!optHeaders['Accept']) optHeaders['Content-Type'] = jsonType;
-  if (options.token) {
-    optHeaders.Authorization = `Bearer ${options.token}`;
-    delete (fetchOptions as any).token;
+  const authToken = options.token ?? sessionStorage.getItem('token');
+  if (authToken) {
+    optHeaders.Authorization = `Bearer ${authToken}`;
+    if (options.token) delete (fetchOptions as any).token;
   }
   fetchOptions.headers = optHeaders;
 

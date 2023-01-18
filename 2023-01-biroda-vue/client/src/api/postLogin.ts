@@ -1,4 +1,4 @@
-import { apiCall } from "../utils/apiCall";
+import { apiCall } from '../utils/apiCall';
 
 interface IPostLogin {
   username: string;
