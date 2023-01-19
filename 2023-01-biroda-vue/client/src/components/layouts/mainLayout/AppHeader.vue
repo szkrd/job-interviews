@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { DownOutlined, UserOutlined } from "@ant-design/icons-vue";
-import { computed, ref, watch } from "vue";
-import { getRandomItem } from "../../../utils/array";
-import { famousMovieTitles } from "../../../data/famousMovieTitles";
-import LoginModal from "./LoginModal.vue";
-import { useRouter } from "vue-router";
-import { ApiCallState } from "../../../utils/apiCall";
-import { movieSearchService } from "../../../services/movieSearchService";
-import { userService } from "../../../services/userService";
-import { RoutePaths } from "../../../routePaths";
+import { DownOutlined, UserOutlined } from '@ant-design/icons-vue';
+import { computed, ref, watch } from 'vue';
+import { getRandomItem } from '../../../utils/array';
+import { famousMovieTitles } from '../../../data/famousMovieTitles';
+import LoginModal from './LoginModal.vue';
+import { useRouter } from 'vue-router';
+import { ApiCallState } from '../../../utils/apiCall';
+import { movieSearchService } from '../../../services/movieSearchService';
+import { userService } from '../../../services/userService';
+import { RoutePaths } from '../../../routePaths';
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
@@ -57,7 +57,7 @@ function closeLoginModal() {
     title="Movies"
     @[atPageBackEventName]="onBack"
     subTitle="search for movies using tmdb and wikipedia"
-    class="bg-indigo-200"
+    class="bg-indigo-200 ant-override"
   >
     <!-- storm doesn't understand ant's slots or the slot has not been documented -->
     <template v-slot:extra>
@@ -98,9 +98,16 @@ function closeLoginModal() {
   </a-page-header>
   <LoginModal :visible="loginModalVisible" :onClose="closeLoginModal" />
 </template>
+<!-- ====================================================================== -->
 <style scoped>
 .link,
 .link:hover {
   color: var(--ant-primary-color);
+}
+
+/* the header's subtitle is a bit off' */
+.ant-override:deep(.ant-page-header-heading-sub-title) {
+  position: relative;
+  top: 2px;
 }
 </style>

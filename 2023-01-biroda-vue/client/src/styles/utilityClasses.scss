@@ -51,6 +51,12 @@
 .lowercase { text-transform: lowercase; }
 .capitalize { text-transform: capitalize; }
 .normal-case { text-transform: none; }
+// position
+.static { position: static; }
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.sticky { position: sticky; }
 
 // various reset tools
 ul.reset { margin: 0; padding: 0; list-style: none; }

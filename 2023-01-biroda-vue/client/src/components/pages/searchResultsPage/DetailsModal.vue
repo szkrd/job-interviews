@@ -5,7 +5,7 @@ import { getMovieById, IGetMovieByIdResponse } from '../../../api/getMovieById';
 import { apiCall, ApiCallState } from '../../../utils/apiCall';
 import CenterSpin from '../../common/CenterSpin.vue';
 import CenterErrorMessage from '../../common/CenterErrorMessage.vue';
-import { RoutePaths } from "../../../routePaths";
+import { RoutePaths } from '../../../routePaths';
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));

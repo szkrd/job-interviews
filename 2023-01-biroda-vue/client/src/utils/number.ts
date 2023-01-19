@@ -4,7 +4,7 @@ export function random(max: number): number {
 
 export function formatMoney(val?: number, fallback?: string): string {
   if (typeof val !== 'number') return fallback ?? '';
-  return '$' + Number(val).toLocaleString('en-US', {minimumFractionDigits: 2});
+  return '$' + Number(val).toLocaleString('en-US', { minimumFractionDigits: 2 });
 }
 
 export function formatDuration(val?: number, fallback?: string): string {
