@@ -45,6 +45,7 @@ export interface IGetMovieByIdDetailedResponse extends IGetMovieByIdResponse {
   runTime: number;
   status: MovieStatus;
   tagLine: string;
+  releaseDate: string;
   video: boolean;
   score: number;
   collection: IMovieCollection[];
@@ -56,5 +57,5 @@ export function getMovieById(id: number | string): Promise<IGetMovieByIdResponse
 }
 
 export function getMovieByIdDetailed(id: number | string): Promise<IGetMovieByIdDetailedResponse> {
-  return apiCall.get(`/movie/${id}`, { details: '1' });
+  return apiCall.get(`/movie/${id}`, { detailed: '1' });
 }

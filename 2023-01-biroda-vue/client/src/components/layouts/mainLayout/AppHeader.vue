@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import { DownOutlined, UserOutlined } from '@ant-design/icons-vue';
-import { computed, ref, watch } from 'vue';
-import { getRandomItem } from '../../../utils/array';
-import { famousMovieTitles } from '../../../data/famousMovieTitles';
-import LoginModal from './LoginModal.vue';
-import { useRouter } from 'vue-router';
-import { ApiCallState } from '../../../utils/apiCall';
-import { movieSearchService } from '../../../services/movieSearchService';
-import { userService } from '../../../services/userService';
+import { DownOutlined, UserOutlined } from "@ant-design/icons-vue";
+import { computed, ref, watch } from "vue";
+import { getRandomItem } from "../../../utils/array";
+import { famousMovieTitles } from "../../../data/famousMovieTitles";
+import LoginModal from "./LoginModal.vue";
+import { useRouter } from "vue-router";
+import { ApiCallState } from "../../../utils/apiCall";
+import { movieSearchService } from "../../../services/movieSearchService";
+import { userService } from "../../../services/userService";
+import { RoutePaths } from "../../../routePaths";
 
 const router = useRouter();
 const urlQuery = computed(() => String(router.currentRoute.value.query?.query ?? ''));
@@ -32,12 +33,12 @@ function handleSubmit() {
     // (which is a reasonable enough request in this case)
     movieSearchService.search(searchValue.value);
   } else {
-    router.push({ path: '/', query: { query: searchValue.value } });
+    router.push({ path: RoutePaths.Search, query: { query: searchValue.value } });
   }
 }
 
 function onBack() {
-  router.push({ path: '/', query: { query: undefined } });
+  router.push({ path: RoutePaths.Landing, query: { query: undefined } });
 }
 
 function openLoginModal() {

@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 import { userService } from '../../services/userService';
 import { useRouter } from 'vue-router';
+import { RoutePaths } from '../../routePaths';
 
 const TIMEOUT = 2000;
 const router = useRouter();
@@ -9,7 +10,7 @@ const router = useRouter();
 onMounted(() => {
   setTimeout(() => {
     userService.logout();
-    router.replace('/');
+    router.replace(RoutePaths.Landing);
   }, TIMEOUT);
 });
 </script>
