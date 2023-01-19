@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
+import { DollarOutlined, ClockCircleOutlined } from '@ant-design/icons-vue';
 import { computed, ref, watchEffect } from 'vue';
 import { apiCall, ApiCallState } from '../../utils/apiCall';
 import { getMovieByIdDetailed, IGetMovieByIdDetailedResponse } from '../../api/getMovieById';
 import CenterSpin from '../common/CenterSpin.vue';
 import CenterErrorMessage from '../common/CenterErrorMessage.vue';
+import { formatDuration, formatMoney } from '../../utils/number';
 
 const router = useRouter();
 const urlId = computed(() => String(router.currentRoute.value.query?.id ?? ''));
@@ -26,31 +28,35 @@ watchEffect(() => {
         <img :src="result?.poster" width="300" height="450" alt="Poster" class="poster-image" v-if="result?.poster" />
       </div>
       <div class="details">
-        <p>{{ result?.adult }}</p>
-        <p>{{ result?.budget }}</p>
-        <p>{{ result?.revenue }}</p>
-        <p>{{ result?.genres }}</p>
-        <p>{{ result?.homepage }}</p>
-        <p>{{ result?.runTime }}</p>
-        <p>{{ result?.status }}</p>
-        <p>{{ result?.tagLine }}</p>
-        <p>{{ result?.video }}</p>
-        <p>{{ result?.score }}</p>
-        <p>{{ result?.productionCompanies }}</p>
-        <p>{{ result?.id }}</p>
-        <p>{{ result?.title }}</p>
-        <p>{{ result?.releaseDate }}</p>
-        <p>{{ result?.poster }}</p>
-        <p>{{ result?.backdrop }}</p>
-        <p>{{ result?.overview }}</p>
-        <p>{{ result?.overviewSource }}</p>
-        <p>{{ result?.wikipediaUrl }}</p>
-        <p>{{ result?.imdbUrl }}</p>
+        <a-typography-title>{{ result?.title }}</a-typography-title>
+        <a-typography-paragraph>
+          <span class="icon-inline"><ClockCircleOutlined /></span>
+          Runtime: {{ formatDuration(result?.runTime) }}
+        </a-typography-paragraph>
+        <a-typography-paragraph class="flex gap-1 items-center">
+          <a-typography-text type="success" class="icon-cut"><DollarOutlined /></a-typography-text>
+          Budget: {{ formatMoney(result?.budget) }}
+          <a-typography-text type="danger" class="icon-cut"><DollarOutlined /></a-typography-text>
+          Revenue: {{ formatMoney(result?.revenue) }}
+        </a-typography-paragraph>
+        <p>genres: {{ result?.genres }}</p>
+        <p>status: {{ result?.status }}</p>
+        <p>tagLine: {{ result?.tagLine }}</p>
+        <p>video: {{ result?.video }}</p>
+        <p>score: {{ result?.score }}</p>
+        <p>productionCompanies: {{ result?.productionCompanies }}</p>
+        <p>id: {{ result?.id }}</p>
+        <p>releaseDate: {{ result?.releaseDate }}</p>
+        <p>backdrop: {{ result?.backdrop }}</p>
+        <p>overview: {{ result?.overview }}</p>
+        <p>overviewSource: {{ result?.overviewSource }}</p>
+        <p>wikipediaUrl: {{ result?.wikipediaUrl }}</p>
+        <p>imdbUrl: {{ result?.imdbUrl }}</p>
       </div>
     </div>
   </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 .content {
   padding: 20px;
   max-width: 1000px;
@@ -62,5 +68,27 @@ watchEffect(() => {
   border-radius: 5px;
   border: 3px solid #eee;
   box-shadow: 0 0 0 2px #555, 0 0 0 4px #eee, 0 0 0 6px #555;
+}
+
+.icon-cut {
+  height: 16px;
+  display: block;
+
+  span {
+    display: block;
+    margin-top: 1px;
+  }
+}
+
+.icon-inline {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+
+  span {
+    display: inline-block;
+    margin-top: 12px;
+    position: relative;
+  }
 }
 </style>
