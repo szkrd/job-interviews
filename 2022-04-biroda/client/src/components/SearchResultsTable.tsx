@@ -60,7 +60,9 @@ const getColumns = (
     render: (genres: IMovieGenre[]) => (
       <>
         {genres.map((genre) => (
-          <Tag key={genre.id}>{genre.name}</Tag>
+          <Tag key={genre.id} color={genre.color}>
+            {genre.name}
+          </Tag>
         ))}
       </>
     ),
