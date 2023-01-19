@@ -29,29 +29,35 @@ watchEffect(() => {
       </div>
       <div class="details">
         <a-typography-title>{{ result?.title }}</a-typography-title>
+        <a-typography-title :level="2" v-if="result?.tagLine" class="tag-line" type="secondary">{{ result?.tagLine }}</a-typography-title>
         <a-typography-paragraph>
-          <span class="icon-inline"><ClockCircleOutlined /></span>
-          Runtime: {{ formatDuration(result?.runTime) }}
+          <a-tag v-for="genre in result?.genres" :key="genre.id">{{ genre.name }}</a-tag>
         </a-typography-paragraph>
         <a-typography-paragraph class="flex gap-1 items-center">
+          <a-typography-text class="icon-cut"><ClockCircleOutlined /></a-typography-text>
+          Runtime: {{ formatDuration(result?.runTime) }}
           <a-typography-text type="success" class="icon-cut"><DollarOutlined /></a-typography-text>
           Budget: {{ formatMoney(result?.budget) }}
           <a-typography-text type="danger" class="icon-cut"><DollarOutlined /></a-typography-text>
           Revenue: {{ formatMoney(result?.revenue) }}
         </a-typography-paragraph>
-        <p>genres: {{ result?.genres }}</p>
         <p>status: {{ result?.status }}</p>
-        <p>tagLine: {{ result?.tagLine }}</p>
         <p>video: {{ result?.video }}</p>
         <p>score: {{ result?.score }}</p>
         <p>productionCompanies: {{ result?.productionCompanies }}</p>
-        <p>id: {{ result?.id }}</p>
         <p>releaseDate: {{ result?.releaseDate }}</p>
         <p>backdrop: {{ result?.backdrop }}</p>
-        <p>overview: {{ result?.overview }}</p>
-        <p>overviewSource: {{ result?.overviewSource }}</p>
-        <p>wikipediaUrl: {{ result?.wikipediaUrl }}</p>
-        <p>imdbUrl: {{ result?.imdbUrl }}</p>
+        <hr />
+        <p>{{ result?.overview }}</p>
+        <a-typography-paragraph type="secondary">(overview source: {{ result?.overviewSource }})</a-typography-paragraph>
+        <ul v-if="result?.wikipediaUrl || result?.imdbUrl">
+          <li v-if="result?.wikipediaUrl">
+            wikipedia: <a-typography-link :href="result?.wikipediaUrl">{{ result?.wikipediaUrl }}</a-typography-link>
+          </li>
+          <li v-if="result?.imdbUrl">
+            imdb: <a-typography-link :href="result?.imdbUrl">{{ result?.imdbUrl }}</a-typography-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -68,6 +74,12 @@ watchEffect(() => {
   border-radius: 5px;
   border: 3px solid #eee;
   box-shadow: 0 0 0 2px #555, 0 0 0 4px #eee, 0 0 0 6px #555;
+}
+
+h2.tag-line {
+  font-size: 16px;
+  margin: -19px 0 19px 0;
+  font-style: italic;
 }
 
 .icon-cut {

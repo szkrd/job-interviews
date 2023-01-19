@@ -70,7 +70,7 @@ export const routeGetMovieById = async (req, res, next) => {
       runTime: movie.runtime ?? -1,
       // Rumored, Planned, InProduction, PostProduction, Released, Canceled, Unknown
       status: String(movie.status || 'Unknown').replace(/\s/g, ''),
-      tagLine: movie.tagLine || '',
+      tagLine: movie.tagline || '',
       video: movie.video ?? false,
       score: (movie.vote_average ?? 0) * 10,
     };
