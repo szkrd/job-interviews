@@ -1,7 +1,7 @@
 ## job interview homeworks
 
 | date    | company      | client                           | server                                      | complexity |
-|---------|--------------|----------------------------------|---------------------------------------------|------------|
+| ------- | ------------ | -------------------------------- | ------------------------------------------- | ---------- |
 | 2016-10 | Rising Stack | -                                | gulp, hapi, joi, mongo, mocha               | high       |
 | 2018-01 | Hortonworks  | ts, angular 5, bootstrap         | (github api)                                | high       |
 | 2019-08 | Bigfish      | ts, react, co, axios             | (open weather api)                          | low        |
@@ -17,3 +17,4 @@ Older remotes were merged ([with unrelated histories](https://stackoverflow.com/
 
 1. **hacker rank runner**: offline runner with watcher, input and output piping.
 2. **jest for vanilla js**: jest, eslint, prettier, vscode settings.
+3. **jest for typescript**: jest, eslint, prettier, vscode settings (transpilation is done via babel and ts-jest).
