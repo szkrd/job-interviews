@@ -1,3 +1,5 @@
+## job interview homeworks
+
 | date    | company      | client                           | server                                      | complexity |
 |---------|--------------|----------------------------------|---------------------------------------------|------------|
 | 2016-10 | Rising Stack | -                                | gulp, hapi, joi, mongo, mocha               | high       |
@@ -10,3 +12,8 @@
 | 2023-01 | Biroda       | ts, vue, vite, ant ui, fetch     | (uses the 2022-04 one)                      | high       |
 
 Older remotes were merged ([with unrelated histories](https://stackoverflow.com/a/17373088)) into this project.
+
+## additional tools
+
+1. **hacker rank runner**: offline runner with watcher, input and output piping.
+2. **jest for vanilla js**: jest, eslint, prettier, vscode settings.

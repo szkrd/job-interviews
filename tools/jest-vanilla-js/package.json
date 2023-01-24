@@ -1,0 +1,22 @@
+{
+  "name": "jest-vanilla-js",
+  "version": "1.0.0",
+  "description": "Jest env for vscode with eslint and prettier (vanilla js).",
+  "scripts": {
+    "start": "jest ./test",
+    "test": "jest --watch ./test",
+    "lint": "eslint ./test",
+    "format": "prettier --write ./test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "29.3.1",
+    "eslint": "8.32.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-jest": "27.2.1",
+    "eslint-plugin-prettier": "4.2.1",
+    "prettier": "2.8.3"
+  }
+}
