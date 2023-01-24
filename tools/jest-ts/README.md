@@ -1,6 +1,6 @@
-# jest for vanilla js
+# jest for ts
 
-Jest set up and ready to go for plain js; eslint and prettier with vscode
+Jest set up and ready to go for typescript; eslint and prettier with vscode
 settings have also been added.
 
 Last updated: 2023-01.
