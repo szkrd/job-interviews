@@ -1,15 +1,34 @@
 # CORS proxies
 
-Here's a curated list of free APIs: https://github.com/public-apis/public-apis
+This is a backend that proxies local http CORS requests to remote APIs.
 
-So far only TMDB works. Api prefix can be a single slash ('/'), that means no prefix will be used.
+The currently supported apis are:
 
-- **TODO**: add support for at least OpenWeatherMap and GitHub.
-- **TODO**: mention that OWM needs token activation (https://home.openweathermap.org/api_keys)
+1. [TMDB](https://www.themoviedb.org/documentation/api) (The Movie Database)
+2. [OWM](https://openweathermap.org/api) (Open Weather Map)
+   - we have only GET calls, this is pretty simple API
+   - history and bulk data are not supported in the free plan (will return 401 only, this is in the [faq](https://openweathermap.org/faq#error401))
 
-## REST client
+TODO: add support for more
+(here's a curated list of free APIs: https://github.com/public-apis/public-apis)
 
-Use the following vscode extension to execute the files:
+## Usage
+
+1. copy [.env.example](./.env.example) to `.env`
+2. edit the env vars for the proxy you need (you will have to add your own api key / token)
+3. launch the server (`npm start` or `npm run dev`)
+
+Tokens are checked for approx length in [validators.mjs](./src/validators.mjs), checking is lazy,
+happens only on route match (not on startup).
+
+## Demo (plain frontend)
+
+- start static server: `cd frontend-example` && `npm i` && `npm start`
+- open page in browser (by default http://localhost:3000/)
+
+## Demo (VSCode REST client)
+
+Use the following vscode extension to execute the **.rest** files in the [rest-client](./rest-client) dir:
 
 - **Name**: REST Client
 - **Id**: humao.rest-client

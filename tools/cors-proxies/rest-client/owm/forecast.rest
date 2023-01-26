@@ -1,4 +1,4 @@
-# 5 Day Weather Forecast Data for Budapest
+# 5 Day Weather Forecast Data for Budapest (unit is degrees celsius)
 
-GET http://localhost:5050/owm/forecast?lat=47.497913&lon=19.040236 HTTP/1.1
+GET http://localhost:5050/owm/data/2.5/forecast?lat=47.497913&lon=19.040236&units=metric HTTP/1.1
 content-type: application/json

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>CORS proxies example</title>
+  </head>
+  <body>
+    <p>
+      Please open the debugger (usually by pressing F12) and check the console/network tabs for responses / problems.
+    </p>
+    <p>Default server is <input id="ServerUrl" type="text" value="http://localhost:5050" /></p>
+
+    <hr />
+    <h2>TMDB</h2>
+    <p>Search for "Star Wars" (<strong>/tmdb</strong>/3/search/movie?query=star+wars)</p>
+    <button id="SubmitTmdb">call</button>
+    <ul id="TmdbSuccess"></ul>
+
+    <hr />
+    <h2>OWM</h2>
+    <p>Budapest weather forecast (<strong>/owm</strong>/data/2.5/forecast?lat=47.497913&lon=19.040236&units=metric)</p>
+    <button id="SubmitOwm">call</button>
+    <ul id="OwmSuccess"></ul>
+
+    <script>
+      (() => {
+        const $ = (sel) => document.querySelector(sel);
+        const serverUrl = $('#ServerUrl').value;
+
+        $('#SubmitTmdb').addEventListener('click', () => {
+          axios(`${serverUrl}/tmdb/3/search/movie?query=star+wars`)
+            .then((resp) => {
+              console.log('SUCCESS for TMDB call', resp);
+              const el = $('#TmdbSuccess');
+              el.innerHTML = '';
+              resp.data.results.forEach((row) => {
+                const li = document.createElement('li');
+                li.innerText = row.original_title;
+                el.appendChild(li);
+              });
+            })
+            .catch((err) => console.log('ERROR for TMDB call', err));
+        });
+
+        $('#SubmitOwm').addEventListener('click', () => {
+          axios(`${serverUrl}/owm/data/2.5/forecast?lat=47.497913&lon=19.040236&units=metric`)
+            .then((resp) => {
+              console.log('SUCCESS for OWM call', resp);
+              const el = $('#OwmSuccess');
+              el.innerHTML = '';
+              resp.data.list.forEach((row) => {
+                const li = document.createElement('li');
+                li.innerText = `${row.dt_txt}: ${row.main.temp} °C`;
+                el.appendChild(li);
+              });
+            })
+            .catch((err) => console.log('ERROR for OWM call', err));
+        });
+      })();
+    </script>
+  </body>
+</html>

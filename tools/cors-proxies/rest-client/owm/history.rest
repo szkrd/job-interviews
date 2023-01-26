@@ -1,0 +1,4 @@
+# History data (will only work with non-free subscriptions!)
+
+GET http://localhost:5050/owm/data/3.0/history/timemachine?lat=47.497913&lon=19.040236&dt=606348800 HTTP/1.1
+content-type: application/json
