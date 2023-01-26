@@ -1,0 +1,4 @@
+# GET get the commit activities for Apple's Swift repo
+
+GET http://localhost:5050/github/repos/apple/swift/stats/commit_activity HTTP/1.1
+content-type: application/json

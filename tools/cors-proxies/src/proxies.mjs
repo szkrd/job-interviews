@@ -18,7 +18,6 @@ export const tmdbProxy = httpProxy.createProxyServer(commonProxyServerOptions);
 
 tmdbProxy
   .on('proxyReq', (proxyReq, req) => {
-    // TMDB uses the token in auth header as bearer token
     log.request('tmdb', req);
     proxyReq.setHeader('Authorization', `Bearer ${config.tmdb.token}`);
     proxyReq.setHeader('Content-Type', 'application/json;charset=utf-8');
@@ -42,3 +41,24 @@ owmProxy
     req.on('error', log.error);
   })
   .on('error', log.error);
+
+// GITHUB
+
+export const githubProxy = httpProxy.createProxyServer(commonProxyServerOptions);
+
+githubProxy
+  .on('proxyReq', (proxyReq, req) => {
+    log.request('github', req);
+    proxyReq.setHeader('Authorization', `Bearer ${config.github.token}`);
+    proxyReq.setHeader('Accept', 'application/vnd.github+json');
+    proxyReq.setHeader('Content-Type', 'application/json;charset=utf-8');
+    proxyReq.setHeader('X-GitHub-Api-Version', '2022-11-28');
+    req.on('error', log.error);
+  })
+  .on('error', log.error);
+
+export const proxies = {
+  tmdb: tmdbProxy,
+  owm: owmProxy,
+  github: githubProxy,
+};

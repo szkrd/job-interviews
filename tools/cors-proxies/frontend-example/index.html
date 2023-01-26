@@ -8,10 +8,9 @@
     <title>CORS proxies example</title>
   </head>
   <body>
-    <p>
-      Please open the debugger (usually by pressing F12) and check the console/network tabs for responses / problems.
-    </p>
+    <p>Please open the debugger and check the console/network tabs for responses / problems.</p>
     <p>Default server is <input id="ServerUrl" type="text" value="http://localhost:5050" /></p>
+    <p>These are single, demo calls, pagination, search, interactivity are not implemented of course.</p>
 
     <hr />
     <h2>TMDB</h2>
@@ -25,39 +24,67 @@
     <button id="SubmitOwm">call</button>
     <ul id="OwmSuccess"></ul>
 
+    <hr />
+    <h2>GITHUB</h2>
+    <p>Repositories of Apple Inc. (<strong>/github</strong>/orgs/apple/repos)</p>
+    <button id="SubmitGithub">call</button>
+    <ul id="GithubSuccess"></ul>
+
     <script>
       (() => {
         const $ = (sel) => document.querySelector(sel);
         const serverUrl = $('#ServerUrl').value;
+        const disableEl = (sel) => ($(sel).disabled = true);
+        const enableEl = (sel) => ($(sel).disabled = false);
+        const appendListItem = (parent, text) => {
+          const li = document.createElement('li');
+          li.innerText = text;
+          parent.appendChild(li);
+        };
 
         $('#SubmitTmdb').addEventListener('click', () => {
+          disableEl('#SubmitTmdb');
           axios(`${serverUrl}/tmdb/3/search/movie?query=star+wars`)
             .then((resp) => {
               console.log('SUCCESS for TMDB call', resp);
               const el = $('#TmdbSuccess');
               el.innerHTML = '';
-              resp.data.results.forEach((row) => {
-                const li = document.createElement('li');
-                li.innerText = row.original_title;
-                el.appendChild(li);
-              });
+              resp.data.results.forEach((row) => appendListItem(el, row.original_title));
             })
-            .catch((err) => console.log('ERROR for TMDB call', err));
+            .catch((err) => console.log('ERROR for TMDB call', err))
+            .finally(() => {
+              enableEl('#SubmitTmdb');
+            });
         });
 
         $('#SubmitOwm').addEventListener('click', () => {
+          disableEl('#SubmitOwm');
           axios(`${serverUrl}/owm/data/2.5/forecast?lat=47.497913&lon=19.040236&units=metric`)
             .then((resp) => {
               console.log('SUCCESS for OWM call', resp);
               const el = $('#OwmSuccess');
               el.innerHTML = '';
-              resp.data.list.forEach((row) => {
-                const li = document.createElement('li');
-                li.innerText = `${row.dt_txt}: ${row.main.temp} °C`;
-                el.appendChild(li);
-              });
+              resp.data.list.forEach((row) => appendListItem(el, `${row.dt_txt}: ${row.main.temp} °C`));
             })
-            .catch((err) => console.log('ERROR for OWM call', err));
+            .catch((err) => console.log('ERROR for OWM call', err))
+            .finally(() => {
+              enableEl('#SubmitOwm');
+            });
+        });
+
+        $('#SubmitGithub').addEventListener('click', () => {
+          disableEl('#SubmitGithub');
+          axios(`${serverUrl}/github/orgs/apple/repos`)
+            .then((resp) => {
+              console.log('SUCCESS for GITHUB call', resp);
+              const el = $('#GithubSuccess');
+              el.innerHTML = '';
+              resp.data.forEach((row) => appendListItem(el, `${row.name}: ${row.description}`));
+            })
+            .catch((err) => console.log('ERROR for GITHUB call', err))
+            .finally(() => {
+              enableEl('#SubmitGithub');
+            });
         });
       })();
     </script>
