@@ -1,0 +1,26 @@
+{
+  "name": "vivid-entry-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-tmdb": "node tmdb.mjs",
+    "dev-tmdb": "nodemon -w . tmdb.mjs",
+    "lint": "eslint tmdb.mjs",
+    "format": "prettier --write tmdb.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.0.3",
+    "http-proxy": "1.18.1"
+  },
+  "devDependencies": {
+    "chalk": "4.1.0",
+    "eslint": "8.32.0",
+    "eslint-config-prettier": "8.6.0",
+    "nodemon": "2.0.4",
+    "prettier": "2.0.5"
+  }
+}
