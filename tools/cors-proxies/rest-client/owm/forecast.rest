@@ -1,0 +1,4 @@
+# 5 Day Weather Forecast Data for Budapest
+
+GET http://localhost:5050/owm/forecast?lat=47.497913&lon=19.040236 HTTP/1.1
+content-type: application/json

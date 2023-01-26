@@ -8,8 +8,8 @@ function error(err) {
   console.error(chalk.red('Proxy error:'), err instanceof Error ? err.message : err);
 }
 
-function request(req) {
-  console.info(chalk.cyan(req.method) + ' ' + chalk.gray(req.url));
+function request(prefix = '', req) {
+  console.info(chalk.magenta(prefix) + ' ' + chalk.cyan(req.method) + ' ' + chalk.gray(req.url));
 }
 
 export const log = {
