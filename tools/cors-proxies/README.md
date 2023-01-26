@@ -2,9 +2,10 @@
 
 Here's a curated list of free APIs: https://github.com/public-apis/public-apis
 
-So far only TMDB.
+So far only TMDB works. Api prefix can be a single slash ('/'), that means no prefix will be used.
 
-TODO (at least): OpenWeatherMap, GitHub.
+- **TODO**: add support for at least OpenWeatherMap and GitHub.
+- **TODO**: mention that OWM needs token activation (https://home.openweathermap.org/api_keys)
 
 ## REST client
 

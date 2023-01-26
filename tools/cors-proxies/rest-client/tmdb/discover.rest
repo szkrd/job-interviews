@@ -1,4 +1,4 @@
 # Discover API Example: What are the highest rated movies rated R?
 
-GET http://localhost:5050/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc HTTP/1.1
+GET http://localhost:5050/tmdb/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc HTTP/1.1
 content-type: application/json

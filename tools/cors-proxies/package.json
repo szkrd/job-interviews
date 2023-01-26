@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-tmdb": "node tmdb.mjs",
-    "dev-tmdb": "nodemon -w . tmdb.mjs",
-    "lint": "eslint tmdb.mjs",
-    "format": "prettier --write tmdb.mjs"
+    "start": "node index.mjs",
+    "dev": "nodemon -w . -w src index.mjs",
+    "lint": "eslint index.mjs src/**/*.mjs",
+    "format": "prettier --write index.mjs src"
   },
   "keywords": [],
   "author": "",
