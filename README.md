@@ -18,3 +18,4 @@ Older remotes were merged ([with unrelated histories](https://stackoverflow.com/
 1. **hacker rank runner**: offline runner with watcher, input and output piping.
 2. **jest for vanilla js**: jest, eslint, prettier, vscode settings.
 3. **jest for typescript**: jest, eslint, prettier, vscode settings (transpilation is done via babel and ts-jest).
+4. **cors-proxies**: CORS proxies with token handling for various open APIs (Github, Open Weather, etc).
