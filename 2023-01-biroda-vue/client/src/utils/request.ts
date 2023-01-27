@@ -71,7 +71,7 @@ export function request(url: string, options: IRequestOptions = {}) {
   // header defaults
   const jsonType = 'application/json';
   if (!optHeaders['Content-Type']) optHeaders['Content-Type'] = jsonType;
-  if (!optHeaders['Accept']) optHeaders['Content-Type'] = jsonType;
+  if (!optHeaders['Accept']) optHeaders['Accept'] = jsonType;
   const authToken = options.token ?? sessionStorage.getItem('token');
   if (authToken) {
     optHeaders.Authorization = `Bearer ${authToken}`;

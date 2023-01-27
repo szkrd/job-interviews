@@ -13,13 +13,19 @@ The currently supported apis are:
    - copy paste **Key** from there to your `.env` file (to **OWM_ACCESS_TOKEN**)
    - we have only GET calls, this is pretty simple API
    - history and bulk data are not supported in the free plan (will return 401 only, this is in the [faq](https://openweathermap.org/faq#error401))
-3. [GITHUB]()
+3. [GITHUB](https://docs.github.com/en/rest)
    - first create a [personal token](https://github.com/settings/tokens)
    - use the new fine-grained PAT
    - copy paste **PAT** from there to your `.env` file (to **GITHUB_ACCESS_TOKEN**)
 
 TODO: add support for more
 (here's a curated list of free APIs: https://github.com/public-apis/public-apis)
+
+## WIP
+
+Html retrieval with cheerio parsing:
+`/fetch?url=...&selector=h1&selector=h2&as=text`
+(downloads the url, selects h1 and h2 headings and returns them as text)
 
 ## Usage
 

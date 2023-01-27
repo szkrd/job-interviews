@@ -4,6 +4,10 @@ function info(message) {
   console.info(chalk.green(message));
 }
 
+function warn(message) {
+  console.info(chalk.yellow(message));
+}
+
 function error(err) {
   console.error(chalk.red('Proxy error:'), err instanceof Error ? err.message : err);
 }
@@ -14,6 +18,7 @@ function request(prefix = '', req) {
 
 export const log = {
   info,
+  warn,
   error,
   request,
 };
