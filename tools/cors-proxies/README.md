@@ -2,7 +2,7 @@
 
 This is a backend that proxies local http CORS requests to remote APIs.
 
-The currently supported apis are:
+## Supported APIs
 
 1. [TMDB](https://www.themoviedb.org/documentation/api) (The Movie Database)
    - after login head to the [settings / api](https://www.themoviedb.org/settings/api) page
@@ -21,11 +21,31 @@ The currently supported apis are:
 TODO: add support for more
 (here's a curated list of free APIs: https://github.com/public-apis/public-apis)
 
-## WIP
+## HTML scraper
 
-Html retrieval with cheerio parsing:
-`/fetch?url=...&selector=h1&selector=h2&as=text`
-(downloads the url, selects h1 and h2 headings and returns them as text)
+Html retrieval (using cheerio) works with query params. For example:
+
+- `/fetch`?`url=https%3A%2F%2Fwww.bbc.com`&`selector=h1`&`selector=h2`&`as=text` (values are encoded with `encodeURIComponent`)
+- `/fetch`?`url=....`&`selector=ul`&`as=outerHtml`
+- parameters:
+  - **url**: string
+  - **selector**: string[]
+  - **as**: 'text' | 'html' | 'outerHtml' | 'node' | 'nodeDeep'
+
+Node response example:
+
+```jsonc
+{
+  "name": "h1",
+  "type": "tag",
+  "attribs": {
+    "id": "page-title"
+  },
+  "innerText": "BBC Homepage",
+  "childCount": 1,
+  "children": [] // only present with the 'nodeDeep' type
+}
+```
 
 ## Usage
 

@@ -8,8 +8,9 @@ function warn(message) {
   console.info(chalk.yellow(message));
 }
 
-function error(err) {
+function error(err, details) {
   console.error(chalk.red('Proxy error:'), err instanceof Error ? err.message : err);
+  if (details) console.error(details); // let node set the colors
 }
 
 function request(prefix = '', req) {

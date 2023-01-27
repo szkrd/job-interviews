@@ -1,8 +1,19 @@
-import { load as cheerioLoad } from 'cheerio';
+import * as cheerio from 'cheerio';
 import { log } from './log.mjs';
 
+function getNodeData($, node, deep = false) {
+  return {
+    name: node.name,
+    type: node.type,
+    attribs: node.attribs,
+    innerText: $(node).text().trim(),
+    childCount: (node.children || []).length,
+    children: deep ? (node.children || []).map((el) => getNodeData($, el, deep)) : undefined,
+  };
+}
+
 export function fetchHtml(url, selectors, as = 'html') {
-  if (!['html', 'text'].includes(as)) throw new Error('Unknown target format.');
+  if (!['html', 'text', 'outerHtml', 'node', 'nodeDeep'].includes(as)) throw new Error('Unknown target format.');
   if (url.startsWith('//')) url = 'http:' + url;
   if (!url.startsWith('http')) {
     url = 'https://' + url;
@@ -25,18 +36,29 @@ export function fetchHtml(url, selectors, as = 'html') {
         if (!isHtml) {
           log.warn(`Response has no html5 doctype? "${html.substring(0, 20)}"`);
         }
-        const $ = cheerioLoad(html);
+        const $ = cheerio.load(html);
         const ret = {};
         selectors.forEach((sel) => {
           const nodes = $(sel);
           const results = (ret[sel] = []);
           nodes.each((idx, node) => {
-            results.push($(node)[as]().trim());
+            let value;
+            if (as === 'outerHtml') {
+              value = $.html(node);
+            } else if (as === 'node') {
+              value = getNodeData($, node);
+            } else if (as === 'nodeDeep') {
+              value = getNodeData($, node, true);
+            } else {
+              value = $(node)[as]().trim(); // html and text
+            }
+            results.push(value);
           });
         });
         resolve(ret);
       })
       .catch((err) => {
+        log.error('Fetch/cheerio error!', err);
         reject(err);
       });
   });

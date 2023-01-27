@@ -1,7 +1,7 @@
 import http from 'http';
 import { config } from './src/config.mjs';
 import { fetchHtml } from './src/fetchHtml.mjs';
-import { returnHttpError } from './src/http.mjs';
+import { returnCorsOptionsResponse, returnHttpError, returnJson } from './src/http.mjs';
 import { log } from './src/log.mjs';
 import { proxies } from './src/proxies.mjs';
 import { queryString } from './src/utils/queryString.mjs';
@@ -13,17 +13,25 @@ log.info(`Listening on port ${port}, active proxies: ${config.activeProxies.join
 http
   .createServer((req, res) => {
     const { url } = req;
+
+    // cors options call
+    if (req.method === 'OPTIONS') return returnCorsOptionsResponse();
+
     // fetch any resource using node fetch (requires node 17.5+)
     if (url.startsWith('/fetch')) {
       const query = queryString.parse(url.split('?')[1] || '');
       const targetUrl = query.url;
       const selectors = Array.isArray(query.selector) ? query.selector : [query.selector ?? 'html'];
       const as = query.as ?? 'html';
-      fetchHtml(targetUrl, selectors, as);
-      res.write('Feature work in progress.');
-      res.end();
+      log.request('fetch', req);
+      fetchHtml(targetUrl, selectors, as)
+        .then((result) => {
+          returnJson(res, result);
+        })
+        .catch((err) => returnHttpError(res, 500, `Fetch error: ${err.message}`));
       return;
     }
+
     // api proxies
     const proxyWeb = () => {
       for (let idx = 0; idx < config.activeProxies.length; idx++) {

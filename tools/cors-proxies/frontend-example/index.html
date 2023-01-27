@@ -30,6 +30,12 @@
     <button id="SubmitGithub">call</button>
     <ul id="GithubSuccess"></ul>
 
+    <hr />
+    <h2>FETCH</h2>
+    <p>Headings from AP News (<strong>/fetch</strong>/html?url=apnews.com&selector=h2&as=node)</p>
+    <button id="SubmitFetch">call</button>
+    <ul id="FetchSuccess"></ul>
+
     <script>
       (() => {
         const $ = (sel) => document.querySelector(sel);
@@ -84,6 +90,27 @@
             .catch((err) => console.log('ERROR for GITHUB call', err))
             .finally(() => {
               enableEl('#SubmitGithub');
+            });
+        });
+
+        $('#SubmitFetch').addEventListener('click', () => {
+          disableEl('#SubmitFetch');
+          axios(`${serverUrl}/fetch/html?url=apnews.com&selector=h2&as=node`)
+            .then((resp) => {
+              console.log('SUCCESS for FETCH call', resp);
+              const el = $('#FetchSuccess');
+              el.innerHTML = '';
+              buffer = [];
+              resp.data.h2
+                .filter((node) => !(node.attribs.class ?? '').includes('topstories'))
+                .forEach((node) => {
+                  if (!buffer.includes(node.innerText)) appendListItem(el, node.innerText);
+                  buffer.push(node.innerText);
+                });
+            })
+            .catch((err) => console.log('ERROR for FETCH call', err))
+            .finally(() => {
+              enableEl('#SubmitFetch');
             });
         });
       })();

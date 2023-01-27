@@ -1,4 +1,4 @@
 # GET movie info for "Back to the Future"
 
-GET http://localhost:5050/fetch/html?url=https%3A%2F%2Fwww.bbc.com&selector=h1&selector=h2&as=text HTTP/1.1
+GET http://localhost:5050/fetch/html?url=https%3A%2F%2Fwww.bbc.com&selector=h1&selector=h2&as=node HTTP/1.1
 content-type: application/json
