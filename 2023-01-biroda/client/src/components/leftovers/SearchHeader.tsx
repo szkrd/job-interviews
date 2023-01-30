@@ -1,9 +1,9 @@
 import { Button, Form, Input, PageHeader } from 'antd';
 import React, { MutableRefObject, useCallback, useState } from 'react';
-import { famousMovieTitles } from '../data/famousMovieTitles';
-import { style } from '../utils/css';
-import { goToRootPage } from '../utils/navigation';
-import { random } from '../utils/number';
+import { famousMovieTitles } from '../../data/famousMovieTitles';
+import { style } from '../../utils/css';
+import { goToRootPage } from '../../utils/navigation';
+import { random } from '../../utils/number';
 
 export interface ISearchHeaderProps {
   value?: string;

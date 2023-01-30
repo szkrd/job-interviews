@@ -3,7 +3,7 @@ import { ColumnsType } from 'antd/lib/table';
 import { BaseType } from 'antd/lib/typography/Base';
 import Text from 'antd/lib/typography/Text';
 import React, { CSSProperties } from 'react';
-import { IMovieGenre, IMovieSearchResultItem } from '../api/apiModels';
+import { IMovieGenre, IMovieSearchResultItem } from '../../api/apiModels';
 
 const imageStyle: CSSProperties = {
   width: 45,

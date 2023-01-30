@@ -1,7 +1,6 @@
 import React, { FC, MouseEventHandler, useCallback, useState } from 'react';
 import { IMovieSearchResultItem } from '../../../api/apiModels';
 import DateFormat from '../DateFormat/DateFormat';
-import Modal from '../Modal/Modal';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MovieScore from '../MovieScore/MovieScore';
 import styles from './MovieGrid.module.scss';

@@ -62,11 +62,11 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', cssLoader],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'babel-loader',
+      // },
       {
         test: /\.(ts|tsx)?$/,
         loader: 'ts-loader',

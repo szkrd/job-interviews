@@ -2,10 +2,10 @@ import { Button, Modal } from 'antd';
 import Link from 'antd/lib/typography/Link';
 import Text from 'antd/lib/typography/Text';
 import React, { CSSProperties, useState } from 'react';
-import { getMovieById, IGetMovieByIdResponse } from '../api/getMovieById';
-import { useLocationHash } from '../hooks/useLocationHash';
-import { apiCall, ApiCallState } from '../utils/apiCall';
-import { updateLocationHashParams } from '../utils/navigation';
+import { getMovieById, IGetMovieByIdResponse } from '../../api/getMovieById';
+import { useLocationHash } from '../../hooks/useLocationHash';
+import { apiCall, ApiCallState } from '../../utils/apiCall';
+import { updateLocationHashParams } from '../../utils/navigation';
 import CenterSpin from './CenterSpin';
 
 const NBSP = '\xa0';
@@ -28,8 +28,8 @@ export default function DetailsModal() {
   const [result, setResult] = useState<IGetMovieByIdResponse | null>(null);
   const [selectedId, setSelectedid] = useState('');
 
-  useLocationHash('id', (id) => {
-    setSelectedid(id ?? '');
+  useLocationHash('id', (id?: string | number) => {
+    setSelectedid(String(id ?? ''));
     if (id && id !== selectedId)
       apiCall.fromComponent<IGetMovieByIdResponse>(getMovieById(id), setResult, setCallState);
   });
