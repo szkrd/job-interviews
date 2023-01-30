@@ -19,7 +19,9 @@ const searchInProgress = movieSearchService.searchState.value === ApiCallState.P
 const { loggedInUserName } = userService;
 
 // conditional event binding (ant page header @back is optional)
-const atPageBackEventName = computed(() => (urlQuery.value !== '' ? 'back' : ''));
+const atPageBackEventName = computed(() =>
+  urlQuery.value !== '' || router.currentRoute.value.path !== '/' ? 'back' : ''
+);
 
 // the query in the url takes precedence over the one in the search field
 watch(urlQuery, (inUrlValue) => {

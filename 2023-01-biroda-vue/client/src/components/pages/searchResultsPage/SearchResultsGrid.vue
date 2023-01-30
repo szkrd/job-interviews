@@ -25,6 +25,7 @@ const props = defineProps<{
 </template>
 <!-- ====================================================================== -->
 <style lang="scss" scoped>
+// ant's grid is not flexible enough and I don't want to hack their table either
 .movieGrid {
   list-style: none;
   max-width: 1000px;
@@ -35,6 +36,12 @@ const props = defineProps<{
   gap: 40px;
   grid-auto-rows: minmax(20px, auto);
   height: 100%;
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 600px;
+    gap: 20px;
+  }
 
   & > li {
     margin: 0;
