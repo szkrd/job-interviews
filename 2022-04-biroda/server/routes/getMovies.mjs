@@ -2,26 +2,34 @@ import { tmdbApi } from '../modules/tmdbApi.mjs';
 import { getGenreColor } from '../modules/utils.mjs';
 
 const TMDB_IMAGE_PATH = 'https://www.themoviedb.org/t/p/w45';
+const TMDB_IMAGE_PATH_HI = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
+const MAX_QUERY_LENGTH = 128;
 
 /**
  * Search for movies with `query`;
- * TODO: add default movie list for no query, instead of status 400
+ * If no query present, then it will return the most popular movies.
  * @param {import('express').Request} req
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
  */
 export const routeGetMovies = async (req, res, next) => {
   const query = (req.query.query ?? '').trim();
+  const mostPopular = !query;
+  let action = 'search';
 
-  // invalid query
-  if (!query) {
+  if (query && query.length > MAX_QUERY_LENGTH) {
     res.status(400).send({ error: 'Invalid query.' });
     return next();
   }
 
   let result = {};
   try {
-    result = await tmdbApi.search(query);
+    if (mostPopular) {
+      result = await tmdbApi.discover({ sort_by: 'popularity.desc' });
+      action = 'discover';
+    } else {
+      result = await tmdbApi.search(query);
+    }
   } catch (error) {
     res.status(500).send({ error: String(error) });
     return next();
@@ -45,10 +53,12 @@ export const routeGetMovies = async (req, res, next) => {
     ),
     releaseDate: tmdbMovie.release_date,
     poster: tmdbMovie.poster_path ? `${TMDB_IMAGE_PATH}/${tmdbMovie.poster_path}` : '',
+    posterHigh: tmdbMovie.poster_path ? `${TMDB_IMAGE_PATH_HI}/${tmdbMovie.poster_path}` : '',
   }));
 
   // return with proper camelCase
   res.send({
+    action,
     page: result.page,
     results: result.results,
     totalPages: result.total_pages,

@@ -45,6 +45,8 @@ Search for movies with query params
 }
 ```
 
+If no query is set then the endpoint returns the most popular movies.
+
 ### GET /movie/:id
 
 Get movie data (from Wikipedia and TMDB) by TMDB id
@@ -52,11 +54,36 @@ Get movie data (from Wikipedia and TMDB) by TMDB id
 
 ```json
 {
+  "backdrop": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/mpNd0rTVrp6vHJ9Je7wSa3zC8JS.jpg",
   "id": 128,
-  "title": "Princess Mononoke",
-  "overview": "Princess Mononoke (Japanese: もののけ姫, Hepburn: Mononoke-hime) is a 1997 Japanese animated epic historical fantasy film written and directed by Hayao Miyazaki, animated by Studio Ghibli for Tokuma Shoten, Nippon Television Network and Dentsu, and distributed by Toho. The film stars the voices of Yōji Matsuda, Yuriko Ishida, Yūko Tanaka, Kaoru Kobayashi, Masahiko Nishimura, Tsunehiko Kamijo, Akihiro Miwa, Mitsuko Mori and Hisaya Morishige.",
+  "imdbUrl": "https://www.imdb.com/title/tt0119698/",
+  "overview": "Princess Mononoke is a 1997 Japanese animated epic historical fantasy film written and directed by Hayao Miyazaki...",
   "overviewSource": "wikipedia",
-  "wikipediaUrl": "https://en.wikipedia.org/wiki/Princess_Mononoke",
-  "imdbUrl": "https://www.imdb.com/title/tt0119698/"
+  "poster": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/pdtzEreKvKAlqa2YEBaGwiA45V8.jpg",
+  "releaseDate": "1997-07-12",
+  "title": "Princess Mononoke",
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Princess_Mononoke"
 }
 ```
+
+Detailed info with `?detailed=1` returns all of the above and the following extra fields:
+
+```json
+{
+  "adult": false,
+  "budget": 26500000,
+  "genres": [{ "id": 12, "name": "Adventure" }],
+  "homepage": "",
+  "productionCompanies": [{ "id": 1778, "logo": "", "name": "dentsu" }],
+  "revenue": 159414369,
+  "runTime": 134,
+  "score": 83.45,
+  "status": "Released",
+  "tagLine": "The Fate Of The World Rests On The Courage Of One Warrior.",
+  "video": false
+}
+```
+
+### POST /login
+
+Post `{ username, password }`, returns `{ token }`.

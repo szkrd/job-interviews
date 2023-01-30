@@ -12,9 +12,11 @@ export interface IMovieSearchResultItem {
   genres: IMovieGenre[];
   releaseDate: string;
   poster: string;
+  posterHigh: string;
 }
 
 export interface IGetMoviesResponse {
+  action: 'search' | 'discover';
   page: number;
   totalPages: number;
   totalResults: number;

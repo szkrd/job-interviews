@@ -28,6 +28,10 @@ function search(query = '') {
     });
 }
 
+function discover(searchParams = {}) {
+  return got(`${config.tmdb.apiUrl}/discover/movie`, { headers, searchParams }).json();
+}
+
 /**
  * Get every genre
  */
@@ -65,4 +69,4 @@ function getDetails(id = 0) {
   return got(`${config.tmdb.apiUrl}/movie/${id}`, { headers }).json();
 }
 
-export const tmdbApi = { search, getDetails, getGenreName };
+export const tmdbApi = { search, discover, getDetails, getGenreName };

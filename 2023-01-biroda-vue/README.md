@@ -6,7 +6,7 @@ This is the port of "2022-04-biroda" react project to Vue 3 (with Vite).
 ## Frontend
 
 1. landing page:  
-   ![landing page](./demo/1675066770-chrome_NQGzLOUB8h.png)
+   ![landing page](./demo/1675078566-chrome_in9q8aqmLp.png)
 2. search results:  
    ![search results](./demo/1675066790-chrome_JNOLAurfjJ.png)
 3. short details:  

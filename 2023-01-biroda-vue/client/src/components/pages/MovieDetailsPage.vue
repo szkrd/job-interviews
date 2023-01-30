@@ -25,7 +25,6 @@ watchEffect(() => {
   <CenterSpin v-if="callState === ApiCallState.Pending" />
   <CenterErrorMessage v-if="callState === ApiCallState.Rejected" />
   <div v-if="callState === ApiCallState.Fulfilled" class="content">
-    <div></div>
     <div class="flex gap-2">
       <div class="poster">
         <img :src="result?.poster" width="300" height="450" alt="Poster" class="poster-image" v-if="result?.poster" />
