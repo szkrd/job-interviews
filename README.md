@@ -19,3 +19,5 @@ Older remotes were merged ([with unrelated histories](https://stackoverflow.com/
 2. **jest for vanilla js**: jest, eslint, prettier, vscode settings.
 3. **jest for typescript**: jest, eslint, prettier, vscode settings (transpilation is done via babel and ts-jest).
 4. **cors-proxies**: CORS proxies with token handling for various open APIs (Github, Open Weather, etc).
+5. **utility-functions**: small utility functions that may be useful.
+

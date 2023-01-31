@@ -1,13 +1,13 @@
 {
-  "name": "jest-ts",
+  "name": "utils",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "jest ./test",
-    "test": "jest --watch ./test",
-    "watch": "jest --watch ./test",
-    "lint": "eslint ./test",
-    "format": "prettier --write ./test"
+    "start": "jest ./src",
+    "test": "jest --watch ./src",
+    "watch": "jest --watch ./src",
+    "lint": "eslint ./src",
+    "format": "prettier --write ./src"
   },
   "keywords": [],
   "author": "",
