@@ -1,3 +1,4 @@
+// equivalent of dayjs format with `MMM D, YYYY`
 export function formatDate(date?: string) {
   if (!date) return '';
   const dateObj = new Date(date);
