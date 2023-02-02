@@ -1,0 +1,18 @@
+# utils
+
+Small **utility functions** that I end up writing multiple times.
+The project uses `ts-jest`; most of these should not need the DOM.
+
+- These code fragments are meant to be edited.
+- Console calls should be replaced with a log implementation.
+- Not all functions may have tests.
+
+## list of files
+
+Files are in TS, but they may not be implicit any safe.
+If a file has a spec, then it is marked with ✨ (sparkles), if it has **disabled** `no-explicit-any`
+then it is marked with a ⚠️ (warning).
+
+<% files.forEach(file => { -%>
+- <%= file.dirs %> / **<%= file.name %>** <%= file.hasSpec ? '✨' : '' %> <%= file.hasAny ? '⚠️' : '' %>
+<% }); %>
