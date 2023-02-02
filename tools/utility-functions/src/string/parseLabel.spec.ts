@@ -1,4 +1,4 @@
-import parseLabel from './parseLabel';
+import { parseLabel } from './parseLabel';
 
 describe('parseLabel', () => {
   it('should replace Windows style "variables" in strings from an object\'s values', () => {

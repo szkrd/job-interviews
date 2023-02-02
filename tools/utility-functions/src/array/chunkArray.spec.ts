@@ -1,4 +1,4 @@
-import chunkArray from './chunkArray';
+import { chunkArray } from './chunkArray';
 
 describe('chunkArray', () => {
   it('should divide the array into many subarrays', () => {

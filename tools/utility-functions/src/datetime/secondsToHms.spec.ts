@@ -1,4 +1,4 @@
-import secondsToHms from './secondsToHms';
+import { secondsToHms } from './secondsToHms';
 
 describe('secondsToHms', () => {
   test('converts seconds to hour-minute-sec format', () => {

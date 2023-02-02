@@ -1,4 +1,4 @@
-import parseLabel from '../string/parseLabel';
+import { parseLabel } from '../string/parseLabel';
 
 const MONTHS = {
   abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],

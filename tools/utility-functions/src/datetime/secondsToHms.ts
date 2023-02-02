@@ -2,7 +2,7 @@
  * Converts seconds to hour:minute:seconds format.
  * For example: `70` -> `1:10` or `01:10` (with twoDigits true).
  */
-export default function secondsToHms(d: number, twoDigits = false): string {
+export function secondsToHms(d: number, twoDigits = false): string {
   const MINUTES_IN_HOUR = 3600;
   const SECONDS_IN_MINUTES = 60;
   const NOTATION_DIVIDER = 10;

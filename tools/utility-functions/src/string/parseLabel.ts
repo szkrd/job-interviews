@@ -5,7 +5,7 @@ import { escapeRegExp } from './escapeRegExp';
  * Only shallow parsing is supported (json paths or dot separators will not work).
  * For example: `'Hello %NAME%!' + { name: 'Jane'} = 'Hello Jane!'`
  */
-const parseLabel = (str = '', obj: unknown, wrapCharLeft = '%', wrapCharRight = '%'): string => {
+export const parseLabel = (str = '', obj: unknown, wrapCharLeft = '%', wrapCharRight = '%'): string => {
   let ret = str;
   Object.keys(obj).forEach((key) => {
     const value = String(obj[key]);
@@ -14,5 +14,3 @@ const parseLabel = (str = '', obj: unknown, wrapCharLeft = '%', wrapCharRight = 
   });
   return ret;
 };
-
-export default parseLabel;
