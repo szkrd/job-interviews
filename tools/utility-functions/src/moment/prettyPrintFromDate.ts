@@ -17,7 +17,7 @@ function getLocaleMeta(lang?: string): ILocale {
   return {} as any; // localeMeta.locales[lang || getCurrentLang()];
 }
 
-export default function prettyPrintFromDate(date: TFuzzyDate, from?: TFuzzyDate, smallScreen?: boolean) {
+export function prettyPrintFromDate(date: TFuzzyDate, from?: TFuzzyDate, smallScreen?: boolean) {
   const momDate = moment(date);
   const momFrom = moment(from || new Date());
 

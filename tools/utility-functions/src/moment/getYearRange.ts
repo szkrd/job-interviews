@@ -6,7 +6,7 @@ const DEFAULT_RANGE = 5;
 
 const castYear = (val: Moment | number | null) => (typeof val === 'number' ? moment().year(val) : val);
 
-const getYearRange = (
+export const getYearRange = (
   centralDate: Moment | number = null,
   minDate: Moment | number = null,
   maxDate: Moment | number = null
@@ -28,5 +28,3 @@ const getYearRange = (
   const diffUp = max.year() - central.year();
   return range(central.year() + diffDown, central.year() + diffUp + 1);
 };
-
-export default getYearRange;

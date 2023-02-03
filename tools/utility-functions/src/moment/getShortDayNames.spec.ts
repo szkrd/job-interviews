@@ -1,4 +1,4 @@
-import getShortDayNames from './getShortDayNames';
+import { getShortDayNames } from './getShortDayNames';
 import moment from 'moment';
 
 describe('getShortDayNames', () => {

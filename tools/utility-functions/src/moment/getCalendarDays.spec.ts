@@ -1,4 +1,4 @@
-import getCalendarDays from './getCalendarDays';
+import { getCalendarDays } from './getCalendarDays';
 import moment from 'moment';
 import { Moment } from 'moment';
 

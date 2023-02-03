@@ -2,7 +2,7 @@ import { isIos } from './isIos';
 
 type MimeTypes = 'application/pdf' | 'application/zip';
 
-const triggerDownload = (
+export const triggerDownload = (
   responseData: BlobPart,
   filename: string,
   mimeType: MimeTypes = 'application/pdf',
@@ -36,5 +36,3 @@ const triggerDownload = (
 
   window.URL.revokeObjectURL(blobUrl);
 };
-
-export default triggerDownload;

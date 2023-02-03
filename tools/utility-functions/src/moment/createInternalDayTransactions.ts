@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const createInternalDayTransactions = (transactions) => {
+export const createInternalDayTransactions = (transactions) => {
   const result = [];
 
   for (let i = 0; i < transactions.length; i++) {
@@ -29,5 +29,3 @@ const createInternalDayTransactions = (transactions) => {
 
   return result;
 };
-
-export default createInternalDayTransactions;

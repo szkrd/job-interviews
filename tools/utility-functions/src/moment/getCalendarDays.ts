@@ -6,7 +6,7 @@ import { range } from '../array/range';
  * Get a list of moment dates (the days) for the selected month
  * (fragment weeks' days are to be filled with nulls).
  */
-const getCalendarDays = (selected: Moment): Moment[] => {
+export const getCalendarDays = (selected: Moment): Moment[] => {
   const localeData = moment.localeData();
   const firstDayOfWeek = localeData.firstDayOfWeek();
   const monthStart = moment(selected).startOf('month');
@@ -20,5 +20,3 @@ const getCalendarDays = (selected: Moment): Moment[] => {
   }
   return days;
 };
-
-export default getCalendarDays;

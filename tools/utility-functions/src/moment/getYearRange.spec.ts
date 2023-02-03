@@ -1,4 +1,4 @@
-import getYearRange from './getYearRange';
+import { getYearRange } from './getYearRange';
 import moment from 'moment';
 
 describe('getYearRange', () => {

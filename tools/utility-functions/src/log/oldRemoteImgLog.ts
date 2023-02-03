@@ -24,7 +24,7 @@ const stringify = (v: any) => {
 /**
  * Image element based minimal remote logger.
  */
-export default function remoteLog(...args) {
+export function remoteLog(...args) {
   if (IS_PRODUCTION) {
     return;
   }
