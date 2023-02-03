@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    // minimum es5 (because of the class getters/setters), but it must not transpile
+    // decorators, since we want to be able to detect them (nost as plain functions of course)
+    "target": "es2022",
+    "moduleResolution": "node"
   }
 }

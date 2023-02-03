@@ -6,7 +6,7 @@ import path from 'path';
 const templateData = {};
 const assocMap = {};
 const files = (templateData.files = shell
-  .ls('-d', 'src/*/**.ts')
+  .ls('-d', 'src/*/**.ts', 'src/*/**.xts')
   .map((fn) => {
     const data = (assocMap[fn] = {
       fullPath: fn,
@@ -16,7 +16,8 @@ const files = (templateData.files = shell
       isJs: fn.endsWith('.js'),
       hasSpec: false,
       hasAny: false,
-      isSpec: fn.endsWith('.spec.ts'),
+      isBroken: fn.endsWith('.xts') || path.basename(fn).startsWith('old'),
+      isSpec: fn.endsWith('.spec.ts') || fn.endsWith('.spec.xts'),
     });
     return data;
   })
@@ -26,7 +27,9 @@ const files = (templateData.files = shell
     return !data.isSpec;
   }));
 files.forEach((data) => {
-  data.hasAny = (shell.cat(data.fullPath) + '').includes('@typescript-eslint/no-explicit-an');
+  const source = shell.cat(data.fullPath) + '';
+  data.hasAny = source.includes('@typescript-eslint/no-explicit-an');
+  data.isBroken = data.isBroken || source.includes('/* [not working] */');
 });
 const rendered = ejs.render(shell.cat('README.ejs') + '', templateData);
 writeFileSync('README.md', rendered, 'utf-8');

@@ -1,0 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { KeyboardEvent } from 'react';
+
+export type FakeInputKeyDownCallback = (event: KeyboardEvent) => any;
+
+/** Fake inputs should react to space or enter press on key down (for example to toggle a dropdown) */
+const handleFakeInputKeyDownEvent = (event: KeyboardEvent, cb: FakeInputKeyDownCallback): any => {
+  const sameAsSource = event.target === event.currentTarget;
+  const isSpace = event.key === ' ';
+  const isEnter = event.key === 'Enter';
+  if (sameAsSource && (isSpace || isEnter)) {
+    event.preventDefault();
+    event.stopPropagation();
+    return cb(event);
+  }
+};
+
+export default handleFakeInputKeyDownEvent;

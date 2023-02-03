@@ -6,9 +6,10 @@
     "start": "jest ./src",
     "test": "jest --watch ./src",
     "watch": "jest --watch ./src",
-    "lint": "eslint ./src",
+    "lint": "tsc --noEmit && eslint ./src",
     "format": "prettier --write ./src",
-    "update-readme": "node update.mjs"
+    "update-readme": "node update.mjs",
+    "precommit": "prettier --write ./src && tsc --noEmit && eslint ./src && jest ./src && node update.mjs"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "@babel/preset-typescript": "7.18.6",
     "@jest/globals": "29.3.1",
     "@types/jest": "29.4.0",
+    "@types/moment": "2.13.0",
     "@typescript-eslint/eslint-plugin": "5.49.0",
     "@typescript-eslint/parser": "5.49.0",
     "babel-jest": "29.3.1",
@@ -33,6 +35,7 @@
     "ts-jest": "29.0.5"
   },
   "dependencies": {
+    "moment": "2.29.4",
     "xregexp": "5.1.1"
   }
 }

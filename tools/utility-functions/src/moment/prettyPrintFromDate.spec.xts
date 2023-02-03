@@ -1,0 +1,65 @@
+import moment from 'moment';
+import prettyPrintFromDate from './prettyPrintFromDate';
+
+describe.skip('prettyPrintFromDate', () => {
+  test('custom short date from', () => {
+    const result = () => prettyPrintFromDate(upload, now, true);
+    const upload = moment('2010-01-01 10:10:00');
+    let now = moment('2010-01-01 10:10:59');
+    expect(result()).toBe('59s');
+
+    now = moment('2010-01-01 10:11:00'); // 60s -> 1m
+    expect(result()).toBe('1m');
+
+    now = moment('2010-01-01 11:09:00'); // 59m -> 59m
+    expect(result()).toBe('59m');
+
+    now = moment('2010-01-01 11:10:00'); // 60m -> 1h
+    expect(result()).toBe('1h');
+
+    now = moment('2010-01-01 11:39:00'); // 1h 29m -> 1h
+    expect(result()).toBe('1h');
+
+    now = moment('2010-01-01 11:40:00'); // 1h 30m -> 1.5h -> 2h
+    expect(result()).toBe('2h');
+
+    now = moment('2010-01-02 09:10:00'); // 23h -> 23h
+    expect(result()).toBe('23h');
+
+    now = moment('2010-01-02 09:39:00'); // 23h 29m -> <23.5h -> 23h
+    expect(result()).toBe('23h');
+
+    now = moment('2010-01-02 10:09:00'); // 23h 59m -> 24h -> 1d
+    expect(result()).toBe('1d');
+
+    now = moment('2010-01-07 10:10:00'); // 6d
+    expect(result()).toBe('6d');
+
+    now = moment('2010-01-08 09:10:00'); // 6d 23h -> 7d -> 1w
+    expect(result()).toBe('1w');
+
+    now = moment('2010-01-29 10:10:00'); // 28d -> 4w
+    expect(result()).toBe('4w');
+
+    now = moment('2010-02-01 10:10:00'); // 28d + 3d -> 4w
+    expect(result()).toBe('4w');
+
+    now = moment('2010-02-02 10:10:00'); // 28d + 4d -> 5w -> 1mo
+    expect(result()).toBe('1mo');
+
+    now = moment('2010-02-19 10:10:00'); // ~1.5mo -> 1mo (moment floors, we round)
+    expect(result()).toBe('2mo');
+
+    now = moment('2010-02-28 10:10:00'); // nearly 2mo (moment floors, we round) -> 2mo
+    expect(result()).toBe('2mo');
+
+    now = moment('2010-03-01 10:10:00'); // exactly 2mo -> 2mo
+    expect(result()).toBe('2mo');
+
+    now = moment('2010-12-24 10:10:00'); // more than 11mo -> 1y
+    expect(result()).toBe('1y');
+
+    now = moment('2060-01-01 10:10:00'); // Unity launch to Alpha Centauri
+    expect(result()).toBe('50y');
+  });
+});

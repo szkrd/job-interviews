@@ -11,8 +11,10 @@ The project uses `ts-jest`; most of these should not need the DOM.
 
 Files are in TS, but they may not be implicit any safe.
 If a file has a spec, then it is marked with ✨ (sparkles), if it has **disabled** `no-explicit-any`
-then it is marked with a ⚠️ (warning).
+then it is marked with a ⚠️ (warning). Very old or incomplete / now broken scripts are marked
+with a 🛑 (stop sign).
 
+<%#<!--%>
 <% files.forEach(file => { -%>
-- <%= file.dirs %> / **<%= file.name %>** <%= file.hasSpec ? '✨' : '' %> <%= file.hasAny ? '⚠️' : '' %>
+- <%= file.dirs %> / [<%= file.name %>](<%= file.fullPath %>) <%= file.hasSpec ? '✨' : '' %><%= file.hasAny ? '⚠️' : '' %><%= file.isBroken ? '🛑' : '' %>
 <% }); %>
