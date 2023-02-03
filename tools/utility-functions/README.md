@@ -48,6 +48,7 @@ with a 🛑 (stop sign).
 - datetime / [secondsToHms](src/datetime/secondsToHms.ts) ✨
 - datetime / [utcToLocal](src/datetime/utcToLocal.ts) ✨
 - dom / [createHeadTag](src/dom/createHeadTag.ts) 
+- eventBus / [nodeEventBus](src/eventBus/nodeEventBus.ts) ⚠️🛑
 - fetch / [getApiHeaders](src/fetch/getApiHeaders.ts) 
 - fetch / [request](src/fetch/request.ts) ⚠️
 - function / [debounce](src/function/debounce.ts) ⚠️
