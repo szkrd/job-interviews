@@ -24,6 +24,8 @@ with a 🛑 (stop sign).
 - array / [getArrayIndexById](src/array/getArrayIndexById.ts) ✨⚠️
 - array / [getRandomItem](src/array/getRandomItem.ts) 
 - array / [groupBy](src/array/groupBy.ts) ✨
+- array / [isHexColor](src/array/isHexColor.ts) ✨
+- array / [last](src/array/last.ts) 
 - array / [range](src/array/range.ts) ✨
 - array / [shuffle](src/array/shuffle.ts) 
 - array / [uniq](src/array/uniq.ts) ✨
@@ -88,6 +90,7 @@ with a 🛑 (stop sign).
 - number / [toFixed](src/number/toFixed.ts) ✨
 - number / [truncateDecimals](src/number/truncateDecimals.ts) 
 - object / [deepDumbClone](src/object/deepDumbClone.ts) 
+- object / [deproxifyObject](src/object/deproxifyObject.ts) 
 - object / [freezeErrorObject](src/object/freezeErrorObject.ts) ✨⚠️
 - object / [objectGet](src/object/objectGet.ts) ✨⚠️
 - object / [objectMap](src/object/objectMap.ts) ⚠️
@@ -107,6 +110,7 @@ with a 🛑 (stop sign).
 - string / [replaceAt](src/string/replaceAt.ts) ✨
 - string / [truncateText](src/string/truncateText.ts) ✨
 - token / [parseJwt](src/token/parseJwt.ts) ✨
+- typescript / [deepPartial](src/typescript/deepPartial.ts) 
 - typescript / [objectKeys](src/typescript/objectKeys.ts) 
 - url / [addDefaultUriProtocol](src/url/addDefaultUriProtocol.ts) 
 - url / [addQueryStringToUrl](src/url/addQueryStringToUrl.ts) ✨
@@ -121,6 +125,7 @@ with a 🛑 (stop sign).
 - validation / [isNullOrUndefined](src/validation/isNullOrUndefined.ts) ✨⚠️
 - validation / [isUrlFriendly](src/validation/isUrlFriendly.ts) 
 - validation / [isValidEmail](src/validation/isValidEmail.ts) 
+- validation / [isValidEmailSimple](src/validation/isValidEmailSimple.ts) 
 - validation / [isValidEuTaxId](src/validation/isValidEuTaxId.ts) 
 - validation / [isValidFacebookUrl](src/validation/isValidFacebookUrl.ts) 
 - validation / [isValidTwitterUrl](src/validation/isValidTwitterUrl.ts) 
