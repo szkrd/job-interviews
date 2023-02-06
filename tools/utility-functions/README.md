@@ -57,6 +57,7 @@ with a 🛑 (stop sign).
 - eventBus / [nodeEventBus](src/eventBus/nodeEventBus.ts) ⚠️🛑
 - fetch / [getApiHeaders](src/fetch/getApiHeaders.ts) 
 - fetch / [request](src/fetch/request.ts) ⚠️
+- file / [downloadFile](src/file/downloadFile.ts) 
 - function / [debounce](src/function/debounce.ts) ⚠️
 - function / [isGeneratorFunction](src/function/isGeneratorFunction.ts) ✨⚠️
 - function / [nullFunc](src/function/nullFunc.ts) ⚠️
@@ -84,6 +85,7 @@ with a 🛑 (stop sign).
 - number / [getId](src/number/getId.ts) 
 - number / [isFractional](src/number/isFractional.ts) 
 - number / [limit](src/number/limit.ts) 
+- number / [parseIntSafe](src/number/parseIntSafe.ts) ✨
 - number / [prettifyLongNumber](src/number/prettifyLongNumber.ts) ✨
 - number / [random](src/number/random.ts) 
 - number / [randRange](src/number/randRange.ts) 
@@ -99,6 +101,7 @@ with a 🛑 (stop sign).
 - object / [renameProp](src/object/renameProp.ts) ✨⚠️
 - object / [safeStringify](src/object/safeStringify.ts) ✨⚠️
 - object / [withoutEmpties](src/object/withoutEmpties.ts) ✨⚠️
+- storage / [safeStorages](src/storage/safeStorages.ts) 
 - storage / [simpleSessionStorage](src/storage/simpleSessionStorage.ts) ⚠️
 - storage / [simpleStorages](src/storage/simpleStorages.ts) ⚠️
 - string / [capitalize](src/string/capitalize.ts) ✨
