@@ -43,6 +43,7 @@ with a 🛑 (stop sign).
 - browser / [isTouch](src/browser/isTouch.ts) 
 - browser / [loadResource](src/browser/loadResource.ts) 
 - browser / [triggerDownload](src/browser/triggerDownload.ts) ⚠️
+- cli / [colorize](src/cli/colorize.ts) 
 - currency / [formatMoney](src/currency/formatMoney.ts) ✨
 - currency / [formatMoneyRaw](src/currency/formatMoneyRaw.ts) ✨
 - datetime / [formatDate](src/datetime/formatDate.ts) ✨
