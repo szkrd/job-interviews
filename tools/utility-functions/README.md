@@ -112,6 +112,7 @@ with a 🛑 (stop sign).
 - string / [kebabCase](src/string/kebabCase.ts) ✨
 - string / [parseLabel](src/string/parseLabel.ts) ✨
 - string / [replaceAt](src/string/replaceAt.ts) ✨
+- string / [split](src/string/split.ts) ✨
 - string / [truncateText](src/string/truncateText.ts) ✨
 - token / [parseJwt](src/token/parseJwt.ts) ✨
 - typescript / [deepPartial](src/typescript/deepPartial.ts) 
