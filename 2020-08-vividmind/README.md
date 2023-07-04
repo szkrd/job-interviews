@@ -5,9 +5,11 @@ Angular based interview entry task.
 Client generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5. and so on.
 
 - client: `cd client`, then `npm start` for a [dev server](http://localhost:4200/).
-- server: `cd server`, then `ACCESS_TOKEN=token npm start`, you can also use `server/.env` for the env var.
-  The client expects the server to be at PORT **5050**.
+- server: `cd server`, then `ACCESS_TOKEN=token npm start` (this is newer v4 jwt one),
+  you can also use `server/.env` for the env var. The client expects the server to be at PORT **5050**.
 - branches: *master* is stable, though I might modify things in *development*, depending on my mood and my freetime
+
+An updated client (for **Angular 16**, added at 2023-07) can be found in [./client-a16](./client-a16/README.md).
 
 ## caveats
 
@@ -20,6 +22,8 @@ Client generated with [Angular CLI](https://github.com/angular/angular-cli) vers
   I would say this can take roughly a week to finish
 
 ## demo
+
+[screenshots](./client-a16/docs)
 
 [screen-recording](./docs/demo-20200808_121421-lowres.mp4)
 
